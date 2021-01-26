@@ -57,7 +57,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
         drawerLayout.useCustomBehavior(Gravity.END)
 
         //cover
-        LImageUtil.load(context = this, any = getString(R.string.link_cover), imageView = navViewStart.getHeaderView(0).ivCover)
+//        LImageUtil.load(context = this, any = R.drawable.vn_express, imageView = navViewStart.getHeaderView(0).ivCover)
 
         tvAd.text = LStoreUtil.readTxtFromRawFolder(nameOfRawFile = R.raw.ad)
 
