@@ -14,17 +14,13 @@ import com.core.base.BaseFontActivity
 import com.core.common.Constants
 import com.core.helper.adhelper.AdHelperActivity
 import com.core.helper.donate.FrmDonate
-import com.core.helper.gallery.GalleryCoreSplashActivity
-import com.core.helper.mup.girl.ui.GirlSplashActivity
 import com.core.utilities.*
 import com.google.android.material.navigation.NavigationView
-import com.loitp.BuildConfig
 import com.loitp.R
 import com.loitp.fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_drawer_end.*
 import kotlinx.android.synthetic.main.view_drawer_main.*
-import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("MainActivity")
 class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -109,39 +105,6 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
                 currentItemId = R.id.navHome
                 LScreenUtil.replaceFragment(this, R.id.flContainer, HomeFragment(), false)
             }
-            R.id.navGallery -> {
-                if (BuildConfig.DEBUG) {
-                    val intent = Intent(this, GalleryCoreSplashActivity::class.java)
-                    intent.putExtra(Constants.AD_UNIT_ID_BANNER, getString(R.string.str_b))
-                    intent.putExtra(Constants.BKG_SPLASH_SCREEN, getString(R.string.link_cover))
-                    intent.putExtra(Constants.BKG_ROOT_VIEW, R.drawable.bkg_black)
-                    //neu muon remove albumn nao thi cu pass id cua albumn do
-                    val removeAlbumFlickrList = ArrayList<String>()
-                    removeAlbumFlickrList.add(Constants.FLICKR_ID_STICKER)
-                    intent.putStringArrayListExtra(Constants.KEY_REMOVE_ALBUM_FLICKR_LIST, removeAlbumFlickrList)
-                    startActivity(intent)
-                    LActivityUtil.tranIn(this)
-                }
-            }
-            R.id.navGallery18 -> {
-                if (BuildConfig.DEBUG) {
-                    val intent = Intent(this, GirlSplashActivity::class.java)
-                    intent.putExtra(Constants.AD_UNIT_ID_BANNER, getString(R.string.str_b))
-
-                    val listBkg = ArrayList<String>()
-                    listBkg.add("https://live.staticflickr.com/4657/26146170428_894243ab3c_b.jpg")
-                    listBkg.add("https://live.staticflickr.com/4782/26128440717_a00e7cbec1_h.jpg")
-                    listBkg.add("https://live.staticflickr.com/817/26128440867_1a90f7f8ec_h.jpg")
-                    listBkg.add("https://live.staticflickr.com/789/26128436937_84ecab7cdf_h.jpg")
-                    listBkg.add("https://live.staticflickr.com/4794/26128436737_69e5dfca7b_h.jpg")
-                    intent.putExtra(Constants.BKG_SPLASH_SCREEN, listBkg.random())
-                    startActivity(intent)
-                    LActivityUtil.tranIn(this)
-                }
-            }
-            R.id.navGallery18Feed -> {
-                LSocialUtil.openUrlInBrowser(context = this, url = Constants.URL_GIRL)
-            }
             R.id.navRateApp -> {
                 LSocialUtil.rateApp(activity = this, packageName = packageName)
             }
@@ -162,13 +125,18 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
             }
             R.id.navAd -> {
                 val intent = Intent(this, AdHelperActivity::class.java)
-                intent.putExtra(Constants.AD_HELPER_IS_ENGLISH_LANGUAGE, true)
+                intent.putExtra(Constants.AD_HELPER_IS_ENGLISH_LANGUAGE, false)
                 startActivity(intent)
                 LActivityUtil.tranIn(this)
             }
             R.id.navDonation -> {
                 currentItemId = R.id.navDonation
-                LScreenUtil.replaceFragment(activity = this, containerFrameLayoutIdRes = R.id.flContainer, fragment = FrmDonate(), isAddToBackStack = false)
+                LScreenUtil.replaceFragment(
+                        activity = this,
+                        containerFrameLayoutIdRes = R.id.flContainer,
+                        fragment = FrmDonate(),
+                        isAddToBackStack = false
+                )
             }
         }
 

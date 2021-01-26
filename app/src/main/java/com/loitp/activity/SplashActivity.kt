@@ -178,15 +178,18 @@ class SplashActivity : BaseFontActivity() {
                     logD("getGG listGG: -> " + BaseApplication.gson.toJson(listGG))
 
                     fun isReady(): Boolean {
-                        listGG.forEach { gg ->
-                            if (packageName == gg.pkg) {
-                                return gg.isReady
-                            }
-                        }
-                        return false
+                        //TODO return true for demo purpose
+                        return true
+
+//                        listGG.forEach { gg ->
+//                            if (packageName == gg.pkg) {
+//                                return gg.isReady
+//                            }
+//                        }
+//                        return false
                     }
 
-                    val isReady = true // return true for demo
+                    val isReady = isReady()
                     if (isReady) {
                         LPrefUtil.setCheckAppReady(value = true)
                         setReady()

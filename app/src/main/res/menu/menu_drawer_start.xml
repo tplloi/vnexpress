@@ -8,17 +8,9 @@
             android:icon="@drawable/ic_home_black_48dp"
             android:title="@string/home" />
         <item
-            android:id="@+id/navGallery"
-            android:icon="@drawable/ic_insert_photo_black_48dp"
-            android:title="@string/gallery" />
-        <item
-            android:id="@+id/navGallery18"
-            android:icon="@drawable/ic_insert_photo_black_48dp"
-            android:title="@string/gallery_18" />
-        <item
-            android:id="@+id/navGallery18Feed"
-            android:icon="@drawable/ic_insert_photo_black_48dp"
-            android:title="@string/gallery_18" />
+            android:id="@+id/navSetting"
+            android:icon="@drawable/ic_settings_black_48dp"
+            android:title="@string/setting_vn" />
         <item
             android:id="@+id/navRateApp"
             android:icon="@drawable/ic_rate_review_black_48dp"
