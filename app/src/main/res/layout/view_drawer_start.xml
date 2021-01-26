@@ -17,9 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/themeBackgroundColor"
+        android:gravity="center"
         android:padding="@dimen/padding_medium"
-        android:text="@string/copyright"
+        android:text="@string/copy_right_vnexpress"
         android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/txt_medium" />
+        android:textSize="@dimen/text_small" />
 
 </LinearLayout>
