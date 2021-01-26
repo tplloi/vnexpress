@@ -6,10 +6,8 @@ import androidx.lifecycle.Observer
 import com.annotation.LogTag
 import com.core.base.BaseApplication
 import com.core.base.BaseFragment
-import com.core.utilities.LSocialUtil
 import com.loitp.R
 import com.loitp.viewmodels.MainViewModel
-import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.frm_home.*
 
 @LogTag("HomeFragment")
@@ -32,9 +30,7 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupViews() {
-        btGithub.setSafeOnClickListener {
-            LSocialUtil.openUrlInBrowser(context = activity, url = "https://github.com/tplloi/basemaster.demo")
-        }
+
     }
 
     private fun setupViewModels() {
@@ -50,7 +46,6 @@ class HomeFragment : BaseFragment() {
 
             mvm.listChapLiveData.observe(viewLifecycleOwner, Observer { listChap ->
                 logD("<<<listChapLiveData " + BaseApplication.gson.toJson(listChap))
-                btGithub.visibility = View.VISIBLE
             })
         }
 
