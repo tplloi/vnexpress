@@ -11,8 +11,8 @@ android {
         applicationId "loitp93.rss.vnexpress"
         minSdkVersion 21
         targetSdkVersion 30
-        versionCode 3
-        versionName "1.0.3"
+        versionCode 1
+        versionName "1.0.1"
         multiDexEnabled true
 
         renderscriptTargetApi 19

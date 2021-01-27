@@ -148,6 +148,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
             recyclerView.visibility = View.VISIBLE
         }
         tvNoData.visibility = View.GONE
+        animationView.visibility = View.GONE
     }
 
     private fun showLoading() {
