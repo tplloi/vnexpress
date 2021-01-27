@@ -80,9 +80,6 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                     concatAdapter.itemCount.let {
                         recyclerView.scrollToPosition(it - 1)
                     }
-                    LUIUtil.setDelay(5000, Runnable {
-                        concatAdapter.removeAdapter(loadMoreAdapter)
-                    })
                 },
                 onScrolled = {
                 }
@@ -122,6 +119,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun onRssItemsLoaded(rssItems: List<RssItem>) {
+        concatAdapter.removeAdapter(loadMoreAdapter)
         rssItemsAdapter?.setItems(rssItems)
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
