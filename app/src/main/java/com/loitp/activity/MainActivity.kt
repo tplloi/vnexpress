@@ -104,7 +104,12 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
             R.id.navHome -> {
                 logD("onNavigationItemSelected navHome")
                 currentItemId = R.id.navHome
-                LScreenUtil.replaceFragment(this, R.id.flContainer, HomeFragment(), false)
+                LScreenUtil.replaceFragment(
+                        this,
+                        R.id.flContainer,
+                        HomeFragment.newInstance(feedUrl = "https://vnexpress.net/rss/tin-moi-nhat.rss"),
+                        false
+                )
             }
             R.id.navSetting -> {
                 logD("onNavigationItemSelected navHome")
