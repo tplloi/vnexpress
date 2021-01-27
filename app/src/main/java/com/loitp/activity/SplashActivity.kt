@@ -35,7 +35,7 @@ class SplashActivity : BaseFontActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        LUIUtil.setDelay(mls = 1500, runnable = Runnable {
+        LUIUtil.setDelay(mls = 1000, runnable = Runnable {
             isAnimDone = true
             goToHome()
         })
@@ -178,15 +178,12 @@ class SplashActivity : BaseFontActivity() {
                     logD("getGG listGG: -> " + BaseApplication.gson.toJson(listGG))
 
                     fun isReady(): Boolean {
-                        //TODO return true for demo purpose
-                        return true
-
-//                        listGG.forEach { gg ->
-//                            if (packageName == gg.pkg) {
-//                                return gg.isReady
-//                            }
-//                        }
-//                        return false
+                        listGG.forEach { gg ->
+                            if (packageName == gg.pkg) {
+                                return gg.isReady
+                            }
+                        }
+                        return false
                     }
 
                     val isReady = isReady()

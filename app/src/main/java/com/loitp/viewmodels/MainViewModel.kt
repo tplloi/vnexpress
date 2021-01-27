@@ -1,27 +1,49 @@
 package com.loitp.viewmodels
 
-import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.annotation.LogTag
 import com.core.base.BaseViewModel
-import com.core.utilities.LStoreUtil
+import com.loitp.service.RssService
+import com.rss.RssConverterFactory
+import com.rss.RssFeed
+import com.rss.RssItem
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
-@LogTag("MainViewModel")
+@LogTag("loitppMainViewModel")
 class MainViewModel : BaseViewModel() {
 
-    val listChapLiveData: MutableLiveData<List<String>> = MutableLiveData()
+    val listRssItemLiveData: MutableLiveData<List<RssItem>> = MutableLiveData()
 
-    fun loadListChap(context: Context) {
+    fun loadDataRss(urlRss: String?) {
         ioScope.launch {
+            logD(">>>loadDataRss urlRss $urlRss")
             showLoading(true)
 
-            val string = LStoreUtil.readTxtFromAsset(assetFile = "db.sqlite")
-            logD("loadListChap string $string")
-            val listChap = string.split("#")
-            listChapLiveData.postValue(listChap)
+            val retrofit = Retrofit.Builder()
+                    .baseUrl("https://github.com")
+                    .addConverterFactory(RssConverterFactory.create())
+                    .build()
 
-            showLoading(false)
+            val service = retrofit.create(RssService::class.java)
+            urlRss?.let { url ->
+                service.getRss(url)
+                        .enqueue(object : Callback<RssFeed> {
+                            override fun onResponse(call: Call<RssFeed>, response: Response<RssFeed>) {
+                                val listRssItem = response.body()?.items ?: emptyList()
+                                listRssItemLiveData.postValue(listRssItem)
+                                showLoading(false)
+                            }
+
+                            override fun onFailure(call: Call<RssFeed>, t: Throwable) {
+                                setErrorMessage("Failed to fetchRss RSS feed!")
+                                showLoading(false)
+                            }
+                        })
+            }
         }
     }
 }

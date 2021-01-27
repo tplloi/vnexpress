@@ -18,7 +18,7 @@
     <string name="need_permisson">Cần cấp quyền</string>
     <string name="need_permisson_to_use_app">Cần cấp quyền để dùng được ứng dụng</string>
     <string name="app_is_not_ready">Server đang bảo trì, vui lòng thử lại sau</string>
-    <string name="check_ur_connection">Vui lòng kiểm tra kết nối của bản</string>
+    <string name="check_ur_connection">Vui lòng kiểm tra kết nối của bạn</string>
     <string name="warning">Thông báo</string>
     <string name="press_again_to_exit">Nhấn thêm lần nữa để thoát ứng dụng</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>

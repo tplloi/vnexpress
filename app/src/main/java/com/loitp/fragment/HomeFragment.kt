@@ -6,23 +6,14 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.annotation.LogTag
-import com.core.base.BaseApplication
 import com.core.base.BaseFragment
-import com.core.utilities.LSocialUtil
 import com.loitp.R
 import com.loitp.adapter.RssItemsAdapter
-import com.loitp.service.RssService
 import com.loitp.viewmodels.MainViewModel
-import com.rss.RssConverterFactory
-import com.rss.RssFeed
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_home.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
 
-@LogTag("HomeFragment")
+@LogTag("loitppHomeFragment")
 class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
@@ -47,6 +38,8 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         feedUrl = arguments?.getString(KEY_FEED)
         setupViews()
         setupViewModels()
+
+        fetchRss()
     }
 
     override fun setLayoutResourceId(): Int {
@@ -55,71 +48,57 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun setupViews() {
         mAdapter = RssItemsAdapter { rssItem ->
-            LSocialUtil.openUrlInBrowser(context = context, url = rssItem.link)
+            //TODO
         }
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerView.adapter = mAdapter
         swRefresh.setOnRefreshListener(this)
-
-        fetchRss()
     }
 
     private fun setupViewModels() {
         mainViewModel = getViewModel(MainViewModel::class.java)
         mainViewModel?.let { mvm ->
             mvm.eventLoading.observe(viewLifecycleOwner, Observer { isLoading ->
+                logD("eventLoading isLoading $isLoading")
                 if (isLoading) {
-//                    indicatorView.smoothToShow()
+                    showLoading()
                 } else {
-//                    indicatorView.smoothToHide()
+                    hideLoading()
                 }
             })
+            mvm.eventErrorMessage.observe(viewLifecycleOwner, Observer { msg ->
+                logE("eventErrorMessage observe $msg")
+                msg?.let {
+                    recyclerView.visibility = View.GONE
+                    tvNoData.visibility = View.VISIBLE
+                }
 
-            mvm.listChapLiveData.observe(viewLifecycleOwner, Observer { listChap ->
-                logD("<<<listChapLiveData " + BaseApplication.gson.toJson(listChap))
+            })
+            mvm.listRssItemLiveData.observe(viewLifecycleOwner, Observer { listRssItem ->
+//                logD("<<<listRssItemLiveData " + BaseApplication.gson.toJson(listRssItem))
+                onRssItemsLoaded(rssItems = listRssItem)
             })
         }
 
     }
 
     private fun fetchRss() {
-        val retrofit = Retrofit.Builder()
-                .baseUrl("https://github.com")
-                .addConverterFactory(RssConverterFactory.create())
-                .build()
-
-        showLoading()
-        val service = retrofit.create(RssService::class.java)
-
-        feedUrl?.apply {
-            service.getRss(this)
-                    .enqueue(object : Callback<RssFeed> {
-                        override fun onResponse(call: Call<RssFeed>, response: Response<RssFeed>) {
-                            response.body()?.items?.let {
-                                onRssItemsLoaded(rssItems = it)
-                            }
-                            hideLoading()
-                        }
-
-                        override fun onFailure(call: Call<RssFeed>, t: Throwable) {
-                            showSnackBarError(msg = "Failed to fetchRss RSS feed!", isFullWidth = true)
-                        }
-                    })
-        }
+        mainViewModel?.loadDataRss(feedUrl)
     }
 
-    fun onRssItemsLoaded(rssItems: List<RssItem>) {
+    private fun onRssItemsLoaded(rssItems: List<RssItem>) {
         mAdapter?.setItems(rssItems)
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
         }
+        tvNoData.visibility = View.GONE
     }
 
     private fun showLoading() {
         swRefresh.isRefreshing = true
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         swRefresh.isRefreshing = false
     }
 
