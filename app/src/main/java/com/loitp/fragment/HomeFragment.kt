@@ -10,6 +10,7 @@ import com.annotation.LogTag
 import com.core.base.BaseFragment
 import com.core.utilities.LUIUtil
 import com.loitp.R
+import com.loitp.adapter.LoadMoreAdapter
 import com.loitp.adapter.RssItemsAdapter
 import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
@@ -34,6 +35,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private var feedUrl: String? = null
     private val concatAdapter = ConcatAdapter()
     private var rssItemsAdapter: RssItemsAdapter? = null
+    private var loadMoreAdapter = LoadMoreAdapter()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,7 +65,24 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 onTop = {
                 },
                 onBottom = {
-
+//                    logD("onBottom")
+                    var isContainLoadMoreAdapter = false
+                    concatAdapter.adapters.forEach {
+//                        logD(">>> " + it.javaClass.simpleName + "~" + LoadMoreAdapter::class.java.simpleName)
+                        if (it.javaClass.simpleName == LoadMoreAdapter::class.java.simpleName) {
+                            isContainLoadMoreAdapter = true
+                        }
+                    }
+//                    logD("isContainLoadMoreAdapter $isContainLoadMoreAdapter")
+                    if (!isContainLoadMoreAdapter) {
+                        concatAdapter.addAdapter(loadMoreAdapter)
+                    }
+                    concatAdapter.itemCount.let {
+                        recyclerView.scrollToPosition(it - 1)
+                    }
+                    LUIUtil.setDelay(5000, Runnable {
+                        concatAdapter.removeAdapter(loadMoreAdapter)
+                    })
                 },
                 onScrolled = {
                 }
