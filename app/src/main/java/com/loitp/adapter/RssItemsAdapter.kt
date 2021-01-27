@@ -12,7 +12,7 @@ import com.rss.RssItem
 import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.*
 
-@LogTag("RssItemsAdapter")
+@LogTag("loitppRssItemsAdapter")
 class RssItemsAdapter(
         private val onClick: ((RssItem) -> Unit)? = null
 ) : BaseAdapter() {
@@ -20,8 +20,20 @@ class RssItemsAdapter(
     private val itemList = ArrayList<RssItem>()
 
     fun setItems(items: List<RssItem>) {
+
+        fun isContain(rssItem: RssItem): Boolean {
+            itemList.forEach {
+                if (it.link == rssItem.link) {
+                    return true
+                }
+            }
+            return false
+        }
+
         items.forEach {
-            if (!itemList.contains(it)) {
+            val isContain = isContain(it)
+//            logD("setItems isContain $isContain -> ${it.title}")
+            if (!isContain) {
                 itemList.add(it)
             }
         }

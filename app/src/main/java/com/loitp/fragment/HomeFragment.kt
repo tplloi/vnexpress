@@ -84,6 +84,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                     } else {
                         logD("else")
                         concatAdapter.removeAdapter(loadMoreAdapter)
+                        showSnackBarInfor("Bạn đã cuộn đến trang cuối")
                     }
                 },
                 onScrolled = {
@@ -143,6 +144,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
+        currentIndex = 0
         fetchRss()
     }
 }
