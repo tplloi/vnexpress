@@ -18,6 +18,7 @@ import com.core.utilities.*
 import com.google.android.material.navigation.NavigationView
 import com.loitp.R
 import com.loitp.fragment.HomeFragment
+import com.loitp.fragment.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_drawer_end.*
 import kotlinx.android.synthetic.main.view_drawer_main.*
@@ -106,7 +107,9 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
                 LScreenUtil.replaceFragment(this, R.id.flContainer, HomeFragment(), false)
             }
             R.id.navSetting -> {
-                //TODO
+                logD("onNavigationItemSelected navHome")
+                currentItemId = R.id.navSetting
+                LScreenUtil.replaceFragment(this, R.id.flContainer, SettingFragment(), false)
             }
             R.id.navGithub -> {
                 LSocialUtil.openUrlInBrowser(context = this, url = "https://github.com/tplloi/vnexpress")
