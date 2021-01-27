@@ -37,5 +37,7 @@
     <string name="github">Github</string>
     <string name="copy_right_vnexpress">© 1997–2021. Toàn bộ bản quyền tin tức thuộc VnExpress</string>
     <string name="dark_mode">Chế độ tối</string>
+    <string name="small_thumb">Trang tin thu gọn</string>
+    <string name="setting_success">Đã cài đặt thành công</string>
 
 </resources>

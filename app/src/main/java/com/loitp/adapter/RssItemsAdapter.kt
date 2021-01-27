@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.annotation.LogTag
 import com.core.adapter.BaseAdapter
 import com.core.utilities.LImageUtil
+import com.core.utilities.LScreenUtil
+import com.core.utilities.LSharedPrefsUtil
+import com.core.utilities.LUIUtil
 import com.loitp.R
+import com.loitp.constant.Cons
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.*
@@ -18,6 +22,16 @@ class RssItemsAdapter(
 ) : BaseAdapter() {
 
     private val itemList = ArrayList<RssItem>()
+    private val isSmallThumb = LSharedPrefsUtil.instance.getBoolean(Cons.IS_SMALL_THUMB, false)
+    private var height = 0
+
+    init {
+        height = if (isSmallThumb) {
+            LScreenUtil.screenHeight / 5
+        } else {
+            LScreenUtil.screenHeight / 2
+        }
+    }
 
     fun setItems(items: List<RssItem>) {
 
@@ -58,6 +72,8 @@ class RssItemsAdapter(
     inner class RSSViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(rssItem: RssItem) {
+            LUIUtil.setSizeOfView(view = itemView.ivThumb, height = height)
+
             itemView.tvTitle.text = rssItem.title
             itemView.tvPubDate.text = rssItem.publishDate
 

@@ -8,9 +8,11 @@ import com.annotation.LogTag
 import com.core.base.BaseFragment
 import com.core.utilities.LActivityUtil
 import com.core.utilities.LDialogUtil
+import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.activity.MainActivity
+import com.loitp.constant.Cons
 import kotlinx.android.synthetic.main.frm_setting.*
 
 @LogTag("SettingFragment")
@@ -38,7 +40,13 @@ class SettingFragment : BaseFragment() {
         swEnableDarkMode.isChecked = isDarkTheme
 
         swEnableDarkMode.setOnCheckedChangeListener { _, isChecked ->
-            handleSwitchDarkTheme(isChecked)
+            handleSwitchDarkTheme(isChecked = isChecked)
+        }
+
+        val isSmallThumb = LSharedPrefsUtil.instance.getBoolean(Cons.IS_SMALL_THUMB, false)
+        swSmallSizeItem.isChecked = isSmallThumb
+        swSmallSizeItem.setOnCheckedChangeListener { _, isChecked ->
+            handleSwitchSmallThumb(isChecked = isChecked)
         }
     }
 
@@ -79,5 +87,10 @@ class SettingFragment : BaseFragment() {
                 swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
             }
         }
+    }
+
+    private fun handleSwitchSmallThumb(isChecked: Boolean) {
+        LSharedPrefsUtil.instance.putBoolean(Cons.IS_SMALL_THUMB, isChecked)
+        showShortInformation(getString(R.string.setting_success))
     }
 }

@@ -19,7 +19,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivThumb"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/w_250"
+            android:layout_height="wrap_content"
             android:scaleType="centerCrop"
             tools:src="@color/colorPrimary" />
 
