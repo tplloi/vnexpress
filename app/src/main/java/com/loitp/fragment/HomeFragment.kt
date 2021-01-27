@@ -3,10 +3,12 @@ package com.loitp.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.annotation.LogTag
 import com.core.base.BaseFragment
+import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.adapter.RssItemsAdapter
 import com.loitp.viewmodels.MainViewModel
@@ -30,7 +32,8 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private var mainViewModel: MainViewModel? = null
     private var feedUrl: String? = null
-    private var mAdapter: RssItemsAdapter? = null
+    private val concatAdapter = ConcatAdapter()
+    private var rssItemsAdapter: RssItemsAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -47,11 +50,24 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupViews() {
-        mAdapter = RssItemsAdapter { rssItem ->
+        rssItemsAdapter = RssItemsAdapter { rssItem ->
             //TODO
         }
+        rssItemsAdapter?.let {
+            concatAdapter.addAdapter(it)
+        }
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerView.adapter = mAdapter
+        recyclerView.adapter = concatAdapter
+        LUIUtil.setScrollChange(
+                recyclerView = recyclerView,
+                onTop = {
+                },
+                onBottom = {
+
+                },
+                onScrolled = {
+                }
+        )
         swRefresh.setOnRefreshListener(this)
     }
 
@@ -87,7 +103,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun onRssItemsLoaded(rssItems: List<RssItem>) {
-        mAdapter?.setItems(rssItems)
+        rssItemsAdapter?.setItems(rssItems)
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
         }
