@@ -107,7 +107,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
                 LScreenUtil.replaceFragment(
                         this,
                         R.id.flContainer,
-                        HomeFragment.newInstance(feedUrl = "https://vnexpress.net/rss/tin-moi-nhat.rss"),
+                        HomeFragment(),
                         false
                 )
             }

@@ -20,8 +20,11 @@ class RssItemsAdapter(
     private val itemList = ArrayList<RssItem>()
 
     fun setItems(items: List<RssItem>) {
-        itemList.clear()
-        itemList.addAll(items)
+        items.forEach {
+            if (!itemList.contains(it)) {
+                itemList.add(it)
+            }
+        }
         notifyDataSetChanged()
     }
 

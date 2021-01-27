@@ -18,33 +18,29 @@ import kotlinx.android.synthetic.main.frm_home.*
 
 @LogTag("loitppHomeFragment")
 class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
-
-    companion object {
-        private const val KEY_FEED = "FEED"
-
-        fun newInstance(feedUrl: String): HomeFragment {
-            val rssFragment = HomeFragment()
-            val bundle = Bundle()
-            bundle.putSerializable(KEY_FEED, feedUrl)
-            rssFragment.arguments = bundle
-            return rssFragment
-        }
-    }
-
+    private val listFeed = ArrayList<String>()
     private var mainViewModel: MainViewModel? = null
-    private var feedUrl: String? = null
     private val concatAdapter = ConcatAdapter()
     private var rssItemsAdapter: RssItemsAdapter? = null
     private var loadMoreAdapter = LoadMoreAdapter()
+    private var currentIndex = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        feedUrl = arguments?.getString(KEY_FEED)
+        setupData()
         setupViews()
         setupViewModels()
 
         fetchRss()
+    }
+
+    private fun setupData() {
+        //TODO edit
+        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
+        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
+        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
+        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
     }
 
     override fun setLayoutResourceId(): Int {
@@ -65,20 +61,29 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 onTop = {
                 },
                 onBottom = {
-//                    logD("onBottom")
+                    logD("onBottom")
                     var isContainLoadMoreAdapter = false
                     concatAdapter.adapters.forEach {
-//                        logD(">>> " + it.javaClass.simpleName + "~" + LoadMoreAdapter::class.java.simpleName)
+                        logD(">>> " + it.javaClass.simpleName + "~" + LoadMoreAdapter::class.java.simpleName)
                         if (it.javaClass.simpleName == LoadMoreAdapter::class.java.simpleName) {
                             isContainLoadMoreAdapter = true
                         }
                     }
-//                    logD("isContainLoadMoreAdapter $isContainLoadMoreAdapter")
+                    logD("isContainLoadMoreAdapter $isContainLoadMoreAdapter")
                     if (!isContainLoadMoreAdapter) {
                         concatAdapter.addAdapter(loadMoreAdapter)
                     }
                     concatAdapter.itemCount.let {
                         recyclerView.scrollToPosition(it - 1)
+                    }
+
+                    if (currentIndex < (listFeed.size - 1)) {
+                        logD("if")
+                        currentIndex++
+                        fetchRss()
+                    } else {
+                        logD("else")
+                        concatAdapter.removeAdapter(loadMoreAdapter)
                     }
                 },
                 onScrolled = {
@@ -115,6 +120,8 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun fetchRss() {
+        val feedUrl = listFeed[currentIndex]
+        logD("fetchRss feedUrl $feedUrl, currentIndex: $currentIndex")
         mainViewModel?.loadDataRss(feedUrl)
     }
 
