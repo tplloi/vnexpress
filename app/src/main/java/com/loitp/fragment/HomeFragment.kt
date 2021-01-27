@@ -16,7 +16,7 @@ import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_home.*
 
-@LogTag("loitppHomeFragment")
+@LogTag("HomeFragment")
 class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private val listFeed = ArrayList<String>()
     private var mainViewModel: MainViewModel? = null
@@ -36,11 +36,26 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupData() {
-        //TODO edit
         listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
-        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
-        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
-        listFeed.add("https://vnexpress.net/rss/tin-moi-nhat.rss")
+        listFeed.add("https://vnexpress.net/rss/tin-noi-bat.rss")
+        listFeed.add("https://vnexpress.net/rss/giao-duc.rss")
+        listFeed.add("https://vnexpress.net/rss/phap-luat.rss")
+        listFeed.add("https://vnexpress.net/rss/the-thao.rss")
+        listFeed.add("https://vnexpress.net/rss/giai-tri.rss")
+        listFeed.add("https://vnexpress.net/rss/startup.rss")
+        listFeed.add("https://vnexpress.net/rss/kinh-doanh.rss")
+        listFeed.add("https://vnexpress.net/rss/thoi-su.rss")
+        listFeed.add("https://vnexpress.net/rss/the-gioi.rss")
+        listFeed.add("https://vnexpress.net/rss/tin-xem-nhieu.rss")
+        listFeed.add("https://vnexpress.net/rss/cuoi.rss")
+        listFeed.add("https://vnexpress.net/rss/tam-su.rss")
+        listFeed.add("https://vnexpress.net/rss/y-kien.rss")
+        listFeed.add("https://vnexpress.net/rss/oto-xe-may.rss")
+        listFeed.add("https://vnexpress.net/rss/so-hoa.rss")
+        listFeed.add("https://vnexpress.net/rss/khoa-hoc.rss")
+        listFeed.add("https://vnexpress.net/rss/du-lich.rss")
+        listFeed.add("https://vnexpress.net/rss/gia-dinh.rss")
+        listFeed.add("https://vnexpress.net/rss/suc-khoe.rss")
     }
 
     override fun setLayoutResourceId(): Int {

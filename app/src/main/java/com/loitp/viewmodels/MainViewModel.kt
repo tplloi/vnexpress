@@ -7,13 +7,14 @@ import com.loitp.service.RssService
 import com.rss.RssConverterFactory
 import com.rss.RssFeed
 import com.rss.RssItem
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 
-@LogTag("loitppMainViewModel")
+@LogTag("MainViewModel")
 class MainViewModel : BaseViewModel() {
 
     val listRssItemLiveData: MutableLiveData<List<RssItem>> = MutableLiveData()
@@ -22,6 +23,8 @@ class MainViewModel : BaseViewModel() {
         ioScope.launch {
             logD(">>>loadDataRss urlRss $urlRss")
             showLoading(true)
+
+            delay(1000)
 
             val retrofit = Retrofit.Builder()
                     .baseUrl("https://github.com")

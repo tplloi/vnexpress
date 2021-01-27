@@ -13,6 +13,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/w_50"
         android:layout_marginBottom="@dimen/w_50"
-        app:indicatorColor="@color/white"
+        app:indicatorColor="?attr/themeTextColor"
         app:indicatorName="BallScaleMultipleIndicator" />
 </LinearLayout>

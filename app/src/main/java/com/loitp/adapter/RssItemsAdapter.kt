@@ -12,7 +12,7 @@ import com.rss.RssItem
 import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.*
 
-@LogTag("loitppRssItemsAdapter")
+@LogTag("RssItemsAdapter")
 class RssItemsAdapter(
         private val onClick: ((RssItem) -> Unit)? = null
 ) : BaseAdapter() {
