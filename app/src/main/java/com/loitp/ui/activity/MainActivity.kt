@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView
 import com.loitp.R
 import com.loitp.ui.fragment.HomeFragment
 import com.loitp.ui.fragment.SettingFragment
+import com.skydoves.transformationlayout.onTransformationStartContainer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_drawer_end.*
 import kotlinx.android.synthetic.main.view_drawer_main.*
@@ -31,6 +32,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        onTransformationStartContainer()
         super.onCreate(savedInstanceState)
 
         setupViews()
