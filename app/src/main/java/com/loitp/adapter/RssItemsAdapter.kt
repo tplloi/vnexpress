@@ -13,12 +13,13 @@ import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
 import com.rss.RssItem
+import com.skydoves.transformationlayout.TransformationLayout
 import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.*
 
 @LogTag("RssItemsAdapter")
 class RssItemsAdapter(
-        private val onClick: ((RssItem) -> Unit)? = null
+        private val onClick: ((RssItem, TransformationLayout) -> Unit)? = null
 ) : BaseAdapter() {
 
     private val itemList = ArrayList<RssItem>()
@@ -79,7 +80,7 @@ class RssItemsAdapter(
 
             LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
             itemView.cardView.setOnClickListener {
-                onClick?.invoke(rssItem)
+                onClick?.invoke(rssItem, itemView.layoutItemPosterTransformation)
             }
         }
     }

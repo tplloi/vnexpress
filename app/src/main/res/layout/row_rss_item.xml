@@ -1,54 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.skydoves.transformationlayout.TransformationLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
+    android:id="@+id/layoutItemPosterTransformation"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_medium"
-    android:background="?attr/themeBackgroundColorMedium"
-    app:cardBackgroundColor="?attr/themeBackgroundColorMedium"
-    app:cardCornerRadius="@dimen/round_medium"
-    app:cardElevation="@dimen/w_1">
+    app:transformation_duration="500"
+    app:transformation_pathMode="arc">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/ivThumb"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            tools:src="@color/colorPrimary" />
+        android:layout_margin="@dimen/margin_medium"
+        android:background="?attr/themeBackgroundColorMedium"
+        app:cardBackgroundColor="?attr/themeBackgroundColorMedium"
+        app:cardCornerRadius="@dimen/round_medium"
+        app:cardElevation="@dimen/w_1">
 
         <LinearLayout
-            android:id="@+id/llTextContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/themeBackgroundColorMedium"
-            android:orientation="vertical"
-            android:padding="@dimen/padding_medium">
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvTitle"
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivThumb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/themeTextColor"
-                android:textSize="@dimen/txt_medium"
-                android:textStyle="bold"
-                tools:text="@string/app_name" />
+                android:scaleType="centerCrop"
+                tools:src="@color/colorPrimary" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvPubDate"
+            <LinearLayout
+                android:id="@+id/llTextContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/themeTextColor"
-                android:textSize="@dimen/text_tiny"
-                android:textStyle="italic"
-                tools:text="@string/app_name" />
+                android:background="?attr/themeBackgroundColorMedium"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_medium">
 
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/txt_medium"
+                    android:textStyle="bold"
+                    tools:text="@string/app_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPubDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/text_tiny"
+                    android:textStyle="italic"
+                    tools:text="@string/app_name" />
+
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</com.skydoves.transformationlayout.TransformationLayout>
+

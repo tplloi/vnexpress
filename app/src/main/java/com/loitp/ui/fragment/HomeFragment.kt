@@ -1,6 +1,7 @@
-package com.loitp.fragment
+package com.loitp.ui.fragment
 
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ConcatAdapter
@@ -12,6 +13,7 @@ import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.adapter.LoadMoreAdapter
 import com.loitp.adapter.RssItemsAdapter
+import com.loitp.ui.activity.TransformationDetailActivity
 import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_home.*
@@ -24,6 +26,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private var rssItemsAdapter: RssItemsAdapter? = null
     private var loadMoreAdapter = LoadMoreAdapter()
     private var currentIndex = 0
+    private var previousTime = SystemClock.elapsedRealtime()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,8 +66,14 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupViews() {
-        rssItemsAdapter = RssItemsAdapter { rssItem ->
-            //TODO
+        rssItemsAdapter = RssItemsAdapter { rssItem, layoutItemPosterTransformation ->
+            context?.let { c ->
+                val now = SystemClock.elapsedRealtime()
+                if (now - previousTime >= layoutItemPosterTransformation.duration) {
+                    TransformationDetailActivity.startActivity(c, layoutItemPosterTransformation)
+                    previousTime = now
+                }
+            }
         }
         rssItemsAdapter?.let {
             concatAdapter.addAdapter(it)

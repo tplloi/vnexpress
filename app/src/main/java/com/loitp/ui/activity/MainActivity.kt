@@ -1,4 +1,4 @@
-package com.loitp.activity
+package com.loitp.ui.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -17,8 +17,8 @@ import com.core.helper.donate.FrmDonate
 import com.core.utilities.*
 import com.google.android.material.navigation.NavigationView
 import com.loitp.R
-import com.loitp.fragment.HomeFragment
-import com.loitp.fragment.SettingFragment
+import com.loitp.ui.fragment.HomeFragment
+import com.loitp.ui.fragment.SettingFragment
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_drawer_end.*
 import kotlinx.android.synthetic.main.view_drawer_main.*

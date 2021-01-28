@@ -1,4 +1,4 @@
-package com.loitp.fragment
+package com.loitp.ui.fragment
 
 import android.app.AlertDialog
 import android.content.Intent
@@ -11,7 +11,7 @@ import com.core.utilities.LDialogUtil
 import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
-import com.loitp.activity.MainActivity
+import com.loitp.ui.activity.MainActivity
 import com.loitp.constant.Cons
 import kotlinx.android.synthetic.main.frm_setting.*
 
