@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
-        android:background="?attr/themeBackgroundColorMedium"
         app:cardBackgroundColor="?attr/themeBackgroundColorMedium"
         app:cardCornerRadius="@dimen/round_medium"
         app:cardElevation="@dimen/w_1">

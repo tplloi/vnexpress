@@ -73,13 +73,13 @@ class RssItemsAdapter(
     inner class RSSViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(rssItem: RssItem) {
+            LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
             LUIUtil.setSizeOfView(view = itemView.ivThumb, height = height)
 
             itemView.tvTitle.text = rssItem.title
             itemView.tvPubDate.text = rssItem.publishDate
             LUIUtil.setTextFromHTML(textView = itemView.tvDes, bodyData = rssItem.description ?: "")
 
-            LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
             itemView.setOnClickListener {
                 onClick?.invoke(rssItem, itemView.layoutItemRssTransformation)
             }
