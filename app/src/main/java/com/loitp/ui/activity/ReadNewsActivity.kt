@@ -92,12 +92,16 @@ class ReadNewsActivity : BaseFontActivity() {
                 pb.progress = progress
                 if (progress == 100) {
                     pb.visibility = View.GONE
+                    webView.visibility = View.VISIBLE
+                    collapsingToolbarLayout.title = webView.title
                 } else {
                     pb.visibility = View.VISIBLE
+                    webView.visibility = View.GONE
                 }
             }
 
             override fun shouldOverrideUrlLoading(url: String) {
+
             }
         }
         rssItem?.link?.let {
