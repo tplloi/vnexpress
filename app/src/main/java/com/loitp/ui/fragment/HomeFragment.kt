@@ -5,6 +5,7 @@ import android.os.SystemClock
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ConcatAdapter
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.annotation.LogTag
@@ -66,11 +67,11 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupViews() {
-        rssItemsAdapter = RssItemsAdapter { rssItem, layoutItemPosterTransformation ->
+        rssItemsAdapter = RssItemsAdapter { rssItem, layoutItemRssTransformation ->
             context?.let { c ->
                 val now = SystemClock.elapsedRealtime()
-                if (now - previousTime >= layoutItemPosterTransformation.duration) {
-                    ReadNewsActivity.startActivity(context = c, transformationLayout = layoutItemPosterTransformation, rssItem = rssItem)
+                if (now - previousTime >= layoutItemRssTransformation.duration) {
+                    ReadNewsActivity.startActivity(context = c, transformationLayout = layoutItemRssTransformation, rssItem = rssItem)
                     previousTime = now
                 }
             }
@@ -78,7 +79,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         rssItemsAdapter?.let {
             concatAdapter.addAdapter(it)
         }
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = concatAdapter
         LUIUtil.setScrollChange(
                 recyclerView = recyclerView,

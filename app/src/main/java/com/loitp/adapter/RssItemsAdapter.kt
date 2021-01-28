@@ -80,7 +80,7 @@ class RssItemsAdapter(
             LUIUtil.setTextFromHTML(textView = itemView.tvDes, bodyData = rssItem.description ?: "")
 
             LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
-            itemView.cardView.setOnClickListener {
+            itemView.setOnClickListener {
                 onClick?.invoke(rssItem, itemView.layoutItemRssTransformation)
             }
         }
