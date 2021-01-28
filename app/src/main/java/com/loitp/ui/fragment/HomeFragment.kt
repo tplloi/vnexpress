@@ -6,14 +6,15 @@ import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.annotation.LogTag
 import com.core.base.BaseFragment
+import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.adapter.LoadMoreAdapter
 import com.loitp.adapter.RssItemsAdapter
+import com.loitp.constant.Cons
 import com.loitp.ui.activity.ReadNewsActivity
 import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
@@ -79,7 +80,14 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         rssItemsAdapter?.let {
             concatAdapter.addAdapter(it)
         }
-        recyclerView.layoutManager = GridLayoutManager(context, 2)
+
+        val isGridView = LSharedPrefsUtil.instance.getBoolean(Cons.IS_GRID_VIEW, false)
+        val spanCount = if (isGridView) {
+            2
+        } else {
+            1
+        }
+        recyclerView.layoutManager = GridLayoutManager(context, spanCount)
         recyclerView.adapter = concatAdapter
         LUIUtil.setScrollChange(
                 recyclerView = recyclerView,

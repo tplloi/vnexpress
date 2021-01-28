@@ -7,4 +7,5 @@ package com.loitp.constant
  */
 object Cons {
     const val IS_SMALL_THUMB = "IS_SMALL_THUMB"
+    const val IS_GRID_VIEW = "IS_GRID_VIEW"
 }

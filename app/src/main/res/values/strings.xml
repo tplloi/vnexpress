@@ -39,5 +39,6 @@
     <string name="dark_mode">Chế độ tối</string>
     <string name="small_thumb">Trang tin thu gọn</string>
     <string name="setting_success">Đã cài đặt thành công</string>
+    <string name="is_grid_view">Trình bày dạng lưới</string>
 
 </resources>
