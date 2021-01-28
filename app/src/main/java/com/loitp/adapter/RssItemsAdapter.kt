@@ -77,6 +77,7 @@ class RssItemsAdapter(
 
             itemView.tvTitle.text = rssItem.title
             itemView.tvPubDate.text = rssItem.publishDate
+            LUIUtil.setTextFromHTML(textView = itemView.tvDes, bodyData = rssItem.description ?: "")
 
             LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
             itemView.cardView.setOnClickListener {
