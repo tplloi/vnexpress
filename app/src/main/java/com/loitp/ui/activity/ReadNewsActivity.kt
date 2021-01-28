@@ -60,9 +60,9 @@ class ReadNewsActivity : BaseFontActivity() {
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
 
-//        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_west_white_24dp)
-//        toolbar.setNavigationOnClickListener {
-//            onBackPressed()
-//        }
+        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_keyboard_backspace_white_48dp)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
     }
 }
