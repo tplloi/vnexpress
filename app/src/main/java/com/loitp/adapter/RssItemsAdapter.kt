@@ -80,7 +80,7 @@ class RssItemsAdapter(
 
             LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
             itemView.cardView.setOnClickListener {
-                onClick?.invoke(rssItem, itemView.layoutItemPosterTransformation)
+                onClick?.invoke(rssItem, itemView.layoutItemRssTransformation)
             }
         }
     }

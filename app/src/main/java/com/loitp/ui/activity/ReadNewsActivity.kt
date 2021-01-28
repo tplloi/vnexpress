@@ -5,39 +5,52 @@ import android.content.Intent
 import android.os.Bundle
 import com.annotation.IsFullScreen
 import com.annotation.LogTag
+import com.core.base.BaseApplication
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
 import com.core.utilities.LImageUtil
 import com.loitp.R
+import com.rss.RssItem
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
-import kotlinx.android.synthetic.main.activity_layout_transformation_detail.*
+import kotlinx.android.synthetic.main.activity_layout_read_news.*
 
-@LogTag("DetailActivity")
+@LogTag("loitppReadNewsActivity")
 @IsFullScreen(false)
-class TransformationDetailActivity : BaseFontActivity() {
+class ReadNewsActivity : BaseFontActivity() {
 
     companion object {
+        private const val KEY_RSS_ITEM = "KEY_RSS_ITEM"
+
         fun startActivity(
                 context: Context,
-                transformationLayout: TransformationLayout
+                transformationLayout: TransformationLayout,
+                rssItem: RssItem
         ) {
-            val intent = Intent(context, TransformationDetailActivity::class.java)
+            val intent = Intent(context, ReadNewsActivity::class.java)
+            intent.putExtra(KEY_RSS_ITEM, rssItem)
             TransformationCompat.startActivity(transformationLayout, intent)
         }
     }
 
+    private var rssItem: RssItem? = null
+
     override fun setLayoutResourceId(): Int {
-        return R.layout.activity_layout_transformation_detail
+        return R.layout.activity_layout_read_news
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         onTransformationEndContainer(intent.getParcelableExtra(Constants.activityTransitionName))
         super.onCreate(savedInstanceState)
 
-        LImageUtil.load(context = this, any = "https://kenh14cdn.com/thumb_w/620/203336854389633024/2021/1/27/r18-1611735688832344293553.jpeg", imageView = ivProfileDetailBackground)
-        tvDetailTitle.text = "AAAAAAAAAAAAAAAAAAA"
-        tvDetailDescription.text = "BBBBBBBBBBBBBBBBBBBBBBBB"
+        rssItem = intent?.getSerializableExtra(KEY_RSS_ITEM) as RssItem?
+        logD("onCreate rssItem " + BaseApplication.gson.toJson(rssItem))
+
+        rssItem?.let { item ->
+            LImageUtil.load(context = this, any = item.image, imageView = ivProfileDetailBackground)
+            tvDetailTitle.text = item.title
+            tvDetailDescription.text = item.description
+        }
     }
 }

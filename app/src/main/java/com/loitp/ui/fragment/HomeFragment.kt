@@ -13,7 +13,7 @@ import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.adapter.LoadMoreAdapter
 import com.loitp.adapter.RssItemsAdapter
-import com.loitp.ui.activity.TransformationDetailActivity
+import com.loitp.ui.activity.ReadNewsActivity
 import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_home.*
@@ -70,7 +70,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
             context?.let { c ->
                 val now = SystemClock.elapsedRealtime()
                 if (now - previousTime >= layoutItemPosterTransformation.duration) {
-                    TransformationDetailActivity.startActivity(c, layoutItemPosterTransformation)
+                    ReadNewsActivity.startActivity(context = c, transformationLayout = layoutItemPosterTransformation, rssItem = rssItem)
                     previousTime = now
                 }
             }
