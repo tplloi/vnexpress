@@ -87,7 +87,23 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         } else {
             1
         }
-        recyclerView.layoutManager = GridLayoutManager(context, spanCount)
+        val gridLayoutManager = GridLayoutManager(context, spanCount)
+        if (isGridView) {
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return if (position == concatAdapter.itemCount - 1) {
+                        if (isContainLoadMoreAdapter()) {
+                            2
+                        } else {
+                            1
+                        }
+                    } else {
+                        1
+                    }
+                }
+            }
+        }
+        recyclerView.layoutManager = gridLayoutManager
         recyclerView.adapter = concatAdapter
         LUIUtil.setScrollChange(
                 recyclerView = recyclerView,
@@ -95,13 +111,7 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 },
                 onBottom = {
                     logD("onBottom")
-                    var isContainLoadMoreAdapter = false
-                    concatAdapter.adapters.forEach {
-                        logD(">>> " + it.javaClass.simpleName + "~" + LoadMoreAdapter::class.java.simpleName)
-                        if (it.javaClass.simpleName == LoadMoreAdapter::class.java.simpleName) {
-                            isContainLoadMoreAdapter = true
-                        }
-                    }
+                    val isContainLoadMoreAdapter = isContainLoadMoreAdapter()
                     logD("isContainLoadMoreAdapter $isContainLoadMoreAdapter")
                     if (!isContainLoadMoreAdapter) {
                         concatAdapter.addAdapter(loadMoreAdapter)
@@ -124,6 +134,17 @@ class HomeFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
         )
         swRefresh.setOnRefreshListener(this)
+    }
+
+    private fun isContainLoadMoreAdapter(): Boolean {
+        var isContainLoadMoreAdapter = false
+        concatAdapter.adapters.forEach {
+            logD(">>> " + it.javaClass.simpleName + "~" + LoadMoreAdapter::class.java.simpleName)
+            if (it.javaClass.simpleName == LoadMoreAdapter::class.java.simpleName) {
+                isContainLoadMoreAdapter = true
+            }
+        }
+        return isContainLoadMoreAdapter
     }
 
     private fun setupViewModels() {
