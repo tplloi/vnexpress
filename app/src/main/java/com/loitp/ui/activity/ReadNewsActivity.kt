@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import com.annotation.IsFullScreen
+import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
@@ -21,8 +22,9 @@ import com.skydoves.transformationlayout.onTransformationEndContainer
 import com.views.LWebView
 import kotlinx.android.synthetic.main.activity_layout_read_news.*
 
-@LogTag("loitppReadNewsActivity")
+@LogTag("ReadNewsActivity")
 @IsFullScreen(false)
+@IsShowAdWhenExit(true)
 class ReadNewsActivity : BaseFontActivity() {
 
     companion object {
