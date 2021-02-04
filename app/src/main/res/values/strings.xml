@@ -40,5 +40,25 @@
     <string name="small_thumb">Trang tin thu gọn</string>
     <string name="setting_success">Đã cài đặt thành công</string>
     <string name="is_grid_view">Trình bày dạng lưới</string>
+    <string name="lasted_news">Tin mới nhất</string>
+    <string name="hot_news">Tin nổi bật</string>
+    <string name="education">Giáo dục</string>
+    <string name="law">Pháp luật</string>
+    <string name="sport">Thể thao</string>
+    <string name="entertaiment">Giải trí</string>
+    <string name="startup">Startup</string>
+    <string name="business">Kinh doanh</string>
+    <string name="news">Thời sự</string>
+    <string name="global">Thế giới</string>
+    <string name="most_viewed_news">Tin xem nhiều</string>
+    <string name="fun_news">Cười</string>
+    <string name="chat_news">Tâm sự</string>
+    <string name="idea">Ý kiến</string>
+    <string name="car_bike">Ô tô xe máy</string>
+    <string name="technical">Số hóa</string>
+    <string name="science">Khoa học</string>
+    <string name="travel">Du lịch</string>
+    <string name="family">Gia đình</string>
+    <string name="healthy">Sức khỏe</string>
 
 </resources>
