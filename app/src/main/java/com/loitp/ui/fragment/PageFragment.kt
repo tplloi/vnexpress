@@ -134,7 +134,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupViewModels() {
-        mainViewModel = getViewModel(MainViewModel::class.java)
+        mainViewModel = getSelfViewModel(MainViewModel::class.java)
         mainViewModel?.let { mvm ->
             mvm.eventLoading.observe(viewLifecycleOwner, Observer { isLoading ->
                 logD("eventLoading isLoading $isLoading")
