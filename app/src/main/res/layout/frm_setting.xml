@@ -55,4 +55,30 @@
         app:bgOnColor="@color/lightGrey"
         app:toggleOffColor="@color/colorPrimary"
         app:toggleOnColor="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/w_1"
+        android:background="?attr/themeTextColor" />
+
+    <com.skydoves.transformationlayout.TransformationLayout
+        android:id="@+id/layoutTransformation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_small"
+        app:transformation_duration="500"
+        app:transformation_pathMode="arc">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btCustomFeed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bt_comic"
+            android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:text="@string/custom_your_feed"
+            android:textAllCaps="false"
+            android:textColor="?attr/themeTextColor"
+            android:textSize="@dimen/text_medium"
+            app:drawableTint="?attr/themeTextColor" />
+    </com.skydoves.transformationlayout.TransformationLayout>
 </LinearLayout>

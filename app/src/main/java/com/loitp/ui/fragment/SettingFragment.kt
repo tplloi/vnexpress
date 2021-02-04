@@ -3,6 +3,7 @@ package com.loitp.ui.fragment
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import com.annotation.LogTag
 import com.core.base.BaseFragment
@@ -13,12 +14,15 @@ import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
 import com.loitp.ui.activity.MainActivity
+import com.loitp.ui.activity.SettingCustomFeedActivity
+import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.frm_setting.*
 
 @LogTag("SettingFragment")
 class SettingFragment : BaseFragment() {
 
     private var dialog: AlertDialog? = null
+    private var previousTime = SystemClock.elapsedRealtime()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -54,6 +58,19 @@ class SettingFragment : BaseFragment() {
         swIsGridView.setOnCheckedChangeListener { _, isChecked ->
             handleSwitchGridView(isChecked = isChecked)
         }
+
+        btCustomFeed.setSafeOnClickListener {
+            context?.let { c ->
+                val now = SystemClock.elapsedRealtime()
+                if (now - previousTime >= layoutTransformation.duration) {
+                    SettingCustomFeedActivity.startActivity(
+                        context = c,
+                        transformationLayout = layoutTransformation
+                    )
+                    previousTime = now
+                }
+            }
+        }
     }
 
     private fun handleSwitchDarkTheme(isChecked: Boolean) {
@@ -64,30 +81,30 @@ class SettingFragment : BaseFragment() {
             }
 
             dialog = LDialogUtil.showDialog2(
-                    context = c,
-                    title = getString(com.R.string.warning_vn),
-                    msg = getString(com.R.string.app_will_be_restarted_vn),
-                    button1 = getString(com.R.string.cancel),
-                    button2 = getString(com.R.string.ok),
-                    onClickButton1 = {
-                        swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
-                    },
-                    onClickButton2 = {
-                        if (isChecked) {
-                            LUIUtil.setDarkTheme(isDarkTheme = true)
-                        } else {
-                            LUIUtil.setDarkTheme(isDarkTheme = false)
-                        }
-
-                        val intent = Intent(context, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(intent)
-                        context?.let {
-                            LActivityUtil.transActivityNoAnimation(it)
-                        }
-
-                        dialog?.dismiss()
+                context = c,
+                title = getString(com.R.string.warning_vn),
+                msg = getString(com.R.string.app_will_be_restarted_vn),
+                button1 = getString(com.R.string.cancel),
+                button2 = getString(com.R.string.ok),
+                onClickButton1 = {
+                    swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
+                },
+                onClickButton2 = {
+                    if (isChecked) {
+                        LUIUtil.setDarkTheme(isDarkTheme = true)
+                    } else {
+                        LUIUtil.setDarkTheme(isDarkTheme = false)
                     }
+
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    context?.let {
+                        LActivityUtil.transActivityNoAnimation(it)
+                    }
+
+                    dialog?.dismiss()
+                }
             )
             dialog?.setOnCancelListener {
                 swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
