@@ -45,6 +45,7 @@ class RssItemsAdapter(
             return false
         }
 
+        itemList.clear()
         items.forEach {
             val isContain = isContain(it)
 //            logD("setItems isContain $isContain -> ${it.title}")

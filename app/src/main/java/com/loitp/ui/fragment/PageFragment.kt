@@ -44,6 +44,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         setupViews()
         setupViewModels()
 
+        logD("onViewCreated")
         fetchRss()
     }
 
