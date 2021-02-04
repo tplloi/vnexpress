@@ -10,13 +10,14 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabBackground="@color/red"
+        android:background="?attr/themeBackgroundColorMedium"
+        app:tabBackground="@color/colorPrimary"
         app:tabGravity="start"
-        app:tabIndicatorColor="@color/green"
+        app:tabIndicatorColor="@color/white"
         app:tabMode="scrollable"
-        app:tabRippleColor="@color/yellow"
-        app:tabSelectedTextColor="@color/blue"
-        app:tabTextColor="@color/darkCyan" />
+        app:tabRippleColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
