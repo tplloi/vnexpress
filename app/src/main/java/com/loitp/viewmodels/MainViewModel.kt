@@ -19,6 +19,7 @@ class MainViewModel : BaseViewModel() {
 
     val listRssItemLiveData: MutableLiveData<List<RssItem>> = MutableLiveData()
 
+    //TODO room to offline mode
     fun loadDataRss(urlRss: String?) {
         ioScope.launch {
             logD(">>>loadDataRss urlRss $urlRss")

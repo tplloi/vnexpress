@@ -105,7 +105,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                         recyclerView.scrollToPosition(it - 1)
                     }
 
-                    //TODO
+                    //TODO scroll next page
 //                    if (currentIndex < (listFeed.size - 1)) {
 //                        logD("if")
 //                        currentIndex++
