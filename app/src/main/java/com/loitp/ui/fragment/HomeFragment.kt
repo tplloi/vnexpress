@@ -68,7 +68,11 @@ class HomeFragment : BaseFragment() {
         : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment {
-            return PageFragment()
+            val pageFragment = PageFragment()
+            val bundle = Bundle()
+            bundle.putString(PageFragment.KEY_LINK_RSS, listFeed[position].url)
+            pageFragment.arguments = bundle
+            return pageFragment
         }
 
         override fun getCount(): Int {

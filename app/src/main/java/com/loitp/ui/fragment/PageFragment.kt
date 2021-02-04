@@ -20,17 +20,26 @@ import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_page.*
 
-@LogTag("PageFragment")
+@LogTag("loitppPageFragment")
 class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
+
+    companion object {
+        const val KEY_LINK_RSS = "KEY_LINK_RSS"
+    }
+
     private var mainViewModel: MainViewModel? = null
     private val concatAdapter = ConcatAdapter()
     private var rssItemsAdapter: RssItemsAdapter? = null
     private var loadMoreAdapter = LoadMoreAdapter()
-    private var currentIndex = 0
     private var previousTime = SystemClock.elapsedRealtime()
+    private var linkRss = ""
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            linkRss = it.getString(KEY_LINK_RSS) ?: ""
+        }
 
         setupViews()
         setupViewModels()
@@ -151,10 +160,8 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun fetchRss() {
-        //TODO
-//        val feedUrl = listFeed[currentIndex]
-//        logD("fetchRss feedUrl $feedUrl, currentIndex: $currentIndex")
-//        mainViewModel?.loadDataRss(feedUrl)
+        logD("fetchRss feedUrl $linkRss")
+        mainViewModel?.loadDataRss(linkRss)
     }
 
     private fun onRssItemsLoaded(rssItems: List<RssItem>) {
@@ -176,7 +183,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
-        currentIndex = 0
+        //TODO
         fetchRss()
     }
 }
