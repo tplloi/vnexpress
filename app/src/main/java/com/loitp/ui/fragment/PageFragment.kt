@@ -184,6 +184,6 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onRefresh() {
         //TODO
-        fetchRss()
+//        fetchRss()
     }
 }
