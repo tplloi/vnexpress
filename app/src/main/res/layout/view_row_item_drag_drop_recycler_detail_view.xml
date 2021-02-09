@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding_medium"
+    app:cardCornerRadius="@dimen/round_medium"
+    app:cardElevation="@dimen/w_1"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/themeBackgroundColorMedium"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/padding_medium"
+        android:paddingTop="@dimen/padding_medium"
+        android:paddingEnd="0dp"
+        android:paddingBottom="@dimen/padding_medium"
+        tools:ignore="UnusedAttribute">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="?attr/themeTextColor"
+            android:textSize="@dimen/txt_medium"
+            tools:text="@string/app_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivDrag"
+            android:layout_width="@dimen/w_50"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_baseline_drag_indicator_24"
+            app:tint="?attr/themeTextColor" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

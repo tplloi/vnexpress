@@ -79,6 +79,9 @@ dependencies {
 
     //https://github.com/shiburagi/Drawer-Behavior
     api 'com.infideap.drawerbehavior:drawer-behavior:1.0.1'
+
+    //https://github.com/ernestoyaquello/DragDropSwipeRecyclerview
+    api 'com.github.ernestoyaquello:DragDropSwipeRecyclerview:1.0.0'
 }
 //apply plugin: 'com.google.gms.google-services'
 //com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
