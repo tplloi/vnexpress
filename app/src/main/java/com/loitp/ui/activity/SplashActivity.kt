@@ -56,8 +56,8 @@ class SplashActivity : BaseFontActivity() {
         isShowDialogCheck = true
         Dexter.withContext(this)
                 .withPermissions(
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                        Manifest.permission.ACCESS_FINE_LOCATION
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                        Manifest.permission.ACCESS_FINE_LOCATION
                 )
                 .withListener(object : MultiplePermissionsListener {
                     override fun onPermissionsChecked(report: MultiplePermissionsReport) {

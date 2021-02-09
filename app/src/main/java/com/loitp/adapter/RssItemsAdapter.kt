@@ -1,5 +1,6 @@
 package com.loitp.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -22,6 +23,7 @@ class RssItemsAdapter(
         private val onClick: ((RssItem, TransformationLayout) -> Unit)? = null
 ) : BaseAdapter() {
 
+    private val splitString = "</a></br>"
     private val itemList = ArrayList<RssItem>()
     private val isSmallThumb = LSharedPrefsUtil.instance.getBoolean(Cons.IS_SMALL_THUMB, false)
     private var height = 0
@@ -79,7 +81,19 @@ class RssItemsAdapter(
 
             itemView.tvTitle.text = rssItem.title
             itemView.tvPubDate.text = rssItem.publishDate
-            LUIUtil.setTextFromHTML(textView = itemView.tvDes, bodyData = rssItem.description ?: "")
+//            logD("RSSViewHolder pos $bindingAdapterPosition -> " + rssItem.description)
+
+            val des = rssItem.description ?: ""
+            try {
+                if (des.contains(splitString)) {
+                    val arr = des.split(splitString)
+                    itemView.tvDes.text = arr[1]
+                } else {
+                    LUIUtil.setTextFromHTML(textView = itemView.tvDes, bodyData = des)
+                }
+            } catch (e: Exception) {
+                LUIUtil.setTextFromHTML(textView = itemView.tvDes, bodyData = des)
+            }
 
             itemView.setOnClickListener {
                 onClick?.invoke(rssItem, itemView.layoutItemRssTransformation)
