@@ -1,10 +1,14 @@
 package com.loitp.constant
 
 import com.core.utilities.LAppResource
+import com.core.utilities.LConvertUtil
+import com.core.utilities.LEncryptionSharedPrefsUtil
 import com.core.utilities.LSharedPrefsUtil
 import com.google.gson.reflect.TypeToken
 import com.loitp.R
 import com.loitp.model.Feed
+import com.utils.util.ConvertUtils
+import java.math.BigDecimal
 
 /**
  * Created by ©Loitp93 on 1/27/2021.
@@ -15,6 +19,7 @@ object Cons {
     const val IS_SMALL_THUMB = "IS_SMALL_THUMB"
     const val IS_GRID_VIEW = "IS_GRID_VIEW"
     private const val KEY_LIST_FEED = "KEY_LIST_FEED"
+    private const val KEY_MONEY = "KEY_MONEY"
 
     fun getListFeed(): ArrayList<Feed> {
         val type = object : TypeToken<List<Feed>>() {
@@ -52,5 +57,25 @@ object Cons {
 
     fun saveListFeed(listFeed: List<Feed>) {
         LSharedPrefsUtil.instance.putObjectList(KEY_LIST_FEED, listFeed)
+    }
+
+    fun getCurrentMoneyInString(): String {
+        val currentMoney = getCurrentMoneyInBigDecimal()
+        return LConvertUtil.convertToPrice(price = currentMoney) + " VND"
+    }
+
+    private fun getCurrentMoneyInBigDecimal(): BigDecimal {
+        val value = LEncryptionSharedPrefsUtil.instance.getString(KEY_MONEY, "0")
+        return try {
+            value.toBigDecimal()
+        } catch (e: Exception) {
+            BigDecimal.ZERO
+        }
+    }
+
+    fun addMoney() {
+        var currentMoney = getCurrentMoneyInBigDecimal()
+        currentMoney += 50.toBigDecimal()
+        LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, currentMoney.toString())
     }
 }

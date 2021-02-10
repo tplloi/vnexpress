@@ -17,6 +17,7 @@ import com.core.helper.donate.FrmDonate
 import com.core.utilities.*
 import com.google.android.material.navigation.NavigationView
 import com.loitp.R
+import com.loitp.constant.Cons
 import com.loitp.ui.fragment.HomeFragment
 import com.loitp.ui.fragment.SettingFragment
 import com.skydoves.transformationlayout.onTransformationStartContainer
@@ -58,7 +59,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 
         //cover
 //        LImageUtil.load(context = this, any = R.drawable.vn_express, imageView = navViewStart.getHeaderView(0).ivCover)
-        navViewStart.getHeaderView(0).tvInformation.text = "50$"
+        navViewStart.getHeaderView(0).tvInformation.text = Cons.getCurrentMoneyInString()
 
         tvAd.text = LStoreUtil.readTxtFromRawFolder(nameOfRawFile = R.raw.ad)
 
