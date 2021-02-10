@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">VnExpress</string>
-    <string name="app_name_vn">VnExpress</string>
+    <string name="app_name">Báo 247</string>
+    <string name="app_name_vn">Báo 247</string>
 
 <!--    https://drive.google.com/file/d/1femuL17MUTz7t0yqUkMWB5yCea1W6kqI/view?usp=sharing-->
     <string name="link_gg_drive"><![CDATA[https://drive.google.com/uc?export=download&id=1femuL17MUTz7t0yqUkMWB5yCea1W6kqI]]></string><!--no need to edit this-->
@@ -35,7 +35,6 @@
     <string name="donation">Donation</string>
     <string name="check_out">Check out</string>
     <string name="github">Github</string>
-    <string name="copy_right_vnexpress">© 1997–2021. Toàn bộ bản quyền tin tức thuộc VnExpress</string>
     <string name="dark_mode">Chế độ tối</string>
     <string name="small_thumb">Trang tin thu gọn</string>
     <string name="setting_success">Đã cài đặt thành công</string>

@@ -11,16 +11,31 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/vn_express" />
+        android:src="@drawable/news" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/themeBackgroundColor"
         android:gravity="center"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/copy_right_vnexpress"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/text_small" />
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/w_50"
+            android:layout_height="@dimen/w_50"
+            android:src="@drawable/ic_salary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:background="?attr/themeBackgroundColor"
+            android:gravity="center"
+            android:padding="@dimen/padding_medium"
+            android:text="@string/app_name"
+            android:textColor="?attr/themeTextColor"
+            android:textSize="@dimen/text_medium" />
+    </LinearLayout>
 
 </LinearLayout>

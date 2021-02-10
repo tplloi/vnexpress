@@ -23,6 +23,7 @@ import com.skydoves.transformationlayout.onTransformationStartContainer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.view_drawer_end.*
 import kotlinx.android.synthetic.main.view_drawer_main.*
+import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("MainActivity")
 class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -57,6 +58,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 
         //cover
 //        LImageUtil.load(context = this, any = R.drawable.vn_express, imageView = navViewStart.getHeaderView(0).ivCover)
+        navViewStart.getHeaderView(0).tvInformation.text = "50$"
 
         tvAd.text = LStoreUtil.readTxtFromRawFolder(nameOfRawFile = R.raw.ad)
 
