@@ -63,6 +63,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
         LUIUtil.setSafeOnClickListenerElastic(
                 view = navViewStart.getHeaderView(0).layoutMoney,
                 runnable = Runnable {
+                    //TODO change money
                     showLongInformation(getString(R.string.read_news_to_get_money))
                 }
         )
