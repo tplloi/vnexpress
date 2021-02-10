@@ -61,5 +61,6 @@
     <string name="healthy">Sức khỏe</string>
     <string name="custom_your_feed">Sắp xếp chủ đề của bạn</string>
     <string name="drag_feed">Kéo thả chủ để để sắp xếp theo ý của bạn</string>
+    <string name="read_news_to_get_money">Đọc một bài báo bất kỳ để nhận thêm tiền</string>
 
 </resources>

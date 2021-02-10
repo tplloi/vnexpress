@@ -59,8 +59,13 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 
         //cover
 //        LImageUtil.load(context = this, any = R.drawable.vn_express, imageView = navViewStart.getHeaderView(0).ivCover)
-        navViewStart.getHeaderView(0).tvInformation.text = Cons.getCurrentMoneyInString()
 
+        LUIUtil.setSafeOnClickListenerElastic(
+                view = navViewStart.getHeaderView(0).layoutMoney,
+                runnable = Runnable {
+                    showLongInformation(getString(R.string.read_news_to_get_money))
+                }
+        )
         tvAd.text = LStoreUtil.readTxtFromRawFolder(nameOfRawFile = R.raw.ad)
 
         switchHomeScreen()
@@ -78,6 +83,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 
     public override fun onResume() {
         adView.resume()
+        navViewStart.getHeaderView(0).tvInformation.text = Cons.getCurrentMoneyInString()
         super.onResume()
     }
 
