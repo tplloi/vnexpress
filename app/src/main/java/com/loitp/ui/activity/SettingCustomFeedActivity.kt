@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.annotation.IsFullScreen
 import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
+import com.core.base.BaseApplication
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
+import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemDragListener
 import com.loitp.R
 import com.loitp.adapter.DragDropAdapter
 import com.skydoves.transformationlayout.TransformationCompat
@@ -59,5 +61,17 @@ class SettingCustomFeedActivity : BaseFontActivity() {
         dragDropSwipeRecyclerView.layoutManager = LinearLayoutManager(this)//list
         dragDropSwipeRecyclerView.adapter = dragDropAdapter
         dragDropSwipeRecyclerView.orientation = DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_VERTICAL_DRAGGING
+        dragDropSwipeRecyclerView.dragListener = object : OnItemDragListener<String> {
+            override fun onItemDragged(previousPosition: Int, newPosition: Int, item: String) {
+                // Handle action of item being dragged from one position to another
+//                logD("onItemDragListener onItemDragged previousPosition $previousPosition, newPosition $newPosition, item $item")
+            }
+
+            override fun onItemDropped(initialPosition: Int, finalPosition: Int, item: String) {
+                // Handle action of item dropped
+                logD("onItemDragListener onItemDragged initialPosition $initialPosition, finalPosition $finalPosition, item $item")
+                logD("onItemDragListener" + BaseApplication.gson.toJson(dragDropAdapter?.dataSet))
+            }
+        }
     }
 }
