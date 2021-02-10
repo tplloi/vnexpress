@@ -61,5 +61,6 @@
     <string name="family">Gia đình</string>
     <string name="healthy">Sức khỏe</string>
     <string name="custom_your_feed">Sắp xếp chủ đề của bạn</string>
+    <string name="drag_feed">Kéo thả chủ để để sắp xếp theo ý của bạn</string>
 
 </resources>

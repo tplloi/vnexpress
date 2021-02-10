@@ -10,6 +10,7 @@ import com.core.base.BaseFragment
 import com.core.common.Constants
 import com.core.utilities.LUIUtil
 import com.loitp.R
+import com.loitp.constant.Cons
 import com.loitp.model.Feed
 import com.views.viewpager.viewpagertransformers.ZoomOutSlideTransformer
 import kotlinx.android.synthetic.main.frm_home.*
@@ -23,33 +24,8 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupData()
+        listFeed.addAll(Cons.getListFeed())
         setupViews()
-    }
-
-    private fun setupData() {
-        with(listFeed) {
-            add(Feed(title = getString(R.string.lasted_news), url = "https://vnexpress.net/rss/tin-moi-nhat.rss"))
-            add(Feed(title = getString(R.string.hot_news), url = "https://vnexpress.net/rss/tin-noi-bat.rss"))
-            add(Feed(title = getString(R.string.education), url = "https://vnexpress.net/rss/giao-duc.rss"))
-            add(Feed(title = getString(R.string.law), url = "https://vnexpress.net/rss/phap-luat.rss"))
-            add(Feed(title = getString(R.string.sport), url = "https://vnexpress.net/rss/the-thao.rss"))
-            add(Feed(title = getString(R.string.entertaiment), url = "https://vnexpress.net/rss/giai-tri.rss"))
-            add(Feed(title = getString(R.string.startup), url = "https://vnexpress.net/rss/startup.rss"))
-            add(Feed(title = getString(R.string.business), url = "https://vnexpress.net/rss/kinh-doanh.rss"))
-            add(Feed(title = getString(R.string.news), url = "https://vnexpress.net/rss/thoi-su.rss"))
-            add(Feed(title = getString(R.string.global), url = "https://vnexpress.net/rss/the-gioi.rss"))
-            add(Feed(title = getString(R.string.most_viewed_news), url = "https://vnexpress.net/rss/tin-xem-nhieu.rss"))
-            add(Feed(title = getString(R.string.fun_news), url = "https://vnexpress.net/rss/cuoi.rss"))
-            add(Feed(title = getString(R.string.chat_news), url = "https://vnexpress.net/rss/tam-su.rss"))
-            add(Feed(title = getString(R.string.idea), url = "https://vnexpress.net/rss/y-kien.rss"))
-            add(Feed(title = getString(R.string.car_bike), url = "https://vnexpress.net/rss/oto-xe-may.rss"))
-            add(Feed(title = getString(R.string.technical), url = "https://vnexpress.net/rss/so-hoa.rss"))
-            add(Feed(title = getString(R.string.science), url = "https://vnexpress.net/rss/khoa-hoc.rss"))
-            add(Feed(title = getString(R.string.travel), url = "https://vnexpress.net/rss/du-lich.rss"))
-            add(Feed(title = getString(R.string.family), url = "https://vnexpress.net/rss/gia-dinh.rss"))
-            add(Feed(title = getString(R.string.healthy), url = "https://vnexpress.net/rss/suc-khoe.rss"))
-        }
     }
 
     override fun setLayoutResourceId(): Int {
