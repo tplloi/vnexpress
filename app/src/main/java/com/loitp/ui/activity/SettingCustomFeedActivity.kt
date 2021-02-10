@@ -16,6 +16,7 @@ import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemDragListener
 import com.google.gson.reflect.TypeToken
 import com.loitp.R
 import com.loitp.adapter.DragDropAdapter
+import com.loitp.model.Feed
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
@@ -49,10 +50,29 @@ class SettingCustomFeedActivity : BaseFontActivity() {
         setupViews()
     }
 
-    private fun setData(): ArrayList<String> {
-        val dataSet = ArrayList<String>()
-        for (i in 0..20) {
-            dataSet.add(element = "Item $i")
+    private fun setData(): ArrayList<Feed> {
+        val dataSet = ArrayList<Feed>()
+        dataSet.apply {
+            add(Feed(title = getString(R.string.lasted_news), url = "https://vnexpress.net/rss/tin-moi-nhat.rss"))
+            add(Feed(title = getString(R.string.hot_news), url = "https://vnexpress.net/rss/tin-noi-bat.rss"))
+            add(Feed(title = getString(R.string.education), url = "https://vnexpress.net/rss/giao-duc.rss"))
+            add(Feed(title = getString(R.string.law), url = "https://vnexpress.net/rss/phap-luat.rss"))
+            add(Feed(title = getString(R.string.sport), url = "https://vnexpress.net/rss/the-thao.rss"))
+            add(Feed(title = getString(R.string.entertaiment), url = "https://vnexpress.net/rss/giai-tri.rss"))
+            add(Feed(title = getString(R.string.startup), url = "https://vnexpress.net/rss/startup.rss"))
+            add(Feed(title = getString(R.string.business), url = "https://vnexpress.net/rss/kinh-doanh.rss"))
+            add(Feed(title = getString(R.string.news), url = "https://vnexpress.net/rss/thoi-su.rss"))
+            add(Feed(title = getString(R.string.global), url = "https://vnexpress.net/rss/the-gioi.rss"))
+            add(Feed(title = getString(R.string.most_viewed_news), url = "https://vnexpress.net/rss/tin-xem-nhieu.rss"))
+            add(Feed(title = getString(R.string.fun_news), url = "https://vnexpress.net/rss/cuoi.rss"))
+            add(Feed(title = getString(R.string.chat_news), url = "https://vnexpress.net/rss/tam-su.rss"))
+            add(Feed(title = getString(R.string.idea), url = "https://vnexpress.net/rss/y-kien.rss"))
+            add(Feed(title = getString(R.string.car_bike), url = "https://vnexpress.net/rss/oto-xe-may.rss"))
+            add(Feed(title = getString(R.string.technical), url = "https://vnexpress.net/rss/so-hoa.rss"))
+            add(Feed(title = getString(R.string.science), url = "https://vnexpress.net/rss/khoa-hoc.rss"))
+            add(Feed(title = getString(R.string.travel), url = "https://vnexpress.net/rss/du-lich.rss"))
+            add(Feed(title = getString(R.string.family), url = "https://vnexpress.net/rss/gia-dinh.rss"))
+            add(Feed(title = getString(R.string.healthy), url = "https://vnexpress.net/rss/suc-khoe.rss"))
         }
         return dataSet
     }
@@ -63,13 +83,12 @@ class SettingCustomFeedActivity : BaseFontActivity() {
         dragDropSwipeRecyclerView.layoutManager = LinearLayoutManager(this)//list
         dragDropSwipeRecyclerView.adapter = dragDropAdapter
         dragDropSwipeRecyclerView.orientation = DragDropSwipeRecyclerView.ListOrientation.VERTICAL_LIST_WITH_VERTICAL_DRAGGING
-        dragDropSwipeRecyclerView.dragListener = object : OnItemDragListener<String> {
-            override fun onItemDragged(previousPosition: Int, newPosition: Int, item: String) {
+        dragDropSwipeRecyclerView.dragListener = object : OnItemDragListener<Feed> {
+            override fun onItemDragged(previousPosition: Int, newPosition: Int, item: Feed) {
                 // Handle action of item being dragged from one position to another
-//                logD("onItemDragListener onItemDragged previousPosition $previousPosition, newPosition $newPosition, item $item")
             }
 
-            override fun onItemDropped(initialPosition: Int, finalPosition: Int, item: String) {
+            override fun onItemDropped(initialPosition: Int, finalPosition: Int, item: Feed) {
                 // Handle action of item dropped
                 logD("onItemDragListener onItemDragged initialPosition $initialPosition, finalPosition $finalPosition, item $item")
                 logD("onItemDragListener" + BaseApplication.gson.toJson(dragDropAdapter?.dataSet))
@@ -77,7 +96,7 @@ class SettingCustomFeedActivity : BaseFontActivity() {
         }
     }
 
-    fun a(){
+    fun a() {
 //        LSharedPrefsUtil.instance.putObjectList(KEY_LIST_OBJECT, list)
 
 //        val type = object : TypeToken<List<User>>() {
