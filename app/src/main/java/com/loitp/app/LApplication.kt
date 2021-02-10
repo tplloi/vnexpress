@@ -10,6 +10,7 @@ import com.data.AdmobData
 import com.loitp.R
 
 @LogTag("LApplication")
+//TODO money khi doc
 class LApplication : BaseApplication() {
 
     override fun onCreate() {
