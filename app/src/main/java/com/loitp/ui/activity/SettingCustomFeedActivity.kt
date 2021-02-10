@@ -10,8 +10,10 @@ import com.annotation.LogTag
 import com.core.base.BaseApplication
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
+import com.core.utilities.LSharedPrefsUtil
 import com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
 import com.ernestoyaquello.dragdropswiperecyclerview.listener.OnItemDragListener
+import com.google.gson.reflect.TypeToken
 import com.loitp.R
 import com.loitp.adapter.DragDropAdapter
 import com.skydoves.transformationlayout.TransformationCompat
@@ -73,5 +75,13 @@ class SettingCustomFeedActivity : BaseFontActivity() {
                 logD("onItemDragListener" + BaseApplication.gson.toJson(dragDropAdapter?.dataSet))
             }
         }
+    }
+
+    fun a(){
+//        LSharedPrefsUtil.instance.putObjectList(KEY_LIST_OBJECT, list)
+
+//        val type = object : TypeToken<List<User>>() {
+//        }.type
+//        val value: ArrayList<User> = LSharedPrefsUtil.instance.getObjectList(KEY_LIST_OBJECT, type)
     }
 }

@@ -28,7 +28,6 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupData() {
-        //TODO setting customize feed
         with(listFeed) {
             add(Feed(title = getString(R.string.lasted_news), url = "https://vnexpress.net/rss/tin-moi-nhat.rss"))
             add(Feed(title = getString(R.string.hot_news), url = "https://vnexpress.net/rss/tin-noi-bat.rss"))
