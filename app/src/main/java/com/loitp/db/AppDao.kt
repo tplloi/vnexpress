@@ -13,8 +13,8 @@ interface AppDao : BaseDao<NewsFeed> {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertListNewsFeed(list: List<NewsFeed>)
 
-    @Query("SELECT * FROM NewsFeed WHERE feedType=:feedType")
-    fun getListNewsFeed(feedType: String?): List<NewsFeed>
+    @Query("SELECT * FROM NewsFeed WHERE feedType=:feedType LIMIT :limitNumber OFFSET :offsetNumber")
+    fun getListNewsFeed(feedType: String?, limitNumber: Int, offsetNumber: Int): List<NewsFeed>
 
     @Query("DELETE FROM NewsFeed")
     suspend fun deleteAll()

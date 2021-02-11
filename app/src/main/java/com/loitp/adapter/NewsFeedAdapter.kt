@@ -35,7 +35,7 @@ class NewsFeedAdapter(
         }
     }
 
-    fun setItems(items: List<NewsFeed>) {
+    fun setItems(items: List<NewsFeed>, isRefreshAllPage: Boolean) {
 
         fun isContain(rssItem: NewsFeed): Boolean {
             itemList.forEach {
@@ -46,7 +46,9 @@ class NewsFeedAdapter(
             return false
         }
 
-        itemList.clear()
+        if (isRefreshAllPage) {
+            itemList.clear()
+        }
         items.forEach {
             val isContain = isContain(it)
 //            logD("setItems isContain $isContain -> ${it.title}")

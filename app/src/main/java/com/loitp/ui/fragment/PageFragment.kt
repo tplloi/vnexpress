@@ -35,6 +35,8 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private var loadMoreAdapter = LoadMoreAdapter()
     private var previousTime = SystemClock.elapsedRealtime()
     private var feed: Feed? = null
+    private var pageIndex = 0
+    private var isRefreshAllPage = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -107,16 +109,8 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                         recyclerView.scrollToPosition(it - 1)
                     }
 
-                    //TODO scroll next page
-//                    if (currentIndex < (listFeed.size - 1)) {
-//                        logD("if")
-//                        currentIndex++
-//                        fetchRss()
-//                    } else {
-//                        logD("else")
-//                        concatAdapter.removeAdapter(loadMoreAdapter)
-//                        showSnackBarInfor("Bạn đã cuộn đến trang cuối")
-//                    }
+                    pageIndex++
+                    fetchRss()
                 },
                 onScrolled = {
                 }
@@ -157,6 +151,10 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
             })
             mvm.listNewsFeedLiveData.observe(viewLifecycleOwner, Observer { listNewsFeed ->
 //                logD("<<<listRssItemLiveData " + BaseApplication.gson.toJson(listNewsFeed))
+                logD("loitpp--------------------------------")
+                listNewsFeed.forEach {
+                    logD("loitpp-> " + it.title)
+                }
                 onRssItemsLoaded(listNewsFeed = listNewsFeed)
             })
         }
@@ -166,13 +164,16 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private fun fetchRss() {
         logD("fetchRss feed " + BaseApplication.gson.toJson(feed))
         feed?.let {
-            mainViewModel?.loadDataRss(feed = it)
+            mainViewModel?.loadDataRss(feed = it, pageIndex = pageIndex)
         }
     }
 
     private fun onRssItemsLoaded(listNewsFeed: List<NewsFeed>) {
         concatAdapter.removeAdapter(loadMoreAdapter)
-        newsFeedAdapter?.setItems(listNewsFeed)
+        newsFeedAdapter?.setItems(items = listNewsFeed, isRefreshAllPage = isRefreshAllPage)
+        if (isRefreshAllPage) {
+            isRefreshAllPage = false
+        }
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
         }
@@ -193,7 +194,8 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     override fun onRefresh() {
-        //TODO refresh
-//        fetchRss()
+        pageIndex = 0
+        isRefreshAllPage = true
+        fetchRss()
     }
 }

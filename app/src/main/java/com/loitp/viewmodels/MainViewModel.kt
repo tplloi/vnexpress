@@ -3,9 +3,8 @@ package com.loitp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.annotation.LogTag
 import com.core.base.BaseViewModel
-import com.core.helper.ttt.db.TTTDatabase
 import com.core.utilities.LConnectivityUtil
-import com.google.ads.interactivemedia.v3.internal.it
+import com.loitp.constant.Cons
 import com.loitp.db.AppDatabase
 import com.loitp.model.Feed
 import com.loitp.model.NewsFeed
@@ -13,6 +12,7 @@ import com.loitp.service.RssService
 import com.rss.RssConverterFactory
 import com.rss.RssFeed
 import com.rss.RssItem
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -24,10 +24,11 @@ class MainViewModel : BaseViewModel() {
 
     val listNewsFeedLiveData: MutableLiveData<List<NewsFeed>> = MutableLiveData()
 
-    fun loadDataRss(feed: Feed) {
+    fun loadDataRss(feed: Feed, pageIndex: Int) {
         ioScope.launch {
-            logD(">>>loadDataRss urlRss ${feed.url}")
+            logD(">>>loadDataRss pageIndex $pageIndex, urlRss ${feed.url}")
             showLoading(true)
+            delay(500)//delay for better animation
             val retrofit = Retrofit.Builder()
                     .baseUrl("https://github.com")
                     .addConverterFactory(RssConverterFactory.create())
@@ -56,8 +57,11 @@ class MainViewModel : BaseViewModel() {
                     }
 
                     //get data from db
-                    //TODO phan trang
-                    val offlineListNewsFeed = AppDatabase.instance?.appDao()?.getListNewsFeed(feedType = feedType)
+                    val offlineListNewsFeed = AppDatabase.instance?.appDao()?.getListNewsFeed(
+                            feedType = feedType,
+                            limitNumber = Cons.PAGE_SIZE,
+                            offsetNumber = pageIndex * Cons.PAGE_SIZE
+                    )
 
                     listNewsFeedLiveData.postValue(offlineListNewsFeed)
                 }

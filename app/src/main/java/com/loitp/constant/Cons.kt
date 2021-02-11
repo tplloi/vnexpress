@@ -18,6 +18,7 @@ import java.math.BigDecimal
 object Cons {
     const val IS_SMALL_THUMB = "IS_SMALL_THUMB"
     const val IS_GRID_VIEW = "IS_GRID_VIEW"
+    const val PAGE_SIZE = 50
     private const val KEY_LIST_FEED = "KEY_LIST_FEED"
     private const val KEY_MONEY = "KEY_MONEY"
 
