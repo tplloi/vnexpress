@@ -151,6 +151,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 msg?.let {
                     recyclerView.visibility = View.GONE
                     tvNoData.visibility = View.VISIBLE
+                    animationView.visibility = View.GONE
                 }
 
             })

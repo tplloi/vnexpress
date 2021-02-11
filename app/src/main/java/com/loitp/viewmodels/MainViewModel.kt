@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.annotation.LogTag
 import com.core.base.BaseViewModel
 import com.core.helper.ttt.db.TTTDatabase
+import com.core.utilities.LConnectivityUtil
 import com.google.ads.interactivemedia.v3.internal.it
 import com.loitp.db.AppDatabase
 import com.loitp.model.Feed
@@ -50,7 +51,9 @@ class MainViewModel : BaseViewModel() {
                     }
 
                     //save new data to db
-                    AppDatabase.instance?.appDao()?.insertListNewsFeed(list = listNewsFeed)
+                    if (listNewsFeed.isNotEmpty()) {
+                        AppDatabase.instance?.appDao()?.insertListNewsFeed(list = listNewsFeed)
+                    }
 
                     //get data from db
                     //TODO phan trang
@@ -70,7 +73,12 @@ class MainViewModel : BaseViewModel() {
                             }
 
                             override fun onFailure(call: Call<RssFeed>, t: Throwable) {
-                                setErrorMessage("Failed to fetchRss RSS feed!")
+                                logE("onFailure $t")
+                                if (LConnectivityUtil.isConnected()) {
+                                    setErrorMessage("Failed to fetchRss RSS feed!")
+                                } else {
+                                    handleResponse(emptyList())
+                                }
                                 showLoading(false)
                             }
                         })

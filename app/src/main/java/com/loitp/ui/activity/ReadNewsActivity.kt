@@ -13,6 +13,7 @@ import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
 import com.core.utilities.LAppResource
+import com.core.utilities.LConnectivityUtil
 import com.core.utilities.LImageUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
@@ -63,7 +64,11 @@ class ReadNewsActivity : BaseFontActivity() {
 //        logD("onCreate rssItem " + BaseApplication.gson.toJson(newsFeed))
 
         setupViews()
-        getMoney()
+        if (LConnectivityUtil.isConnected()) {
+            getMoney()
+        } else {
+            tvLoadingMoney.visibility = View.GONE
+        }
     }
 
     private fun setupViews() {
