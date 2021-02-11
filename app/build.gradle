@@ -31,7 +31,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("keystore.jks")
+            storeFile file("keystorevnexpress.jks")
             storePassword "04021993"
             keyAlias "loi"
             keyPassword "04021993"
