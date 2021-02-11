@@ -1,6 +1,5 @@
 package com.loitp.adapter
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,18 +12,18 @@ import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
-import com.rss.RssItem
+import com.loitp.model.NewsFeed
 import com.skydoves.transformationlayout.TransformationLayout
 import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.*
 
 @LogTag("RssItemsAdapter")
 class RssItemsAdapter(
-        private val onClick: ((RssItem, TransformationLayout) -> Unit)? = null
+        private val onClick: ((NewsFeed, TransformationLayout) -> Unit)? = null
 ) : BaseAdapter() {
 
     private val splitString = "</a></br>"
-    private val itemList = ArrayList<RssItem>()
+    private val itemList = ArrayList<NewsFeed>()
     private val isSmallThumb = LSharedPrefsUtil.instance.getBoolean(Cons.IS_SMALL_THUMB, false)
     private var height = 0
 
@@ -36,9 +35,9 @@ class RssItemsAdapter(
         }
     }
 
-    fun setItems(items: List<RssItem>) {
+    fun setItems(items: List<NewsFeed>) {
 
-        fun isContain(rssItem: RssItem): Boolean {
+        fun isContain(rssItem: NewsFeed): Boolean {
             itemList.forEach {
                 if (it.link == rssItem.link) {
                     return true
@@ -75,15 +74,15 @@ class RssItemsAdapter(
 
     inner class RSSViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        fun bind(rssItem: RssItem) {
-            LImageUtil.load(context = itemView.ivThumb.context, any = rssItem.image, imageView = itemView.ivThumb)
+        fun bind(newsFeed: NewsFeed) {
+            LImageUtil.load(context = itemView.ivThumb.context, any = newsFeed.image, imageView = itemView.ivThumb)
             LUIUtil.setSizeOfView(view = itemView.ivThumb, height = height)
 
-            itemView.tvTitle.text = rssItem.title
-            itemView.tvPubDate.text = rssItem.publishDate
+            itemView.tvTitle.text = newsFeed.title
+            itemView.tvPubDate.text = newsFeed.publishDate
 //            logD("RSSViewHolder pos $bindingAdapterPosition -> " + rssItem.description)
 
-            val des = rssItem.description ?: ""
+            val des = newsFeed.description
             try {
                 if (des.contains(splitString)) {
                     val arr = des.split(splitString)
@@ -96,7 +95,7 @@ class RssItemsAdapter(
             }
 
             itemView.setOnClickListener {
-                onClick?.invoke(rssItem, itemView.layoutItemRssTransformation)
+                onClick?.invoke(newsFeed, itemView.layoutItemRssTransformation)
             }
         }
     }

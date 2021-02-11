@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.annotation.LogTag
+import com.core.base.BaseApplication
 import com.core.base.BaseFragment
 import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
@@ -15,16 +16,18 @@ import com.loitp.R
 import com.loitp.adapter.LoadMoreAdapter
 import com.loitp.adapter.RssItemsAdapter
 import com.loitp.constant.Cons
+import com.loitp.model.Feed
+import com.loitp.model.NewsFeed
 import com.loitp.ui.activity.ReadNewsActivity
 import com.loitp.viewmodels.MainViewModel
 import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_page.*
 
-@LogTag("loitppPageFragment")
+@LogTag("PageFragment")
 class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
-        const val KEY_LINK_RSS = "KEY_LINK_RSS"
+        const val KEY_FEED = "KEY_FEED"
     }
 
     private var mainViewModel: MainViewModel? = null
@@ -32,13 +35,13 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private var rssItemsAdapter: RssItemsAdapter? = null
     private var loadMoreAdapter = LoadMoreAdapter()
     private var previousTime = SystemClock.elapsedRealtime()
-    private var linkRss = ""
+    private var feed: Feed? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            linkRss = it.getString(KEY_LINK_RSS) ?: ""
+            feed = it.getSerializable(KEY_FEED) as Feed?
         }
 
         setupViews()
@@ -53,11 +56,11 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupViews() {
-        rssItemsAdapter = RssItemsAdapter { rssItem, layoutItemRssTransformation ->
+        rssItemsAdapter = RssItemsAdapter { newsFeed, layoutItemRssTransformation ->
             context?.let { c ->
                 val now = SystemClock.elapsedRealtime()
                 if (now - previousTime >= layoutItemRssTransformation.duration) {
-                    ReadNewsActivity.startActivity(context = c, transformationLayout = layoutItemRssTransformation, rssItem = rssItem)
+                    ReadNewsActivity.startActivity(context = c, transformationLayout = layoutItemRssTransformation, newsFeed = newsFeed)
                     previousTime = now
                 }
             }
@@ -152,22 +155,24 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
 
             })
-            mvm.listRssItemLiveData.observe(viewLifecycleOwner, Observer { listRssItem ->
-//                logD("<<<listRssItemLiveData " + BaseApplication.gson.toJson(listRssItem))
-                onRssItemsLoaded(rssItems = listRssItem)
+            mvm.listNewsFeedLiveData.observe(viewLifecycleOwner, Observer { listNewsFeed ->
+//                logD("<<<listRssItemLiveData " + BaseApplication.gson.toJson(listNewsFeed))
+                onRssItemsLoaded(listNewsFeed = listNewsFeed)
             })
         }
 
     }
 
     private fun fetchRss() {
-        logD("fetchRss feedUrl $linkRss")
-        mainViewModel?.loadDataRss(linkRss)
+        logD("fetchRss feed " + BaseApplication.gson.toJson(feed))
+        feed?.let {
+            mainViewModel?.loadDataRss(feed = it)
+        }
     }
 
-    private fun onRssItemsLoaded(rssItems: List<RssItem>) {
+    private fun onRssItemsLoaded(listNewsFeed: List<NewsFeed>) {
         concatAdapter.removeAdapter(loadMoreAdapter)
-        rssItemsAdapter?.setItems(rssItems)
+        rssItemsAdapter?.setItems(listNewsFeed)
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
         }

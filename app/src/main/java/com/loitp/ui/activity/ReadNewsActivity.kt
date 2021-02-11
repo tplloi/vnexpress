@@ -17,7 +17,7 @@ import com.core.utilities.LImageUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
-import com.rss.RssItem
+import com.loitp.model.NewsFeed
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
@@ -35,21 +35,21 @@ import java.util.concurrent.TimeUnit
 class ReadNewsActivity : BaseFontActivity() {
 
     companion object {
-        private const val KEY_RSS_ITEM = "KEY_RSS_ITEM"
+        private const val KEY_NEWS_FEED = "KEY_NEWS_FEED"
         private const val TIME_IN_S_TO_GET_MONEY = 20
 
         fun startActivity(
                 context: Context,
                 transformationLayout: TransformationLayout,
-                rssItem: RssItem
+                newsFeed: NewsFeed
         ) {
             val intent = Intent(context, ReadNewsActivity::class.java)
-            intent.putExtra(KEY_RSS_ITEM, rssItem)
+            intent.putExtra(KEY_NEWS_FEED, newsFeed)
             TransformationCompat.startActivity(transformationLayout, intent)
         }
     }
 
-    private var rssItem: RssItem? = null
+    private var newsFeed: NewsFeed? = null
 
     override fun setLayoutResourceId(): Int {
         return R.layout.activity_layout_read_news
@@ -59,15 +59,15 @@ class ReadNewsActivity : BaseFontActivity() {
         onTransformationEndContainer(intent.getParcelableExtra(Constants.activityTransitionName))
         super.onCreate(savedInstanceState)
 
-        rssItem = intent?.getSerializableExtra(KEY_RSS_ITEM) as RssItem?
-//        logD("onCreate rssItem " + BaseApplication.gson.toJson(rssItem))
+        newsFeed = intent?.getSerializableExtra(KEY_NEWS_FEED) as NewsFeed?
+//        logD("onCreate rssItem " + BaseApplication.gson.toJson(newsFeed))
 
         setupViews()
         getMoney()
     }
 
     private fun setupViews() {
-        rssItem?.let { item ->
+        newsFeed?.let { item ->
             LImageUtil.load(context = this, any = item.image, imageView = ivBkg)
             collapsingToolbarLayout.title = item.title
         }
@@ -115,7 +115,7 @@ class ReadNewsActivity : BaseFontActivity() {
 
             }
         }
-        rssItem?.link?.let {
+        newsFeed?.link?.let {
             webView.loadUrl(it)
         }
     }

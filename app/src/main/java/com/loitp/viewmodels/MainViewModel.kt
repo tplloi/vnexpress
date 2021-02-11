@@ -3,13 +3,11 @@ package com.loitp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.annotation.LogTag
 import com.core.base.BaseViewModel
-import com.core.helper.ttt.db.TTTDatabase
-import com.core.helper.ttt.model.comic.Comic
+import com.loitp.model.Feed
+import com.loitp.model.NewsFeed
 import com.loitp.service.RssService
 import com.rss.RssConverterFactory
 import com.rss.RssFeed
-import com.rss.RssItem
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -19,11 +17,11 @@ import retrofit2.Retrofit
 @LogTag("MainViewModel")
 class MainViewModel : BaseViewModel() {
 
-    val listRssItemLiveData: MutableLiveData<List<RssItem>> = MutableLiveData()
+    val listNewsFeedLiveData: MutableLiveData<List<NewsFeed>> = MutableLiveData()
 
-    fun loadDataRss(urlRss: String?) {
+    fun loadDataRss(feed: Feed) {
         ioScope.launch {
-            logD(">>>loadDataRss urlRss $urlRss")
+            logD(">>>loadDataRss urlRss ${feed.url}")
             showLoading(true)
             val retrofit = Retrofit.Builder()
                     .baseUrl("https://github.com")
@@ -31,12 +29,27 @@ class MainViewModel : BaseViewModel() {
                     .build()
 
             val service = retrofit.create(RssService::class.java)
-            urlRss?.let { url ->
+            feed.url.let { url ->
                 service.getRss(url)
                         .enqueue(object : Callback<RssFeed> {
                             override fun onResponse(call: Call<RssFeed>, response: Response<RssFeed>) {
                                 val listRssItem = response.body()?.items ?: emptyList()
-                                listRssItemLiveData.postValue(listRssItem)
+
+                                //TODO room
+                                val listNewsFeed = ArrayList<NewsFeed>()
+                                listRssItem.forEach {
+                                    val newsFeed = NewsFeed(
+                                            title = it.title ?: "",
+                                            link = it.link ?: "",
+                                            image = it.image ?: "",
+                                            publishDate = it.publishDate ?: "",
+                                            description = it.description ?: "",
+                                            feedType = feed.title
+                                    )
+                                    listNewsFeed.add(newsFeed)
+                                }
+
+                                listNewsFeedLiveData.postValue(listNewsFeed)
                                 showLoading(false)
                             }
 

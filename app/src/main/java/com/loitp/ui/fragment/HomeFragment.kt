@@ -34,18 +34,18 @@ class HomeFragment : BaseFragment() {
 
     private fun setupViews() {
         viewPager.setPageTransformer(true, ZoomOutSlideTransformer())
-        viewPager.adapter = SamplePagerAdapter(parentFragmentManager)
+        viewPager.adapter = HomePagerAdapter(parentFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
         LUIUtil.changeTabsFont(tabLayout = tabLayout, fontName = Constants.FONT_PATH)
     }
 
-    private inner class SamplePagerAdapter(fm: FragmentManager)
+    private inner class HomePagerAdapter(fm: FragmentManager)
         : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
         override fun getItem(position: Int): Fragment {
             val pageFragment = PageFragment()
             val bundle = Bundle()
-            bundle.putString(PageFragment.KEY_LINK_RSS, listFeed[position].url)
+            bundle.putSerializable(PageFragment.KEY_FEED, listFeed[position])
             pageFragment.arguments = bundle
             return pageFragment
         }
