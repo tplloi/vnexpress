@@ -17,8 +17,8 @@ import com.skydoves.transformationlayout.TransformationLayout
 import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.*
 
-@LogTag("RssItemsAdapter")
-class RssItemsAdapter(
+@LogTag("NewsFeedAdapter")
+class NewsFeedAdapter(
         private val onClick: ((NewsFeed, TransformationLayout) -> Unit)? = null
 ) : BaseAdapter() {
 
@@ -57,13 +57,13 @@ class RssItemsAdapter(
         notifyDataSetChanged()
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RSSViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_rss_item, parent, false)
-        return RSSViewHolder(itemView)
+        return NewsFeedViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        if (holder is RSSViewHolder) {
+        if (holder is NewsFeedViewHolder) {
             holder.bind(itemList[position])
         }
     }
@@ -72,10 +72,16 @@ class RssItemsAdapter(
         return itemList.size
     }
 
-    inner class RSSViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class NewsFeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(newsFeed: NewsFeed) {
-            LImageUtil.load(context = itemView.ivThumb.context, any = newsFeed.image, imageView = itemView.ivThumb)
+            LImageUtil.load(
+                    context = itemView.ivThumb.context,
+                    any = newsFeed.image,
+                    imageView = itemView.ivThumb,
+                    resPlaceHolder = R.color.transparent,
+                    resError = R.color.transparent
+            )
             LUIUtil.setSizeOfView(view = itemView.ivThumb, height = height)
 
             itemView.tvTitle.text = newsFeed.title

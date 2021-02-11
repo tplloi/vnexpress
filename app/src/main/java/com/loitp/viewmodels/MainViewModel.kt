@@ -3,11 +3,15 @@ package com.loitp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.annotation.LogTag
 import com.core.base.BaseViewModel
+import com.core.helper.ttt.db.TTTDatabase
+import com.google.ads.interactivemedia.v3.internal.it
+import com.loitp.db.AppDatabase
 import com.loitp.model.Feed
 import com.loitp.model.NewsFeed
 import com.loitp.service.RssService
 import com.rss.RssConverterFactory
 import com.rss.RssFeed
+import com.rss.RssItem
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -28,28 +32,39 @@ class MainViewModel : BaseViewModel() {
                     .addConverterFactory(RssConverterFactory.create())
                     .build()
 
+
+            fun handleResponse(listRssItem: List<RssItem>) {
+                ioScope.launch {
+                    val feedType = feed.title
+                    val listNewsFeed = ArrayList<NewsFeed>()
+                    listRssItem.forEach {
+                        val newsFeed = NewsFeed(
+                                title = it.title ?: "",
+                                link = it.link ?: "",
+                                image = it.image ?: "",
+                                publishDate = it.publishDate ?: "",
+                                description = it.description ?: "",
+                                feedType = feedType
+                        )
+                        listNewsFeed.add(newsFeed)
+                    }
+
+                    //save new data to db
+                    AppDatabase.instance?.appDao()?.insertListNewsFeed(list = listNewsFeed)
+
+                    //get data from db
+                    val offlineListNewsFeed = AppDatabase.instance?.appDao()?.getListNewsFeed(feedType = feedType)
+
+                    listNewsFeedLiveData.postValue(offlineListNewsFeed)
+                }
+            }
+
             val service = retrofit.create(RssService::class.java)
             feed.url.let { url ->
                 service.getRss(url)
                         .enqueue(object : Callback<RssFeed> {
                             override fun onResponse(call: Call<RssFeed>, response: Response<RssFeed>) {
-                                val listRssItem = response.body()?.items ?: emptyList()
-
-                                //TODO room
-                                val listNewsFeed = ArrayList<NewsFeed>()
-                                listRssItem.forEach {
-                                    val newsFeed = NewsFeed(
-                                            title = it.title ?: "",
-                                            link = it.link ?: "",
-                                            image = it.image ?: "",
-                                            publishDate = it.publishDate ?: "",
-                                            description = it.description ?: "",
-                                            feedType = feed.title
-                                    )
-                                    listNewsFeed.add(newsFeed)
-                                }
-
-                                listNewsFeedLiveData.postValue(listNewsFeed)
+                                handleResponse(listRssItem = response.body()?.items ?: emptyList())
                                 showLoading(false)
                             }
 
@@ -61,11 +76,4 @@ class MainViewModel : BaseViewModel() {
             }
         }
     }
-
-//    fun updateComic(comic: Comic) {
-//        logD(">>>updateComic ${comic.title}")
-//        ioScope.launch {
-//            TTTDatabase.instance?.tttDao()?.update(type = comic)
-//        }
-//    }
 }

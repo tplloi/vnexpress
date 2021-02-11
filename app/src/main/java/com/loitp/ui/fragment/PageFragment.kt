@@ -14,13 +14,12 @@ import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.adapter.LoadMoreAdapter
-import com.loitp.adapter.RssItemsAdapter
+import com.loitp.adapter.NewsFeedAdapter
 import com.loitp.constant.Cons
 import com.loitp.model.Feed
 import com.loitp.model.NewsFeed
 import com.loitp.ui.activity.ReadNewsActivity
 import com.loitp.viewmodels.MainViewModel
-import com.rss.RssItem
 import kotlinx.android.synthetic.main.frm_page.*
 
 @LogTag("PageFragment")
@@ -32,7 +31,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private var mainViewModel: MainViewModel? = null
     private val concatAdapter = ConcatAdapter()
-    private var rssItemsAdapter: RssItemsAdapter? = null
+    private var newsFeedAdapter: NewsFeedAdapter? = null
     private var loadMoreAdapter = LoadMoreAdapter()
     private var previousTime = SystemClock.elapsedRealtime()
     private var feed: Feed? = null
@@ -56,7 +55,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun setupViews() {
-        rssItemsAdapter = RssItemsAdapter { newsFeed, layoutItemRssTransformation ->
+        newsFeedAdapter = NewsFeedAdapter { newsFeed, layoutItemRssTransformation ->
             context?.let { c ->
                 val now = SystemClock.elapsedRealtime()
                 if (now - previousTime >= layoutItemRssTransformation.duration) {
@@ -65,7 +64,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
             }
         }
-        rssItemsAdapter?.let {
+        newsFeedAdapter?.let {
             concatAdapter.addAdapter(it)
         }
 
@@ -172,7 +171,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
 
     private fun onRssItemsLoaded(listNewsFeed: List<NewsFeed>) {
         concatAdapter.removeAdapter(loadMoreAdapter)
-        rssItemsAdapter?.setItems(listNewsFeed)
+        newsFeedAdapter?.setItems(listNewsFeed)
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
         }
