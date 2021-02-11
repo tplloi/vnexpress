@@ -21,6 +21,7 @@ import kotlinx.android.synthetic.main.frm_setting.*
 @LogTag("SettingFragment")
 class SettingFragment : BaseFragment() {
 
+    //TODO delete all room
     private var dialog: AlertDialog? = null
     private var previousTime = SystemClock.elapsedRealtime()
 

@@ -3,6 +3,8 @@ package com.loitp.viewmodels
 import androidx.lifecycle.MutableLiveData
 import com.annotation.LogTag
 import com.core.base.BaseViewModel
+import com.core.helper.ttt.db.TTTDatabase
+import com.core.helper.ttt.model.comic.Comic
 import com.loitp.service.RssService
 import com.rss.RssConverterFactory
 import com.rss.RssFeed
@@ -19,14 +21,10 @@ class MainViewModel : BaseViewModel() {
 
     val listRssItemLiveData: MutableLiveData<List<RssItem>> = MutableLiveData()
 
-    //TODO room to offline mode
     fun loadDataRss(urlRss: String?) {
         ioScope.launch {
             logD(">>>loadDataRss urlRss $urlRss")
             showLoading(true)
-
-            delay(1000)
-
             val retrofit = Retrofit.Builder()
                     .baseUrl("https://github.com")
                     .addConverterFactory(RssConverterFactory.create())
@@ -50,4 +48,11 @@ class MainViewModel : BaseViewModel() {
             }
         }
     }
+
+//    fun updateComic(comic: Comic) {
+//        logD(">>>updateComic ${comic.title}")
+//        ioScope.launch {
+//            TTTDatabase.instance?.tttDao()?.update(type = comic)
+//        }
+//    }
 }

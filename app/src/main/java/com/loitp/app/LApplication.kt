@@ -3,11 +3,11 @@ package com.loitp.app
 import com.annotation.LogTag
 import com.core.base.BaseApplication
 import com.core.common.Constants
-import com.core.utilities.LSharedPrefsUtil
 import com.core.utilities.LUIUtil
 import com.data.ActivityData
 import com.data.AdmobData
 import com.loitp.R
+import com.loitp.db.AppDatabase
 
 @LogTag("LApplication")
 class LApplication : BaseApplication() {
@@ -23,5 +23,8 @@ class LApplication : BaseApplication() {
 
         //config font
         LUIUtil.fontForAll = Constants.FONT_PATH
+
+        //room
+        AppDatabase.getInstance(context = this)
     }
 }
