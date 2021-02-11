@@ -28,7 +28,6 @@ class DragDropAdapter(dataSet: List<Feed> = emptyList())
 
     override fun getViewToTouchToStartDraggingItem(item: Feed, viewHolder: ViewHolder, position: Int): View? {
         // We return the view holder's view on which the user has to touch to drag the item
-//        return viewHolder.ivDrag
-        return viewHolder.itemView
+        return viewHolder.ivDrag
     }
 }

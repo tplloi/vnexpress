@@ -168,10 +168,16 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 
         drawerLayout.closeDrawer(GravityCompat.START)
         navViewStart.postDelayed({
-            if (currentItemId == R.id.navHome) {
-                navViewStart.menu.findItem(R.id.navHome).isChecked = true
-            } else if (currentItemId == R.id.navDonation) {
-                navViewStart.menu.findItem(R.id.navDonation).isChecked = true
+            when (currentItemId) {
+                R.id.navHome -> {
+                    navViewStart.menu.findItem(R.id.navHome).isChecked = true
+                }
+                R.id.navSetting -> {
+                    navViewStart.menu.findItem(R.id.navSetting).isChecked = true
+                }
+                R.id.navDonation -> {
+                    navViewStart.menu.findItem(R.id.navDonation).isChecked = true
+                }
             }
         }, 500)
         return true
