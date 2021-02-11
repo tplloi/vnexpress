@@ -53,6 +53,7 @@ class MainViewModel : BaseViewModel() {
                     AppDatabase.instance?.appDao()?.insertListNewsFeed(list = listNewsFeed)
 
                     //get data from db
+                    //TODO phan trang
                     val offlineListNewsFeed = AppDatabase.instance?.appDao()?.getListNewsFeed(feedType = feedType)
 
                     listNewsFeedLiveData.postValue(offlineListNewsFeed)
@@ -74,6 +75,12 @@ class MainViewModel : BaseViewModel() {
                             }
                         })
             }
+        }
+    }
+
+    fun deleteDb() {
+        ioScope.launch {
+            AppDatabase.instance?.appDao()?.deleteAll()
         }
     }
 }

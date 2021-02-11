@@ -15,20 +15,22 @@ import com.loitp.R
 import com.loitp.constant.Cons
 import com.loitp.ui.activity.MainActivity
 import com.loitp.ui.activity.SettingCustomFeedActivity
+import com.loitp.viewmodels.MainViewModel
 import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.frm_setting.*
 
 @LogTag("SettingFragment")
 class SettingFragment : BaseFragment() {
 
-    //TODO delete all room
     private var dialog: AlertDialog? = null
     private var previousTime = SystemClock.elapsedRealtime()
+    private var mainViewModel: MainViewModel? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         setupViews()
+        setupViewModels()
     }
 
     override fun onDestroyView() {
@@ -65,12 +67,38 @@ class SettingFragment : BaseFragment() {
                 val now = SystemClock.elapsedRealtime()
                 if (now - previousTime >= layoutTransformation.duration) {
                     SettingCustomFeedActivity.startActivity(
-                        context = c,
-                        transformationLayout = layoutTransformation
+                            context = c,
+                            transformationLayout = layoutTransformation
                     )
                     previousTime = now
                 }
             }
+        }
+
+        LUIUtil.setSafeOnClickListenerElastic(
+                view = btClearDb,
+                runnable = Runnable {
+                    showBottomSheetOptionFragment(
+                            title = getString(R.string.warning_vn),
+                            message = getString(R.string.delete_db_msg),
+                            textButton1 = getString(R.string.delete),
+                            textButton2 = getString(R.string.no),
+                            onClickButton1 = {
+                                showShortInformation(getString(R.string.delete_successfully))
+                                mainViewModel?.deleteDb()
+                            },
+                            onClickButton2 = {
+                                //do nothing
+                            }
+                    )
+                }
+        )
+    }
+
+    private fun setupViewModels() {
+        mainViewModel = getSelfViewModel(MainViewModel::class.java)
+        mainViewModel?.let { mvm ->
+            //do sth
         }
     }
 
@@ -82,30 +110,30 @@ class SettingFragment : BaseFragment() {
             }
 
             dialog = LDialogUtil.showDialog2(
-                context = c,
-                title = getString(com.R.string.warning_vn),
-                msg = getString(com.R.string.app_will_be_restarted_vn),
-                button1 = getString(com.R.string.cancel),
-                button2 = getString(com.R.string.ok),
-                onClickButton1 = {
-                    swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
-                },
-                onClickButton2 = {
-                    if (isChecked) {
-                        LUIUtil.setDarkTheme(isDarkTheme = true)
-                    } else {
-                        LUIUtil.setDarkTheme(isDarkTheme = false)
-                    }
+                    context = c,
+                    title = getString(com.R.string.warning_vn),
+                    msg = getString(com.R.string.app_will_be_restarted_vn),
+                    button1 = getString(com.R.string.cancel),
+                    button2 = getString(com.R.string.ok),
+                    onClickButton1 = {
+                        swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
+                    },
+                    onClickButton2 = {
+                        if (isChecked) {
+                            LUIUtil.setDarkTheme(isDarkTheme = true)
+                        } else {
+                            LUIUtil.setDarkTheme(isDarkTheme = false)
+                        }
 
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(intent)
-                    context?.let {
-                        LActivityUtil.transActivityNoAnimation(it)
-                    }
+                        val intent = Intent(context, MainActivity::class.java)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                        startActivity(intent)
+                        context?.let {
+                            LActivityUtil.transActivityNoAnimation(it)
+                        }
 
-                    dialog?.dismiss()
-                }
+                        dialog?.dismiss()
+                    }
             )
             dialog?.setOnCancelListener {
                 swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()

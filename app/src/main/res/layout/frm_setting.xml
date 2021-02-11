@@ -23,7 +23,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/w_1"
-        android:background="?attr/themeTextColor" />
+        android:background="?attr/themeBackgroundColorMedium" />
 
     <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
         android:id="@+id/swSmallSizeItem"
@@ -41,7 +41,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/w_1"
-        android:background="?attr/themeTextColor" />
+        android:background="?attr/themeBackgroundColorMedium" />
 
     <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
         android:id="@+id/swIsGridView"
@@ -59,26 +59,55 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/w_1"
-        android:background="?attr/themeTextColor" />
+        android:background="?attr/themeBackgroundColorMedium" />
 
     <com.skydoves.transformationlayout.TransformationLayout
         android:id="@+id/layoutTransformation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_small"
+        android:layout_marginTop="@dimen/margin_medium"
         app:transformation_duration="500"
         app:transformation_pathMode="arc">
 
-        <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/btCustomFeed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bt_medium"
             android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/padding_small"
+            android:paddingTop="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_small"
+            android:paddingBottom="@dimen/padding_medium"
             android:text="@string/custom_your_feed"
             android:textAllCaps="false"
             android:textColor="?attr/themeTextColor"
             android:textSize="@dimen/text_medium"
             app:drawableTint="?attr/themeTextColor" />
     </com.skydoves.transformationlayout.TransformationLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/w_1"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="?attr/themeBackgroundColorMedium" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btClearDb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_medium"
+        android:background="@drawable/bt_medium"
+        android:drawableEnd="@drawable/ic_baseline_delete_forever_24"
+        android:gravity="center_vertical"
+        android:paddingStart="@dimen/padding_small"
+        android:paddingTop="@dimen/padding_medium"
+        android:paddingEnd="@dimen/padding_small"
+        android:paddingBottom="@dimen/padding_medium"
+        android:text="@string/delete_db"
+        android:textAllCaps="false"
+        android:textColor="?attr/themeTextColor"
+        android:textSize="@dimen/text_medium"
+        app:drawableTint="?attr/themeTextColor" />
 </LinearLayout>

@@ -16,8 +16,8 @@ interface AppDao : BaseDao<NewsFeed> {
     @Query("SELECT * FROM NewsFeed WHERE feedType=:feedType")
     fun getListNewsFeed(feedType: String?): List<NewsFeed>
 
-//    @Query("DELETE FROM Comic")
-//    suspend fun deleteAll()
+    @Query("DELETE FROM NewsFeed")
+    suspend fun deleteAll()
 
 //    @Query("SELECT * FROM Comic WHERE url=:url")
 //    fun find(url: String): Comic?
