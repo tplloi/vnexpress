@@ -78,7 +78,9 @@ class NewsFeedAdapter(
             LImageUtil.load(
                     context = itemView.ivThumb.context,
                     any = newsFeed.image,
-                    imageView = itemView.ivThumb
+                    imageView = itemView.ivThumb,
+                    resPlaceHolder = R.color.transparent,
+                    resError = R.color.colorPrimary
             )
             LUIUtil.setSizeOfView(view = itemView.ivThumb, height = height)
 

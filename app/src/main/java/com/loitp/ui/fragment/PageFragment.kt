@@ -176,7 +176,11 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         if (recyclerView.visibility != View.VISIBLE) {
             recyclerView.visibility = View.VISIBLE
         }
-        tvNoData.visibility = View.GONE
+        if (newsFeedAdapter?.itemCount == 0) {
+            tvNoData.visibility = View.VISIBLE
+        } else {
+            tvNoData.visibility = View.GONE
+        }
         animationView.visibility = View.GONE
     }
 

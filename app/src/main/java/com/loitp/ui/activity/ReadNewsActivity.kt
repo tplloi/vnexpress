@@ -28,6 +28,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_layout_read_news.*
+import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.concurrent.TimeUnit
 
 @LogTag("ReadNewsActivity")
@@ -73,7 +74,13 @@ class ReadNewsActivity : BaseFontActivity() {
 
     private fun setupViews() {
         newsFeed?.let { item ->
-            LImageUtil.load(context = this, any = item.image, imageView = ivBkg)
+            LImageUtil.load(
+                    context = this,
+                    any = item.image,
+                    imageView = ivBkg,
+                    resPlaceHolder = R.color.transparent,
+                    resError = R.color.colorPrimary
+            )
             collapsingToolbarLayout.title = item.title
         }
 
