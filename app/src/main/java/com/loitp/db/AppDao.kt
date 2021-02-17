@@ -19,6 +19,9 @@ interface AppDao : BaseDao<NewsFeed> {
     @Query("DELETE FROM NewsFeed")
     suspend fun deleteAll()
 
+    @Query("SELECT COUNT(link) FROM NewsFeed WHERE feedType=:feedType")
+    fun getCount(feedType: String?): Int
+
 //    @Query("SELECT * FROM Comic WHERE url=:url")
 //    fun find(url: String): Comic?
 }

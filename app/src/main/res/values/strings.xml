@@ -68,5 +68,6 @@
     <string name="delete">Xóa</string>
     <string name="no">Không</string>
     <string name="delete_successfully">Đã xóa thành công</string>
+    <string name="this_is_last_page">Đây đã là trang cuối</string>
 
 </resources>

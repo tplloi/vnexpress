@@ -35,7 +35,7 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     private var loadMoreAdapter = LoadMoreAdapter()
     private var previousTime = SystemClock.elapsedRealtime()
     private var feed: Feed? = null
-    private var pageIndex = 0
+    private var pageIndex = 0//page dem tu 0
     private var isRefreshAllPage = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,8 +48,13 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         setupViews()
         setupViewModels()
 
-        logD("onViewCreated")
-        fetchRss()
+        getTotalPage()
+    }
+
+    private fun getTotalPage() {
+        feed?.let {
+            mainViewModel?.getTotalPage(feed = it)
+        }
     }
 
     override fun setLayoutResourceId(): Int {
@@ -109,8 +114,13 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                         recyclerView.scrollToPosition(it - 1)
                     }
 
-                    pageIndex++
-                    fetchRss()
+                    pageIndex--
+                    if (pageIndex >= 0) {
+                        fetchRss()
+                    } else {
+                        showShortInformation(getString(R.string.this_is_last_page))
+                        concatAdapter.removeAdapter(loadMoreAdapter)
+                    }
                 },
                 onScrolled = {
                 }
@@ -149,12 +159,17 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
                 }
 
             })
+            mvm.totalPageLiveData.observe(viewLifecycleOwner, Observer { totalPage ->
+                logD("totalPageLiveData observe totalPage $totalPage")
+                pageIndex = totalPage - 1
+                fetchRss()
+            })
             mvm.listNewsFeedLiveData.observe(viewLifecycleOwner, Observer { listNewsFeed ->
 //                logD("<<<listRssItemLiveData " + BaseApplication.gson.toJson(listNewsFeed))
-                logD("loitpp--------------------------------")
-                listNewsFeed.forEach {
-                    logD("loitpp-> " + it.title)
-                }
+//                logD("--------------------------------")
+//                listNewsFeed.forEach {
+//                    logD("-> " + it.title)
+//                }
                 onRssItemsLoaded(listNewsFeed = listNewsFeed)
             })
         }
@@ -162,9 +177,9 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     }
 
     private fun fetchRss() {
-        logD("fetchRss feed " + BaseApplication.gson.toJson(feed))
-        feed?.let {
-            mainViewModel?.loadDataRss(feed = it, pageIndex = pageIndex)
+        logD("fetchRss pageIndex $pageIndex, feed " + BaseApplication.gson.toJson(feed))
+        feed?.let { f ->
+            mainViewModel?.loadDataRss(feed = f, pageIndex = pageIndex)
         }
     }
 
@@ -196,6 +211,6 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
     override fun onRefresh() {
         pageIndex = 0
         isRefreshAllPage = true
-        fetchRss()
+        getTotalPage()
     }
 }

@@ -8,7 +8,7 @@ import com.loitp.model.NewsFeed
 
 @Database(
         entities = [NewsFeed::class],
-        version = 1
+        version = 2
 )
 abstract class AppDatabase : RoomDatabase() {
 

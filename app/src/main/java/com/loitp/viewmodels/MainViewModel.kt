@@ -23,6 +23,21 @@ import retrofit2.Retrofit
 class MainViewModel : BaseViewModel() {
 
     val listNewsFeedLiveData: MutableLiveData<List<NewsFeed>> = MutableLiveData()
+    val totalPageLiveData: MutableLiveData<Int> = MutableLiveData()
+
+    fun getTotalPage(feed: Feed) {
+        ioScope.launch {
+            val count = AppDatabase.instance?.appDao()?.getCount(feedType = feed.title) ?: 0
+//            logD("getTotalPage count $count")
+//            logD("getTotalPage page size ${Cons.PAGE_SIZE}")
+            var totalPage = count / Cons.PAGE_SIZE
+            if (count % Cons.PAGE_SIZE != 0) {
+                totalPage++
+            }
+//            logD("getTotalPage totalPage $totalPage")
+            totalPageLiveData.postValue(totalPage)
+        }
+    }
 
     fun loadDataRss(feed: Feed, pageIndex: Int) {
         ioScope.launch {
