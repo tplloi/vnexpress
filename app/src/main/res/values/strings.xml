@@ -69,5 +69,6 @@
     <string name="delete_successfully">Đã xóa thành công</string>
     <string name="this_is_last_page">Đây đã là trang cuối</string>
     <string name="select_gift">Lựa chọn phần thưởng</string>
+    <string name="now_you_get">Hiện tại, bạn đang có</string>
 
 </resources>

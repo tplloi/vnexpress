@@ -9,9 +9,12 @@ import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
 import com.loitp.R
+import com.loitp.constant.Cons
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
+import kotlinx.android.synthetic.main.activity_layout_gift.*
+import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("GiftActivity")
 @IsFullScreen(false)
@@ -40,7 +43,7 @@ class GiftActivity : BaseFontActivity() {
     }
 
     private fun setupViews() {
-
+        tvInformation.text = Cons.getCurrentMoneyInString()
     }
 
 }

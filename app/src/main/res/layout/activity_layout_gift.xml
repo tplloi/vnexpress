@@ -11,8 +11,42 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/padding_medium"
+        android:text="@string/now_you_get"
+        android:textColor="?attr/themeTextColor"
+        android:textSize="@dimen/txt_large" />
+
+    <LinearLayout
+        android:id="@+id/layoutMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_medium">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/w_40"
+            android:layout_height="@dimen/w_40"
+            android:src="@drawable/ic_salary" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvInformation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:gravity="center"
+            android:paddingStart="@dimen/padding_medium"
+            android:paddingEnd="@dimen/padding_medium"
+            android:textColor="?attr/themeTextColor"
+            android:textSize="@dimen/txt_large"
+            tools:text="@string/app_name" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
         android:text="@string/select_gift"
         android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/txt_large"
-        android:textStyle="bold" />
+        android:textSize="@dimen/txt_large" />
 </LinearLayout>
