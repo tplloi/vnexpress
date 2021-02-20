@@ -33,6 +33,9 @@
         <activity
             android:name=".ui.activity.SettingCustomFeedActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode" />
+        <activity
+            android:name=".ui.activity.GiftActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode" />
     </application>
 
 </manifest>

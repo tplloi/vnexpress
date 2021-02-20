@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
@@ -28,6 +29,8 @@ import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("MainActivity")
 class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    private var previousTime = SystemClock.elapsedRealtime()
 
     override fun setLayoutResourceId(): Int {
         return R.layout.activity_main
@@ -63,8 +66,14 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
         LUIUtil.setSafeOnClickListenerElastic(
                 view = navViewStart.getHeaderView(0).layoutMoney,
                 runnable = Runnable {
-                    //TODO change money
-                    showLongInformation(getString(R.string.read_news_to_get_money))
+                    val now = SystemClock.elapsedRealtime()
+                    if (now - previousTime >= navViewStart.getHeaderView(0).layoutTransformation.duration) {
+                        GiftActivity.startActivity(
+                                context = this,
+                                transformationLayout = navViewStart.getHeaderView(0).layoutTransformation
+                        )
+                        previousTime = now
+                    }
                 }
         )
         tvAd.text = LStoreUtil.readTxtFromRawFolder(nameOfRawFile = R.raw.ad)

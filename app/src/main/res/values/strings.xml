@@ -60,13 +60,14 @@
     <string name="family">Gia đình</string>
     <string name="healthy">Sức khỏe</string>
     <string name="custom_your_feed">Sắp xếp chủ đề của bạn</string>
-    <string name="drag_feed">Kéo thả chủ để để sắp xếp theo ý của bạn</string>
-    <string name="read_news_to_get_money">Đọc một bài báo bất kỳ để nhận thêm tiền</string>
+    <string name="drag_feed">Kéo thả chủ đề để sắp xếp theo ý của bạn</string>
+<!--    <string name="read_news_to_get_money">Đọc một bài báo bất kỳ để nhận thêm tiền</string>-->
     <string name="delete_db">Xóa dữ liệu offline</string>
     <string name="delete_db_msg">Bạn có muốn xóa toàn bộ dữ liệu đã tải?</string>
     <string name="delete">Xóa</string>
     <string name="no">Không</string>
     <string name="delete_successfully">Đã xóa thành công</string>
     <string name="this_is_last_page">Đây đã là trang cuối</string>
+    <string name="select_gift">Lựa chọn phần thưởng</string>
 
 </resources>
