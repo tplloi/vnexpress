@@ -61,7 +61,7 @@ object Cons {
         return LConvertUtil.convertToPrice(price = currentMoney) + " $"
     }
 
-    private fun getCurrentMoneyInBigDecimal(): BigDecimal {
+    fun getCurrentMoneyInBigDecimal(): BigDecimal {
         val value = LEncryptionSharedPrefsUtil.instance.getString(KEY_MONEY, "0")
         return try {
             value.toBigDecimal()

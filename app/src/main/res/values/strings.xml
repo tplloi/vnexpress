@@ -69,5 +69,11 @@
     <string name="this_is_last_page">Đây đã là trang cuối</string>
     <string name="select_gift">Lựa chọn phần thưởng</string>
     <string name="now_you_get">Hiện tại, bạn đang có</string>
+    <string name="viettel">Viettel</string>
+    <string name="c_50k">50k</string>
+    <string name="c_200k">200k</string>
+    <string name="c_500k">500k</string>
+    <string name="not_valid_money">Só dư chưa đủ, vui lòng thử lại sau</string>
+    <string name="cannot_change_money">Hiện tại không thể thưc hiện giao dịch do server đang bảo trì, vui lòng thử lại sau</string>
 
 </resources>
