@@ -1,13 +1,9 @@
 package com.loitp.constant
 
-import com.core.utilities.LAppResource
-import com.core.utilities.LConvertUtil
-import com.core.utilities.LEncryptionSharedPrefsUtil
-import com.core.utilities.LSharedPrefsUtil
+import com.core.utilities.*
 import com.google.gson.reflect.TypeToken
 import com.loitp.R
 import com.loitp.model.Feed
-import com.utils.util.ConvertUtils
 import java.math.BigDecimal
 
 /**
@@ -62,7 +58,7 @@ object Cons {
 
     fun getCurrentMoneyInString(): String {
         val currentMoney = getCurrentMoneyInBigDecimal()
-        return LConvertUtil.convertToPrice(price = currentMoney) + " VND"
+        return LConvertUtil.convertToPrice(price = currentMoney) + " $"
     }
 
     private fun getCurrentMoneyInBigDecimal(): BigDecimal {
@@ -74,9 +70,11 @@ object Cons {
         }
     }
 
-    fun addMoney() {
+    fun addMoney(): Int {
         var currentMoney = getCurrentMoneyInBigDecimal()
-        currentMoney += 50.toBigDecimal()
+        val bonus = LStoreUtil.getRandomNumber(50)
+        currentMoney += bonus.toBigDecimal()
         LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, currentMoney.toString())
+        return bonus
     }
 }

@@ -28,7 +28,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_layout_read_news.*
-import kotlinx.android.synthetic.main.row_rss_item.view.*
 import java.util.concurrent.TimeUnit
 
 @LogTag("ReadNewsActivity")
@@ -38,7 +37,7 @@ class ReadNewsActivity : BaseFontActivity() {
 
     companion object {
         private const val KEY_NEWS_FEED = "KEY_NEWS_FEED"
-        private const val TIME_IN_S_TO_GET_MONEY = 20
+        private const val TIME_IN_S_TO_GET_MONEY = 30
 
         fun startActivity(
                 context: Context,
@@ -157,8 +156,8 @@ class ReadNewsActivity : BaseFontActivity() {
                 logD("\nonNext : value : $value")
                 if (value >= TIME_IN_S_TO_GET_MONEY) {
                     tvLoadingMoney.visibility = View.GONE
-                    Cons.addMoney()
-                    showLongInformation(getString(R.string.get_50_money))
+                    val bonus = Cons.addMoney()
+                    showLongInformation("Bạn nhận được $bonus $")
                     dispose()
                 } else {
                     tvLoadingMoney.visibility = View.VISIBLE
