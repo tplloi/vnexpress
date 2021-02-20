@@ -72,7 +72,11 @@ class GiftActivity : BaseFontActivity() {
         if (currentMoney < BigDecimal(50000)) {
             showShortError(getString(R.string.not_valid_money))
         } else {
-            showShortError(getString(R.string.cannot_change_money))
+            showDialogProgress()
+            LUIUtil.setDelay(30000, Runnable {
+                hideDialogProgress()
+                showShortError(getString(R.string.cannot_change_money))
+            })
         }
     }
 }
