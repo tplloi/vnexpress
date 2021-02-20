@@ -1,52 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/themeBackgroundColor"
-    android:orientation="vertical"
-    tools:ignore="HardcodedText">
+    android:background="?attr/themeBackgroundColor">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/now_you_get"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/txt_large" />
+        android:layout_height="@dimen/w_200"
+        android:background="@color/red">
 
-    <LinearLayout
-        android:id="@+id/layoutMoney"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="@dimen/padding_medium">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="@dimen/w_40"
-            android:layout_height="@dimen/w_40"
-            android:src="@drawable/ic_salary" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvInformation"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:gravity="center"
-            android:paddingStart="@dimen/padding_medium"
-            android:paddingEnd="@dimen/padding_medium"
-            android:textColor="?attr/themeTextColor"
-            android:textSize="@dimen/txt_large"
-            tools:text="@string/app_name" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-    <androidx.appcompat.widget.AppCompatTextView
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:id="@+id/ivBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/news" />
+
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:title="@string/app_name"
+                app:titleTextColor="?attr/themeTextColor" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/ScrollVertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_medium"
-        android:text="@string/select_gift"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/txt_large" />
-</LinearLayout>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/themeBackgroundColor"
+            android:orientation="vertical"
+            tools:ignore="HardcodedText">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/now_you_get"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/txt_large" />
+
+            <LinearLayout
+                android:id="@+id/layoutMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_medium">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/w_40"
+                    android:layout_height="@dimen/w_40"
+                    android:src="@drawable/ic_salary" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvInformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/padding_medium"
+                    android:paddingEnd="@dimen/padding_medium"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/txt_large"
+                    tools:text="@string/app_name" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium"
+                android:text="@string/select_gift"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/txt_large" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
