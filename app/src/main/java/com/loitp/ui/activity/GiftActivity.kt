@@ -14,7 +14,6 @@ import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 import kotlinx.android.synthetic.main.activity_layout_gift.*
-import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("GiftActivity")
 @IsFullScreen(false)
