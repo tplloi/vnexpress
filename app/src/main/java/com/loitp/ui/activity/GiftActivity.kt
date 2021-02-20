@@ -75,6 +75,16 @@ class GiftActivity : BaseFontActivity() {
         LUIUtil.setSafeOnClickListenerElastic(view = btMobifone500, runnable = Runnable {
             handleChange()
         })
+
+        LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone50, runnable = Runnable {
+            handleChange()
+        })
+        LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone200, runnable = Runnable {
+            handleChange()
+        })
+        LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone500, runnable = Runnable {
+            handleChange()
+        })
     }
 
     private fun handleChange() {
