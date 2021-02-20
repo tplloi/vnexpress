@@ -2,12 +2,14 @@ package com.loitp.ui.activity
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import com.annotation.IsFullScreen
 import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
+import com.core.utilities.LAppResource
 import com.loitp.R
 import com.loitp.constant.Cons
 import com.skydoves.transformationlayout.TransformationCompat
@@ -17,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_layout_gift.*
 
 @LogTag("GiftActivity")
 @IsFullScreen(false)
-@IsShowAdWhenExit(true)
+@IsShowAdWhenExit(false)
 class GiftActivity : BaseFontActivity() {
 
     companion object {
@@ -42,6 +44,14 @@ class GiftActivity : BaseFontActivity() {
     }
 
     private fun setupViews() {
+        collapsingToolbarLayout.title = getString(R.string.app_name)
+        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
+        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_keyboard_backspace_white_48dp)
+        toolbar.setNavigationOnClickListener {
+            onBackPressed()
+        }
+
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
         tvInformation.text = Cons.getCurrentMoneyInString()
     }
 
