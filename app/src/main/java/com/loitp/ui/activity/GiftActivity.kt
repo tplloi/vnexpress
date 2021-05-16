@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_layout_gift.*
 import java.math.BigDecimal
 
 @LogTag("GiftActivity")
-@IsFullScreen(true)
+@IsFullScreen(false)
 @IsShowAdWhenExit(false)
 class GiftActivity : BaseFontActivity() {
 

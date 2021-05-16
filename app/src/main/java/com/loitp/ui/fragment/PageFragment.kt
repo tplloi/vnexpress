@@ -213,4 +213,10 @@ class PageFragment : BaseFragment(), SwipeRefreshLayout.OnRefreshListener {
         isRefreshAllPage = true
         getTotalPage()
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        fetchRss()
+    }
 }
