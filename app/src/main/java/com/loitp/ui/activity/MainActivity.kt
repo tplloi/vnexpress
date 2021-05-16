@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import com.annotation.IsFullScreen
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
@@ -28,6 +29,7 @@ import kotlinx.android.synthetic.main.view_drawer_main.*
 import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("MainActivity")
+@IsFullScreen(true)
 class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var previousTime = SystemClock.elapsedRealtime()

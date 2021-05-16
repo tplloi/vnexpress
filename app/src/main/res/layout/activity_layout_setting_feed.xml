@@ -19,6 +19,7 @@
 
     <com.ernestoyaquello.dragdropswiperecyclerview.DragDropSwipeRecyclerView
         android:id="@+id/dragDropSwipeRecyclerView"
+        style="@style/ScrollVertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:item_layout="@layout/view_row_item_drag_drop_recycler_detail_view"

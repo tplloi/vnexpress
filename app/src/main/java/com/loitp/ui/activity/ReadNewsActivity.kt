@@ -37,7 +37,7 @@ class ReadNewsActivity : BaseFontActivity() {
 
     companion object {
         private const val KEY_NEWS_FEED = "KEY_NEWS_FEED"
-        private const val TIME_IN_S_TO_GET_MONEY = 30
+        private const val TIME_IN_S_TO_GET_MONEY = 20//sec
 
         fun startActivity(
                 context: Context,
