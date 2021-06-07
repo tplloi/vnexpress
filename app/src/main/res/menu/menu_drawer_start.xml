@@ -38,7 +38,7 @@
         <item
             android:id="@+id/navAd"
             android:icon="@drawable/ic_card_giftcard_black_48dp"
-            android:title="@string/why_u_see_ad_en" />
+            android:title="@string/why_u_see_ad" />
         <item
             android:id="@+id/navPolicy"
             android:icon="@drawable/ic_edit_black_48dp"
