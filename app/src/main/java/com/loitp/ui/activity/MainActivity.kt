@@ -29,7 +29,7 @@ import kotlinx.android.synthetic.main.view_drawer_main.*
 import kotlinx.android.synthetic.main.view_drawer_start.view.*
 
 @LogTag("MainActivity")
-@IsFullScreen(true)
+@IsFullScreen(false)
 class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private var previousTime = SystemClock.elapsedRealtime()
