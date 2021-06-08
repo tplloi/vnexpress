@@ -44,9 +44,9 @@ class HistoryAdapter(
 
         @SuppressLint("SetTextI18n")
         fun bind(history: History) {
-            itemView.tvDate.text = "Ngày giao dịch: ${history.date}"
-            itemView.tvMoney.text = "Thẻ cào mệnh giá: ${history.money} VND"
-            itemView.tvPhone.text = "Nạp cho số điện thoại: ${history.getPhoneSecret()}"
+            itemView.tvDate.text = history.date
+            itemView.tvMoney.text = "${history.money} VND"
+            itemView.tvPhone.text = history.getPhoneSecret()
 
             itemView.cardView.setOnClickListener {
                 onClick?.invoke(history)

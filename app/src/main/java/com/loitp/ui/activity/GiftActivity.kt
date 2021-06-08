@@ -24,6 +24,8 @@ import com.skydoves.transformationlayout.onTransformationStartContainer
 import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.activity_layout_gift.*
 import java.math.BigDecimal
+import java.text.SimpleDateFormat
+import java.util.*
 
 @LogTag("GiftActivity")
 @IsFullScreen(false)
@@ -198,12 +200,13 @@ class GiftActivity : BaseFontActivity() {
                 cardViewPhone.visibility = View.GONE
                 Cons.minusMoney(500000.0)
 
+                val c = Calendar.getInstance()
+                val df = SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault())
+                val date = df.format(c.time)
+
                 Cons.addHistory(
                     History(
-                        date = LDateUtil.getDateCurrentTimeZone(
-                            System.currentTimeMillis(),
-                            "yyyy-MM-dd HH:mm:ss"
-                        ),
+                        date = date,
                         money = "500.000",
                         phone = phone
                     )

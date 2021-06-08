@@ -25,6 +25,10 @@ data class History(
     var phone: String = ""
 ) : Serializable {
     fun getPhoneSecret(): String {
-        return phone.take(7) + "***"
+        try {
+            return phone.take(7) + "***"
+        } catch (e: Exception) {
+            return "**********"
+        }
     }
 }
