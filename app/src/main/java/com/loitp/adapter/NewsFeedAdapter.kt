@@ -31,7 +31,7 @@ class NewsFeedAdapter(
         height = if (isSmallThumb) {
             LScreenUtil.screenHeight / 5
         } else {
-            LScreenUtil.screenHeight / 2
+            LScreenUtil.screenHeight / 3
         }
     }
 
@@ -78,6 +78,20 @@ class NewsFeedAdapter(
     inner class NewsFeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(newsFeed: NewsFeed) {
+            if (isSmallThumb) {
+                itemView.tvTitle.maxLines = 1
+                itemView.tvDes.maxLines = 1
+                itemView.tvPubDate.maxLines = 1
+                itemView.tvDes.visibility = View.GONE
+                itemView.tvPubDate.visibility = View.GONE
+            } else {
+                itemView.tvTitle.maxLines = 2
+                itemView.tvDes.maxLines = 4
+                itemView.tvPubDate.maxLines = 1
+                itemView.tvDes.visibility = View.VISIBLE
+                itemView.tvPubDate.visibility = View.VISIBLE
+            }
+
             LImageUtil.load(
                 context = itemView.ivThumb.context,
                 any = newsFeed.image,
