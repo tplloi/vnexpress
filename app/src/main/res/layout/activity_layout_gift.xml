@@ -51,11 +51,10 @@
                     android:layout_width="@dimen/w_40"
                     android:layout_height="@dimen/w_40"
                     android:layout_gravity="end"
+                    android:padding="@dimen/padding_small"
                     android:rotation="180"
-                    android:src="@drawable/ic_more_vert_white_24dp"
-                    android:visibility="gone"
-                    app:tint="@color/white"
-                    tools:visibility="visible" />
+                    android:src="@drawable/baseline_history_black_48dp"
+                    app:tint="@color/white" />
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

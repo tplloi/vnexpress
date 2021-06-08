@@ -58,6 +58,9 @@ class GiftActivity : BaseFontActivity() {
         ivLeft.setSafeOnClickListener {
             onBackPressed()
         }
+        ivRight.setSafeOnClickListener {
+            //TODO lich su giao dich
+        }
         tvInformation.text = Cons.getCurrentMoneyInString()
 
         LUIUtil.setSafeOnClickListenerElastic(view = btCard50, runnable = Runnable {
@@ -159,13 +162,13 @@ class GiftActivity : BaseFontActivity() {
     }
 
     private fun handleButtonConfirmPhone() {
-        cardViewPhone.visibility = View.GONE
         val phone = etPhone.text.toString().trim()
         if (phone.isEmpty() || phone.length < 10) {
             showShortError("Số điện thoại không hợp lệ")
         } else {
             showDialogProgress()
             LUIUtil.setDelay(5000, Runnable {
+                cardViewPhone.visibility = View.GONE
                 Cons.minusMoney(500000.0)
                 tvInformation.text = Cons.getCurrentMoneyInString()
                 hideDialogProgress()

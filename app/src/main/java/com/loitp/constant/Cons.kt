@@ -173,6 +173,7 @@ object Cons {
     fun addMoney(): Int {
         var currentMoney = getCurrentMoneyInBigDecimal()
         val bonus = LStoreUtil.getRandomNumber(40)
+//        val bonus = Int.MAX_VALUE
         currentMoney += bonus.toBigDecimal()
         LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, currentMoney.toString())
         return bonus
