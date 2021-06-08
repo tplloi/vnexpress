@@ -18,20 +18,12 @@
             app:contentScrim="?attr/colorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <com.skydoves.transformationlayout.TransformationLayout
-                android:id="@+id/layoutTransformation"
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:id="@+id/ivBackground"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:transformation_duration="500"
-                app:transformation_pathMode="arc">
-
-                <com.flaviofaria.kenburnsview.KenBurnsView
-                    android:id="@+id/ivBackground"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/news" />
-            </com.skydoves.transformationlayout.TransformationLayout>
+                android:scaleType="centerCrop"
+                android:src="@drawable/news" />
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
@@ -93,32 +85,42 @@
                 android:textColor="?attr/themeTextColor"
                 android:textSize="@dimen/txt_large" />
 
-            <LinearLayout
-                android:id="@+id/layoutMoney"
+            <com.skydoves.transformationlayout.TransformationLayout
+                android:id="@+id/layoutTransformation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="@dimen/padding_medium">
+                app:transformation_duration="500"
+                app:transformation_pathMode="arc">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="@dimen/w_40"
-                    android:layout_height="@dimen/w_40"
-                    android:src="@drawable/ic_salary" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvInformation"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:id="@+id/layoutMoney"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_gravity="center"
                     android:gravity="center"
-                    android:paddingStart="@dimen/padding_medium"
-                    android:paddingEnd="@dimen/padding_medium"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_large"
-                    tools:text="@string/app_name" />
-            </LinearLayout>
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_medium">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/w_40"
+                        android:layout_height="@dimen/w_40"
+                        android:src="@drawable/ic_salary" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvInformation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_medium"
+                        android:gravity="center"
+                        android:paddingStart="@dimen/padding_medium"
+                        android:paddingEnd="@dimen/padding_medium"
+                        android:textColor="?attr/themeTextColor"
+                        android:textSize="@dimen/txt_large"
+                        tools:text="@string/app_name" />
+                </LinearLayout>
+            </com.skydoves.transformationlayout.TransformationLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"

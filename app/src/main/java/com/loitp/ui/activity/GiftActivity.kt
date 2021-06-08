@@ -19,6 +19,7 @@ import com.loitp.constant.Cons
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
+import com.skydoves.transformationlayout.onTransformationStartContainer
 import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.activity_layout_gift.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -51,6 +52,7 @@ class GiftActivity : BaseFontActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        onTransformationStartContainer()
         onTransformationEndContainer(intent.getParcelableExtra(Constants.activityTransitionName))
         super.onCreate(savedInstanceState)
 
