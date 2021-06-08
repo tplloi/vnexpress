@@ -15,9 +15,7 @@ import com.loitp.ui.activity.MainActivity
 import com.loitp.ui.activity.SettingCustomFeedActivity
 import com.loitp.viewmodels.MainViewModel
 import com.views.setSafeOnClickListener
-import kotlinx.android.synthetic.main.activity_layout_gift.*
 import kotlinx.android.synthetic.main.frm_setting.*
-import kotlinx.android.synthetic.main.frm_setting.collapsingToolbarLayout
 
 @LogTag("SettingFragment")
 class SettingFragment : BaseFragment() {

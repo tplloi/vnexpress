@@ -16,6 +16,7 @@ import com.loitp.constant.Cons
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
+import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.activity_layout_gift.*
 import java.math.BigDecimal
 
@@ -26,8 +27,8 @@ class GiftActivity : BaseFontActivity() {
 
     companion object {
         fun startActivity(
-                context: Context,
-                transformationLayout: TransformationLayout
+            context: Context,
+            transformationLayout: TransformationLayout
         ) {
             val intent = Intent(context, GiftActivity::class.java)
             TransformationCompat.startActivity(transformationLayout, intent)
@@ -48,11 +49,10 @@ class GiftActivity : BaseFontActivity() {
     private fun setupViews() {
         collapsingToolbarLayout.title = getString(R.string.app_name)
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
-        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_arrow_back_ios_white_24dp)
-        toolbar.setNavigationOnClickListener {
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
+        ivLeft.setSafeOnClickListener {
             onBackPressed()
         }
-        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
         tvInformation.text = Cons.getCurrentMoneyInString()
 
         LUIUtil.setSafeOnClickListenerElastic(view = btViettel50, runnable = Runnable {
