@@ -23,10 +23,36 @@
                 android:layout_height="match_parent" />
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin" />
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetEnd="0dp"
+                android:contentInsetRight="0dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivLeft"
+                    android:layout_width="@dimen/w_40"
+                    android:layout_height="@dimen/w_40"
+                    android:layout_gravity="start"
+                    android:src="@drawable/ic_chevron_left_black_48dp"
+                    app:tint="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivRight"
+                    android:layout_width="@dimen/w_40"
+                    android:layout_height="@dimen/w_40"
+                    android:layout_gravity="end"
+                    android:padding="@dimen/padding_small"
+                    android:rotation="180"
+                    android:src="@drawable/ic_share_black_48dp"
+                    app:tint="@color/white" />
+            </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>

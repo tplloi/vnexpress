@@ -43,7 +43,7 @@
                     android:layout_width="@dimen/w_40"
                     android:layout_height="@dimen/w_40"
                     android:layout_gravity="start"
-                    android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                    android:src="@drawable/ic_chevron_left_black_48dp"
                     app:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatImageView

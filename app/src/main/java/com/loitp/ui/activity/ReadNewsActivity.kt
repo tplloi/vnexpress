@@ -12,9 +12,9 @@ import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
-import com.core.utilities.LAppResource
 import com.core.utilities.LConnectivityUtil
 import com.core.utilities.LImageUtil
+import com.core.utilities.LSocialUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
@@ -23,6 +23,7 @@ import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 import com.views.LWebView
+import com.views.setSafeOnClickListener
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
@@ -40,9 +41,9 @@ class ReadNewsActivity : BaseFontActivity() {
         private const val TIME_IN_S_TO_GET_MONEY = 20//sec
 
         fun startActivity(
-                context: Context,
-                transformationLayout: TransformationLayout,
-                newsFeed: NewsFeed
+            context: Context,
+            transformationLayout: TransformationLayout,
+            newsFeed: NewsFeed
         ) {
             val intent = Intent(context, ReadNewsActivity::class.java)
             intent.putExtra(KEY_NEWS_FEED, newsFeed)
@@ -74,11 +75,11 @@ class ReadNewsActivity : BaseFontActivity() {
     private fun setupViews() {
         newsFeed?.let { item ->
             LImageUtil.load(
-                    context = this,
-                    any = item.image,
-                    imageView = ivBkg,
-                    resPlaceHolder = R.color.transparent,
-                    resError = R.color.colorPrimary
+                context = this,
+                any = item.image,
+                imageView = ivBkg,
+                resPlaceHolder = R.color.transparent,
+                resError = R.color.colorPrimary
             )
             collapsingToolbarLayout.title = item.title
         }
@@ -86,9 +87,11 @@ class ReadNewsActivity : BaseFontActivity() {
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
 
-        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_arrow_back_ios_white_24dp)
-        toolbar.setNavigationOnClickListener {
+        ivLeft.setSafeOnClickListener {
             onBackPressed()
+        }
+        ivRight.setSafeOnClickListener {
+            LSocialUtil.share(this, webView.url ?: "")
         }
 
         val isDarkMode = LUIUtil.isDarkTheme()
@@ -140,10 +143,12 @@ class ReadNewsActivity : BaseFontActivity() {
     }
 
     private fun getMoney() {
-        compositeDisposable.add(observable
+        compositeDisposable.add(
+            observable
                 .subscribeOn(Schedulers.io()) // Be notified on the main thread
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(observer))
+                .subscribeWith(observer)
+        )
     }
 
     private val observable: Observable<out Long>
@@ -161,7 +166,8 @@ class ReadNewsActivity : BaseFontActivity() {
                     dispose()
                 } else {
                     tvLoadingMoney.visibility = View.VISIBLE
-                    tvLoadingMoney.text = "Còn " + (TIME_IN_S_TO_GET_MONEY - value) + "s để nhận thưởng"
+                    tvLoadingMoney.text =
+                        "Còn " + (TIME_IN_S_TO_GET_MONEY - value) + "s để nhận thưởng"
                 }
             }
 
