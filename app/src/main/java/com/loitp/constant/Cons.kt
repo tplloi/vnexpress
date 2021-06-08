@@ -164,7 +164,7 @@ object Cons {
 
     fun addHistory(history: History) {
         val listHistory = getListHistory()
-        listHistory.add(history)
+        listHistory.add(0, history)
         saveListHistory(listHistory)
     }
 
