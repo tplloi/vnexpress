@@ -58,7 +58,7 @@ class GiftActivity : BaseFontActivity() {
     }
 
     private fun setupViews() {
-        collapsingToolbarLayout.title = getString(R.string.app_name)
+        collapsingToolbarLayout.title = getString(R.string.my_gift)
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
         ivLeft.setSafeOnClickListener {

@@ -79,5 +79,7 @@
     <string name="vinaphone">Vinaphone</string>
     <string name="photo_collection">Bộ sưu tập</string>
     <string name="confirm_vn">Đồng ý</string>
+    <string name="my_gift">Quà của tôi</string>
+    <string name="history">Lịch sử giao dịch</string>
 
 </resources>
