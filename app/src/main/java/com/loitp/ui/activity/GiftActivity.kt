@@ -124,7 +124,29 @@ class GiftActivity : BaseFontActivity() {
                 }
             }
             CARD_TYPE_200 -> {
-
+                if (currentMoney >= BigDecimal(200000)) {
+                    LDialogUtil.showDialog2(
+                        context = this,
+                        title = getString(
+                            R.string.warning_vn
+                        ),
+                        msg = "Bạn có muốn đổi thẻ cào 200.000VND không?",
+                        button1 = getString(R.string.yes),
+                        button2 = getString(R.string.no),
+                        onClickButton1 = {
+                            showDialogProgress()
+                            LUIUtil.setDelay(10000, Runnable {
+                                hideDialogProgress()
+                                showShortError("Đã hết thẻ cào mệnh giá 200.000, vui lòng chọn phần thưởng khác")
+                            })
+                        },
+                        onClickButton2 = {
+                            //do nothing
+                        }
+                    )
+                } else {
+                    showShortError(getString(R.string.not_valid_money))
+                }
             }
             CARD_TYPE_500 -> {
 
