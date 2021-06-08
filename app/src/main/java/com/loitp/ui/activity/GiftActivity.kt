@@ -48,7 +48,7 @@ class GiftActivity : BaseFontActivity() {
     private fun setupViews() {
         collapsingToolbarLayout.title = getString(R.string.app_name)
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
-        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_keyboard_backspace_white_48dp)
+        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_arrow_back_ios_white_24dp)
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
