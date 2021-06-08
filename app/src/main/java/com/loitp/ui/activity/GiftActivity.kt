@@ -11,7 +11,6 @@ import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
-import com.core.utilities.LActivityUtil
 import com.core.utilities.LDialogUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
@@ -22,8 +21,6 @@ import com.skydoves.transformationlayout.onTransformationEndContainer
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.activity_layout_gift.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.view_drawer_start.view.*
 import java.math.BigDecimal
 
 @LogTag("GiftActivity")
@@ -186,8 +183,9 @@ class GiftActivity : BaseFontActivity() {
                 cardViewPhone.visibility = View.GONE
                 Cons.minusMoney(500000.0)
                 tvInformation.text = Cons.getCurrentMoneyInString()
+                etPhone.setText("")
                 hideDialogProgress()
-                showShortError("Đã nạp thẻ thành công")
+                showShortInformation("Đã nạp thẻ thành công")
             })
         }
     }
