@@ -11,10 +11,12 @@ import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
+import com.core.utilities.LDateUtil
 import com.core.utilities.LDialogUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
+import com.loitp.model.History
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
@@ -182,6 +184,15 @@ class GiftActivity : BaseFontActivity() {
             LUIUtil.setDelay(5000, Runnable {
                 cardViewPhone.visibility = View.GONE
                 Cons.minusMoney(500000.0)
+
+                Cons.addHistory(
+                    History(
+                        date = LDateUtil.now() ?: "-",
+                        money = "500.000",
+                        phone = phone
+                    )
+                )
+
                 tvInformation.text = Cons.getCurrentMoneyInString()
                 etPhone.setText("")
                 hideDialogProgress()

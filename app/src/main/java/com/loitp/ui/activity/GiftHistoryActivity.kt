@@ -20,7 +20,6 @@ import kotlinx.android.synthetic.main.activity_layout_gift_history.*
 @IsFullScreen(false)
 @IsShowAdWhenExit(true)
 class GiftHistoryActivity : BaseFontActivity() {
-    //TODO
     companion object {
 
         fun startActivity(

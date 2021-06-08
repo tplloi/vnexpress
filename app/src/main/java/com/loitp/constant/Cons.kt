@@ -4,6 +4,7 @@ import com.core.utilities.*
 import com.google.gson.reflect.TypeToken
 import com.loitp.R
 import com.loitp.model.Feed
+import com.loitp.model.History
 import java.math.BigDecimal
 
 /**
@@ -16,6 +17,7 @@ object Cons {
     const val IS_GRID_VIEW = "IS_GRID_VIEW"
     const val PAGE_SIZE = 50
     private const val KEY_LIST_FEED = "KEY_LIST_FEED"
+    private const val KEY_LIST_HISTORY = "KEY_LIST_HISTORY"
     private const val KEY_MONEY = "KEY_MONEY"
 
     fun getListFeed(): ArrayList<Feed> {
@@ -155,6 +157,28 @@ object Cons {
     fun saveListFeed(listFeed: List<Feed>) {
         LSharedPrefsUtil.instance.putObjectList(KEY_LIST_FEED, listFeed)
     }
+
+    private fun saveListHistory(listHistory: List<History>) {
+        LSharedPrefsUtil.instance.putObjectList(KEY_LIST_HISTORY, listHistory)
+    }
+
+    fun addHistory(history: History) {
+        val listHistory = getListHistory()
+        listHistory.add(history)
+        saveListHistory(listHistory)
+    }
+
+    fun getListHistory(): ArrayList<History> {
+        val type = object : TypeToken<List<History>>() {
+        }.type
+        val list: ArrayList<History> =
+            LSharedPrefsUtil.instance.getObjectList(KEY_LIST_HISTORY, type)
+        if (list.isNullOrEmpty()) {
+            return ArrayList()
+        }
+        return list
+    }
+
 
     fun getCurrentMoneyInString(): String {
         val currentMoney = getCurrentMoneyInBigDecimal()
