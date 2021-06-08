@@ -13,35 +13,36 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="?attr/themeBackgroundColorMedium"
-        app:cardCornerRadius="@dimen/round_medium"
+        app:cardCornerRadius="0dp"
         app:cardElevation="@dimen/w_1"
-        app:cardUseCompatPadding="true">
+        app:cardUseCompatPadding="false"
+        tools:layout_height="500dp">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivThumb"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                tools:src="@color/colorPrimary" />
+                tools:src="@drawable/logo" />
 
             <LinearLayout
                 android:id="@+id/llTextContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?attr/themeBackgroundColorMedium"
+                android:layout_gravity="bottom"
+                android:background="@color/black65"
                 android:orientation="vertical"
-                android:padding="@dimen/padding_medium">
+                android:padding="@dimen/padding_small">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="?attr/themeTextColor"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/txt_medium"
                     android:textStyle="bold"
                     tools:text="@string/app_name" />
@@ -50,8 +51,8 @@
                     android:id="@+id/tvDes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:textColor="?attr/themeTextColor"
+                    android:maxLines="5"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_small"
                     tools:text="@string/app_name" />
 
@@ -59,14 +60,15 @@
                     android:id="@+id/tvPubDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:textColor="?attr/themeTextColor"
+                    android:gravity="end"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/text_tiny"
                     android:textStyle="italic"
                     tools:text="@string/app_name" />
 
             </LinearLayout>
-        </LinearLayout>
+
+        </FrameLayout>
     </com.google.android.material.card.MaterialCardView>
 </com.skydoves.transformationlayout.TransformationLayout>
 

@@ -19,7 +19,7 @@ import java.util.*
 
 @LogTag("NewsFeedAdapter")
 class NewsFeedAdapter(
-        private val onClick: ((NewsFeed, TransformationLayout) -> Unit)? = null
+    private val onClick: ((NewsFeed, TransformationLayout) -> Unit)? = null
 ) : BaseAdapter() {
 
     private val splitString = "</a></br>"
@@ -60,7 +60,8 @@ class NewsFeedAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_rss_item, parent, false)
+        val itemView =
+            LayoutInflater.from(parent.context).inflate(R.layout.row_rss_item, parent, false)
         return NewsFeedViewHolder(itemView)
     }
 
@@ -78,13 +79,13 @@ class NewsFeedAdapter(
 
         fun bind(newsFeed: NewsFeed) {
             LImageUtil.load(
-                    context = itemView.ivThumb.context,
-                    any = newsFeed.image,
-                    imageView = itemView.ivThumb,
-                    resPlaceHolder = R.color.transparent,
-                    resError = R.color.colorPrimary
+                context = itemView.ivThumb.context,
+                any = newsFeed.image,
+                imageView = itemView.ivThumb,
+                resPlaceHolder = R.color.transparent,
+                resError = R.color.colorPrimary
             )
-            LUIUtil.setSizeOfView(view = itemView.ivThumb, height = height)
+            LUIUtil.setSizeOfView(view = itemView.cardView, height = height)
 
             itemView.tvTitle.text = newsFeed.title
             itemView.tvPubDate.text = newsFeed.publishDate
