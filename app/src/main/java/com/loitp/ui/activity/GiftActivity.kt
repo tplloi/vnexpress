@@ -4,12 +4,14 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.os.SystemClock
 import android.view.View
 import com.annotation.IsFullScreen
 import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
+import com.core.utilities.LActivityUtil
 import com.core.utilities.LDialogUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
@@ -19,6 +21,8 @@ import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 import com.views.setSafeOnClickListener
 import kotlinx.android.synthetic.main.activity_layout_gift.*
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.view_drawer_start.view.*
 import java.math.BigDecimal
 
 @LogTag("GiftActivity")
@@ -40,6 +44,8 @@ class GiftActivity : BaseFontActivity() {
         }
     }
 
+    private var previousTime = SystemClock.elapsedRealtime()
+
     override fun setLayoutResourceId(): Int {
         return R.layout.activity_layout_gift
     }
@@ -59,7 +65,14 @@ class GiftActivity : BaseFontActivity() {
             onBackPressed()
         }
         ivRight.setSafeOnClickListener {
-            //TODO lich su giao dich
+            val now = SystemClock.elapsedRealtime()
+            if (now - previousTime >= layoutTransformation.duration) {
+                GiftHistoryActivity.startActivity(
+                    context = this,
+                    transformationLayout = layoutTransformation
+                )
+                previousTime = now
+            }
         }
         tvInformation.text = Cons.getCurrentMoneyInString()
 

@@ -46,15 +46,24 @@
                     android:src="@drawable/ic_chevron_left_black_48dp"
                     app:tint="@color/white" />
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivRight"
-                    android:layout_width="@dimen/w_40"
-                    android:layout_height="@dimen/w_40"
-                    android:layout_gravity="end"
-                    android:padding="@dimen/padding_small"
-                    android:rotation="180"
-                    android:src="@drawable/baseline_history_black_48dp"
-                    app:tint="@color/white" />
+                <com.skydoves.transformationlayout.TransformationLayout
+                    android:id="@+id/layoutTransformation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:transformation_duration="500"
+                    app:transformation_pathMode="arc">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivRight"
+                        android:layout_width="@dimen/w_40"
+                        android:layout_height="@dimen/w_40"
+                        android:layout_gravity="end"
+                        android:padding="@dimen/padding_small"
+                        android:rotation="180"
+                        android:src="@drawable/baseline_history_black_48dp"
+                        app:tint="@color/white" />
+                </com.skydoves.transformationlayout.TransformationLayout>
+
             </androidx.appcompat.widget.Toolbar>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
