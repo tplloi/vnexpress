@@ -2,6 +2,7 @@ package com.loitp.constant
 
 import com.core.utilities.*
 import com.google.gson.reflect.TypeToken
+import com.loitp.BuildConfig
 import com.loitp.R
 import com.loitp.model.Feed
 import com.loitp.model.History
@@ -179,7 +180,6 @@ object Cons {
         return list
     }
 
-
     fun getCurrentMoneyInString(): String {
         val currentMoney = getCurrentMoneyInBigDecimal()
         return LConvertUtil.convertToPrice(price = currentMoney) + " $"
@@ -196,8 +196,10 @@ object Cons {
 
     fun addMoney(): Int {
         var currentMoney = getCurrentMoneyInBigDecimal()
-        val bonus = LStoreUtil.getRandomNumber(40)
-//        val bonus = Int.MAX_VALUE
+        var bonus = LStoreUtil.getRandomNumber(50)
+        if (BuildConfig.DEBUG) {
+            bonus = 1234567
+        }
         currentMoney += bonus.toBigDecimal()
         LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, currentMoney.toString())
         return bonus

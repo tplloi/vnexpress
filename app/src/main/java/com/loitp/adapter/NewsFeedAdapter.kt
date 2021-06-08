@@ -29,9 +29,9 @@ class NewsFeedAdapter(
 
     init {
         height = if (isSmallThumb) {
-            LScreenUtil.screenHeight / 5
+            LScreenUtil.screenHeight / 4
         } else {
-            LScreenUtil.screenHeight / 3
+            LScreenUtil.screenHeight / 2
         }
     }
 
