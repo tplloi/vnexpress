@@ -52,7 +52,6 @@ class GiftActivity : BaseFontActivity() {
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
-
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
         tvInformation.text = Cons.getCurrentMoneyInString()
 

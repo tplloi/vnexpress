@@ -209,10 +209,18 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.actionRightDrawer -> {
-                drawerLayout.openDrawer(GravityCompat.END)
+                openRightPanel()
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun openLeftPanel(){
+        drawerLayout.openDrawer(GravityCompat.START)
+    }
+
+    fun openRightPanel(){
+        drawerLayout.openDrawer(GravityCompat.END)
     }
 }

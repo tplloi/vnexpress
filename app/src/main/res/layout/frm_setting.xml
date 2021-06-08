@@ -1,113 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/themeBackgroundColor"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_medium">
+    android:background="?attr/themeBackgroundColor">
 
-    <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
-        android:id="@+id/swEnableDarkMode"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/dark_mode"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/text_medium"
-        app:bgOffColor="@color/lightGrey"
-        app:bgOnColor="@color/lightGrey"
-        app:toggleOffColor="@color/colorPrimary"
-        app:toggleOnColor="@color/colorPrimary" />
+        android:layout_height="@dimen/w_200"
+        android:background="@color/red">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/w_1"
-        android:background="?attr/themeBackgroundColorMedium" />
-
-    <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
-        android:id="@+id/swSmallSizeItem"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/small_thumb"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/text_medium"
-        app:bgOffColor="@color/lightGrey"
-        app:bgOnColor="@color/lightGrey"
-        app:toggleOffColor="@color/colorPrimary"
-        app:toggleOnColor="@color/colorPrimary" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/w_1"
-        android:background="?attr/themeBackgroundColorMedium" />
-
-    <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
-        android:id="@+id/swIsGridView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/is_grid_view"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/text_medium"
-        app:bgOffColor="@color/lightGrey"
-        app:bgOnColor="@color/lightGrey"
-        app:toggleOffColor="@color/colorPrimary"
-        app:toggleOnColor="@color/colorPrimary" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/w_1"
-        android:background="?attr/themeBackgroundColorMedium" />
-
-    <com.skydoves.transformationlayout.TransformationLayout
-        android:id="@+id/layoutTransformation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        app:transformation_duration="500"
-        app:transformation_pathMode="arc">
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/btCustomFeed"
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bt_medium"
-            android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/padding_small"
-            android:paddingTop="@dimen/padding_medium"
-            android:paddingEnd="@dimen/padding_small"
-            android:paddingBottom="@dimen/padding_medium"
-            android:text="@string/custom_your_feed"
-            android:textAllCaps="false"
-            android:textColor="?attr/themeTextColor"
-            android:textSize="@dimen/text_medium"
-            app:drawableTint="?attr/themeTextColor" />
-    </com.skydoves.transformationlayout.TransformationLayout>
+            android:layout_height="match_parent"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/w_1"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="?attr/themeBackgroundColorMedium" />
+            <com.flaviofaria.kenburnsview.KenBurnsView
+                android:id="@+id/ivBackground"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/news" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/btClearDb"
+            <androidx.appcompat.widget.Toolbar
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:contentInsetStart="0dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetEnd="0dp"
+                android:contentInsetRight="0dp"
+                app:contentInsetEnd="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetStart="0dp"
+                app:layout_collapseMode="pin">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivLeft"
+                    android:layout_width="@dimen/w_40"
+                    android:layout_height="@dimen/w_40"
+                    android:layout_gravity="start"
+                    android:src="@drawable/ic_keyboard_arrow_left_black_24dp"
+                    app:tint="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivRight"
+                    android:layout_width="@dimen/w_40"
+                    android:layout_height="@dimen/w_40"
+                    android:layout_gravity="end"
+                    android:rotation="180"
+                    android:src="@drawable/ic_more_vert_white_24dp"
+                    app:tint="@color/white" />
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        style="@style/ScrollVertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_medium"
-        android:background="@drawable/bt_medium"
-        android:drawableEnd="@drawable/ic_baseline_delete_forever_24"
-        android:gravity="center_vertical"
-        android:paddingStart="@dimen/padding_small"
-        android:paddingTop="@dimen/padding_medium"
-        android:paddingEnd="@dimen/padding_small"
-        android:paddingBottom="@dimen/padding_medium"
-        android:text="@string/delete_db"
-        android:textAllCaps="false"
-        android:textColor="?attr/themeTextColor"
-        android:textSize="@dimen/text_medium"
-        app:drawableTint="?attr/themeTextColor" />
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/themeBackgroundColor"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium"
+            tools:ignore="HardcodedText">
+
+            <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
+                android:id="@+id/swEnableDarkMode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/dark_mode"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/text_medium"
+                app:bgOffColor="@color/lightGrey"
+                app:bgOnColor="@color/lightGrey"
+                app:toggleOffColor="@color/colorPrimary"
+                app:toggleOnColor="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/w_1"
+                android:background="?attr/themeBackgroundColorMedium" />
+
+            <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
+                android:id="@+id/swSmallSizeItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/small_thumb"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/text_medium"
+                app:bgOffColor="@color/lightGrey"
+                app:bgOnColor="@color/lightGrey"
+                app:toggleOffColor="@color/colorPrimary"
+                app:toggleOnColor="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/w_1"
+                android:background="?attr/themeBackgroundColorMedium" />
+
+            <com.views.switchtoggle.appcompatswitch.LColorSwitchCompat
+                android:id="@+id/swIsGridView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/is_grid_view"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/text_medium"
+                app:bgOffColor="@color/lightGrey"
+                app:bgOnColor="@color/lightGrey"
+                app:toggleOffColor="@color/colorPrimary"
+                app:toggleOnColor="@color/colorPrimary" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/w_1"
+                android:background="?attr/themeBackgroundColorMedium" />
+
+            <com.skydoves.transformationlayout.TransformationLayout
+                android:id="@+id/layoutTransformation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                app:transformation_duration="500"
+                app:transformation_pathMode="arc">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btCustomFeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bt_medium"
+                    android:drawableEnd="@drawable/ic_keyboard_arrow_right_black_24dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="@dimen/padding_small"
+                    android:paddingTop="@dimen/padding_medium"
+                    android:paddingEnd="@dimen/padding_small"
+                    android:paddingBottom="@dimen/padding_medium"
+                    android:text="@string/custom_your_feed"
+                    android:textAllCaps="false"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/text_medium"
+                    app:drawableTint="?attr/themeTextColor" />
+            </com.skydoves.transformationlayout.TransformationLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/w_1"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="?attr/themeBackgroundColorMedium" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/btClearDb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="@drawable/bt_medium"
+                android:drawableEnd="@drawable/ic_baseline_delete_forever_24"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/padding_small"
+                android:paddingTop="@dimen/padding_medium"
+                android:paddingEnd="@dimen/padding_small"
+                android:paddingBottom="@dimen/padding_medium"
+                android:text="@string/delete_db"
+                android:textAllCaps="false"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/text_medium"
+                app:drawableTint="?attr/themeTextColor" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

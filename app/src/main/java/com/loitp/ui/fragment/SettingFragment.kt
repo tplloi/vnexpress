@@ -2,22 +2,22 @@ package com.loitp.ui.fragment
 
 import android.app.AlertDialog
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.SystemClock
 import android.view.View
 import com.annotation.LogTag
 import com.core.base.BaseFragment
-import com.core.utilities.LActivityUtil
-import com.core.utilities.LDialogUtil
-import com.core.utilities.LSharedPrefsUtil
-import com.core.utilities.LUIUtil
+import com.core.utilities.*
 import com.loitp.R
 import com.loitp.constant.Cons
 import com.loitp.ui.activity.MainActivity
 import com.loitp.ui.activity.SettingCustomFeedActivity
 import com.loitp.viewmodels.MainViewModel
 import com.views.setSafeOnClickListener
+import kotlinx.android.synthetic.main.activity_layout_gift.*
 import kotlinx.android.synthetic.main.frm_setting.*
+import kotlinx.android.synthetic.main.frm_setting.collapsingToolbarLayout
 
 @LogTag("SettingFragment")
 class SettingFragment : BaseFragment() {
@@ -43,6 +43,20 @@ class SettingFragment : BaseFragment() {
     }
 
     private fun setupViews() {
+        collapsingToolbarLayout.title = getString(R.string.app_name)
+        collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
+        collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
+        ivLeft.setSafeOnClickListener {
+            if (activity is MainActivity) {
+                (activity as MainActivity).openLeftPanel()
+            }
+        }
+        ivRight.setSafeOnClickListener {
+            if (activity is MainActivity) {
+                (activity as MainActivity).openRightPanel()
+            }
+        }
+
         val isDarkTheme = LUIUtil.isDarkTheme()
         swEnableDarkMode.isChecked = isDarkTheme
 
@@ -67,8 +81,8 @@ class SettingFragment : BaseFragment() {
                 val now = SystemClock.elapsedRealtime()
                 if (now - previousTime >= layoutTransformation.duration) {
                     SettingCustomFeedActivity.startActivity(
-                            context = c,
-                            transformationLayout = layoutTransformation
+                        context = c,
+                        transformationLayout = layoutTransformation
                     )
                     previousTime = now
                 }
@@ -76,22 +90,22 @@ class SettingFragment : BaseFragment() {
         }
 
         LUIUtil.setSafeOnClickListenerElastic(
-                view = btClearDb,
-                runnable = Runnable {
-                    showBottomSheetOptionFragment(
-                            title = getString(R.string.warning_vn),
-                            message = getString(R.string.delete_db_msg),
-                            textButton1 = getString(R.string.delete),
-                            textButton2 = getString(R.string.no),
-                            onClickButton1 = {
-                                showShortInformation(getString(R.string.delete_successfully))
-                                mainViewModel?.deleteDb()
-                            },
-                            onClickButton2 = {
-                                //do nothing
-                            }
-                    )
-                }
+            view = btClearDb,
+            runnable = Runnable {
+                showBottomSheetOptionFragment(
+                    title = getString(R.string.warning_vn),
+                    message = getString(R.string.delete_db_msg),
+                    textButton1 = getString(R.string.delete),
+                    textButton2 = getString(R.string.no),
+                    onClickButton1 = {
+                        showShortInformation(getString(R.string.delete_successfully))
+                        mainViewModel?.deleteDb()
+                    },
+                    onClickButton2 = {
+                        //do nothing
+                    }
+                )
+            }
         )
     }
 
@@ -110,30 +124,30 @@ class SettingFragment : BaseFragment() {
             }
 
             dialog = LDialogUtil.showDialog2(
-                    context = c,
-                    title = getString(com.R.string.warning_vn),
-                    msg = getString(com.R.string.app_will_be_restarted_vn),
-                    button1 = getString(com.R.string.cancel),
-                    button2 = getString(com.R.string.ok),
-                    onClickButton1 = {
-                        swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
-                    },
-                    onClickButton2 = {
-                        if (isChecked) {
-                            LUIUtil.setDarkTheme(isDarkTheme = true)
-                        } else {
-                            LUIUtil.setDarkTheme(isDarkTheme = false)
-                        }
-
-                        val intent = Intent(context, MainActivity::class.java)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                        startActivity(intent)
-                        context?.let {
-                            LActivityUtil.transActivityNoAnimation(it)
-                        }
-
-                        dialog?.dismiss()
+                context = c,
+                title = getString(com.R.string.warning_vn),
+                msg = getString(com.R.string.app_will_be_restarted_vn),
+                button1 = getString(com.R.string.cancel),
+                button2 = getString(com.R.string.ok),
+                onClickButton1 = {
+                    swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
+                },
+                onClickButton2 = {
+                    if (isChecked) {
+                        LUIUtil.setDarkTheme(isDarkTheme = true)
+                    } else {
+                        LUIUtil.setDarkTheme(isDarkTheme = false)
                     }
+
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    startActivity(intent)
+                    context?.let {
+                        LActivityUtil.transActivityNoAnimation(it)
+                    }
+
+                    dialog?.dismiss()
+                }
             )
             dialog?.setOnCancelListener {
                 swEnableDarkMode?.isChecked = LUIUtil.isDarkTheme()
