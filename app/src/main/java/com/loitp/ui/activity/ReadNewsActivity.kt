@@ -86,7 +86,7 @@ class ReadNewsActivity : BaseFontActivity() {
         collapsingToolbarLayout.setExpandedTitleColor(Color.WHITE)
         collapsingToolbarLayout.setCollapsedTitleTextColor(Color.WHITE)
 
-        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_keyboard_backspace_white_48dp)
+        toolbar.navigationIcon = LAppResource.getDrawable(R.drawable.ic_arrow_back_ios_white_24dp)
         toolbar.setNavigationOnClickListener {
             onBackPressed()
         }
