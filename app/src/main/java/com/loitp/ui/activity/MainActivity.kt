@@ -8,7 +8,6 @@ import android.os.SystemClock
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import com.annotation.IsFullScreen
 import com.annotation.LogTag
@@ -48,17 +47,7 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 
     private fun setupViews() {
         LUIUtil.createAdBanner(adView)
-        setSupportActionBar(toolbar)
 
-        val toggle = ActionBarDrawerToggle(
-            this,
-            drawerLayout,
-            toolbar,
-            R.string.navigation_drawer_open,
-            R.string.navigation_drawer_close
-        )
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
         navViewStart.setNavigationItemSelectedListener(this)
         drawerLayout.useCustomBehavior(Gravity.START)
         drawerLayout.useCustomBehavior(Gravity.END)
