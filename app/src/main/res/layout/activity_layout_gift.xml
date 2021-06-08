@@ -123,6 +123,63 @@
                 android:textColor="?attr/themeTextColor"
                 android:textSize="@dimen/txt_medium" />
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:drawableStart="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:paddingStart="@dimen/padding_medium"
+                android:paddingEnd="@dimen/padding_medium"
+                android:text="Chọn thẻ cào (hỗ trợ MobiFone, Viettel, Vietnamobile, Vinaphone, Gmobile)"
+                android:textColor="?attr/themeTextColor"
+                android:textSize="@dimen/txt_medium"
+                app:drawableTint="?attr/themeTextColor" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/padding_medium"
+                android:paddingEnd="@dimen/padding_medium">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btCard50"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/bt_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/c_50k"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/txt_medium" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btCard200"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:background="@drawable/bt_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/c_200k"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/txt_medium" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btCard500"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_medium"
+                    android:layout_weight="1"
+                    android:background="@drawable/bt_medium"
+                    android:stateListAnimator="@null"
+                    android:text="@string/c_500k"
+                    android:textColor="?attr/themeTextColor"
+                    android:textSize="@dimen/txt_medium" />
+
+            </LinearLayout>
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardViewPhone"
                 android:layout_width="match_parent"
@@ -178,176 +235,6 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:drawableStart="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:paddingStart="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_medium"
-                android:text="@string/viettel"
-                android:textColor="?attr/themeTextColor"
-                android:textSize="@dimen/txt_medium"
-                app:drawableTint="?attr/themeTextColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_medium">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btViettel50"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_50k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btViettel200"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_200k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btViettel500"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_500k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:drawableStart="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:paddingStart="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_medium"
-                android:text="@string/mobifone"
-                android:textColor="?attr/themeTextColor"
-                android:textSize="@dimen/txt_medium"
-                app:drawableTint="?attr/themeTextColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_medium">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btMobifone50"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_50k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btMobifone200"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_200k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btMobifone500"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_500k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-            </LinearLayout>
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:drawableStart="@drawable/ic_keyboard_arrow_right_black_24dp"
-                android:paddingStart="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_medium"
-                android:text="@string/vinaphone"
-                android:textColor="?attr/themeTextColor"
-                android:textSize="@dimen/txt_medium"
-                app:drawableTint="?attr/themeTextColor" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/margin_medium"
-                android:orientation="horizontal"
-                android:paddingStart="@dimen/padding_medium"
-                android:paddingEnd="@dimen/padding_medium">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btVinaphone50"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_50k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btVinaphone200"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_200k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btVinaphone500"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_medium"
-                    android:layout_weight="1"
-                    android:background="@drawable/bt_medium"
-                    android:stateListAnimator="@null"
-                    android:text="@string/c_500k"
-                    android:textColor="?attr/themeTextColor"
-                    android:textSize="@dimen/txt_medium" />
-
-            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

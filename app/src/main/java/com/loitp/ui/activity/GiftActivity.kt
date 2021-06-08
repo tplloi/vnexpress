@@ -60,35 +60,16 @@ class GiftActivity : BaseFontActivity() {
         }
         tvInformation.text = Cons.getCurrentMoneyInString()
 
-        LUIUtil.setSafeOnClickListenerElastic(view = btViettel50, runnable = Runnable {
+        LUIUtil.setSafeOnClickListenerElastic(view = btCard50, runnable = Runnable {
             handleChange(CARD_TYPE_50)
         })
-        LUIUtil.setSafeOnClickListenerElastic(view = btViettel200, runnable = Runnable {
+        LUIUtil.setSafeOnClickListenerElastic(view = btCard200, runnable = Runnable {
             handleChange(CARD_TYPE_200)
         })
-        LUIUtil.setSafeOnClickListenerElastic(view = btViettel500, runnable = Runnable {
+        LUIUtil.setSafeOnClickListenerElastic(view = btCard500, runnable = Runnable {
             handleChange(CARD_TYPE_500)
         })
 
-        LUIUtil.setSafeOnClickListenerElastic(view = btMobifone50, runnable = Runnable {
-            handleChange(CARD_TYPE_50)
-        })
-        LUIUtil.setSafeOnClickListenerElastic(view = btMobifone200, runnable = Runnable {
-            handleChange(CARD_TYPE_200)
-        })
-        LUIUtil.setSafeOnClickListenerElastic(view = btMobifone500, runnable = Runnable {
-            handleChange(CARD_TYPE_500)
-        })
-
-        LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone50, runnable = Runnable {
-            handleChange(CARD_TYPE_50)
-        })
-        LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone200, runnable = Runnable {
-            handleChange(CARD_TYPE_200)
-        })
-        LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone500, runnable = Runnable {
-            handleChange(CARD_TYPE_500)
-        })
         btConfirmPhone.setSafeOnClickListener {
             handleButtonConfirmPhone()
         }
@@ -178,11 +159,18 @@ class GiftActivity : BaseFontActivity() {
     }
 
     private fun handleButtonConfirmPhone() {
+        cardViewPhone.visibility = View.GONE
         val phone = etPhone.text.toString().trim()
         if (phone.isEmpty() || phone.length < 10) {
             showShortError("Số điện thoại không hợp lệ")
         } else {
-
+            showDialogProgress()
+            LUIUtil.setDelay(5000, Runnable {
+                Cons.minusMoney(500000.0)
+                tvInformation.text = Cons.getCurrentMoneyInString()
+                hideDialogProgress()
+                showShortError("Đã nạp thẻ thành công")
+            })
         }
     }
 }

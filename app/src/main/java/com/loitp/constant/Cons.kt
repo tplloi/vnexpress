@@ -177,4 +177,10 @@ object Cons {
         LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, currentMoney.toString())
         return bonus
     }
+
+    fun minusMoney(money: Double) {
+        val currentMoney = getCurrentMoneyInBigDecimal()
+        val finalMoney = currentMoney - money.toBigDecimal()
+        LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, finalMoney.toString())
+    }
 }
