@@ -1,15 +1,15 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Báo 247</string>
     <string name="app_name_vn">Báo 247</string>
 
-<!--    https://drive.google.com/file/d/1femuL17MUTz7t0yqUkMWB5yCea1W6kqI/view?usp=sharing-->
-    <string name="link_gg_drive"><![CDATA[https://drive.google.com/uc?export=download&id=1femuL17MUTz7t0yqUkMWB5yCea1W6kqI]]></string><!--no need to edit this-->
+    <!--    https://drive.google.com/file/d/1femuL17MUTz7t0yqUkMWB5yCea1W6kqI/view?usp=sharing-->
+    <string name="link_gg_drive" tools:ignore="Typos"><![CDATA[https://drive.google.com/uc?export=download&id=1femuL17MUTz7t0yqUkMWB5yCea1W6kqI]]></string><!--no need to edit this-->
     <string name="link_cover"><![CDATA[https://live.staticflickr.com/4380/35997985613_8fd2eab2d9_c.jpg]]></string>
 
     <!--https://apps.admob.com/v2/apps/9723459505/overview-->
     <string name="str_b">ca-app-pub-3165963943681013/4359452188</string>
     <string name="str_f">ca-app-pub-3165963943681013/5784214494</string>
-<!--    <string name="str_reward">a</string>-->
+    <!--    <string name="str_reward">a</string>-->
     <string name="str_app_id">ca-app-pub-3165963943681013~9723459505</string>
 
     <string name="deny">Từ chối</string>
