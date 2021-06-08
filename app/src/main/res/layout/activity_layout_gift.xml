@@ -71,6 +71,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
             android:background="?attr/themeBackgroundColor"
             android:orientation="vertical"
             tools:ignore="HardcodedText">
@@ -121,6 +122,61 @@
                 android:text="@string/select_gift"
                 android:textColor="?attr/themeTextColor"
                 android:textSize="@dimen/txt_medium" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardViewPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginEnd="@dimen/margin_medium"
+                android:layout_marginBottom="@dimen/margin_large"
+                android:visibility="gone"
+                app:cardBackgroundColor="?attr/themeBackgroundColor"
+                app:cardCornerRadius="@dimen/round_medium"
+                app:cardElevation="@dimen/w_1"
+                app:strokeColor="?attr/themeTextColor"
+                app:strokeWidth="@dimen/w_1"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:drawableStart="@drawable/ic_keyboard_arrow_right_black_24dp"
+                        android:text="Vui lòng nhập số điện thoại cần nạp"
+                        android:textColor="?attr/themeTextColor"
+                        android:textSize="@dimen/txt_medium"
+                        app:drawableTint="?attr/themeTextColor" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/etPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Số điện thoại"
+                        android:inputType="phone"
+                        android:maxLength="10"
+                        android:textColor="?attr/themeTextColor"
+                        android:textSize="@dimen/txt_medium" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btConfirmPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:background="@drawable/bt_medium"
+                        android:stateListAnimator="@null"
+                        android:text="@string/confirm_vn"
+                        android:textColor="?attr/themeTextColor"
+                        android:textSize="@dimen/txt_medium" />
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"

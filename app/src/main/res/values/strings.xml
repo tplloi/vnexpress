@@ -78,5 +78,6 @@
     <string name="mobifone">MobiFone</string>
     <string name="vinaphone">Vinaphone</string>
     <string name="photo_collection">Bộ sưu tập</string>
+    <string name="confirm_vn">Đồng ý</string>
 
 </resources>

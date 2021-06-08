@@ -4,12 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.view.View
 import com.annotation.IsFullScreen
 import com.annotation.IsShowAdWhenExit
 import com.annotation.LogTag
 import com.core.base.BaseFontActivity
 import com.core.common.Constants
-import com.core.utilities.LAppResource
 import com.core.utilities.LDialogUtil
 import com.core.utilities.LUIUtil
 import com.loitp.R
@@ -89,9 +89,13 @@ class GiftActivity : BaseFontActivity() {
         LUIUtil.setSafeOnClickListenerElastic(view = btVinaphone500, runnable = Runnable {
             handleChange(CARD_TYPE_500)
         })
+        btConfirmPhone.setSafeOnClickListener {
+            handleButtonConfirmPhone()
+        }
     }
 
     private fun handleChange(cardType: String) {
+        cardViewPhone.visibility = View.GONE
         val currentMoney = Cons.getCurrentMoneyInBigDecimal()
         if (currentMoney < BigDecimal(50000)) {
             showShortError(getString(R.string.not_valid_money))
@@ -149,9 +153,36 @@ class GiftActivity : BaseFontActivity() {
                 }
             }
             CARD_TYPE_500 -> {
-
+                if (currentMoney >= BigDecimal(500000)) {
+                    LDialogUtil.showDialog2(
+                        context = this,
+                        title = getString(
+                            R.string.warning_vn
+                        ),
+                        msg = "Bạn có muốn đổi thẻ cào 500.000VND không?",
+                        button1 = getString(R.string.yes),
+                        button2 = getString(R.string.no),
+                        onClickButton1 = {
+                            cardViewPhone.visibility = View.VISIBLE
+                        },
+                        onClickButton2 = {
+                            //do nothing
+                        }
+                    )
+                } else {
+                    showShortError(getString(R.string.not_valid_money))
+                }
             }
         }
 
+    }
+
+    private fun handleButtonConfirmPhone() {
+        val phone = etPhone.text.toString().trim()
+        if (phone.isEmpty() || phone.length < 10) {
+            showShortError("Số điện thoại không hợp lệ")
+        } else {
+
+        }
     }
 }
