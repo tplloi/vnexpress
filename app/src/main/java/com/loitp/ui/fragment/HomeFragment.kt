@@ -12,8 +12,13 @@ import com.core.utilities.LUIUtil
 import com.loitp.R
 import com.loitp.constant.Cons
 import com.loitp.model.Feed
+import com.loitp.ui.activity.MainActivity
+import com.views.setSafeOnClickListener
 import com.views.viewpager.viewpagertransformers.ZoomOutSlideTransformer
 import kotlinx.android.synthetic.main.frm_home.*
+import kotlinx.android.synthetic.main.frm_home.ivLeft
+import kotlinx.android.synthetic.main.frm_home.ivRight
+import kotlinx.android.synthetic.main.frm_setting.*
 import java.util.*
 
 @LogTag("HomeFragment")
@@ -33,6 +38,16 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupViews() {
+        ivLeft.setSafeOnClickListener {
+            if (activity is MainActivity) {
+                (activity as MainActivity).openLeftPanel()
+            }
+        }
+        ivRight.setSafeOnClickListener {
+            if (activity is MainActivity) {
+                (activity as MainActivity).openRightPanel()
+            }
+        }
         viewPager.setPageTransformer(true, ZoomOutSlideTransformer())
         viewPager.adapter = HomePagerAdapter(parentFragmentManager)
         tabLayout.setupWithViewPager(viewPager)
