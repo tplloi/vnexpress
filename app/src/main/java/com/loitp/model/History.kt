@@ -23,4 +23,8 @@ data class History(
     @SerializedName("phone")
     @Expose
     var phone: String = ""
-) : Serializable
+) : Serializable {
+    fun getPhoneSecret(): String {
+        return phone.take(7) + "***"
+    }
+}

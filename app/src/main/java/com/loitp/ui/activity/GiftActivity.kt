@@ -92,6 +92,19 @@ class GiftActivity : BaseFontActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        checkToShowHistoryButton()
+    }
+
+    private fun checkToShowHistoryButton() {
+        if (Cons.getListHistory().isNullOrEmpty()) {
+            ivRight.visibility = View.GONE
+        } else {
+            ivRight.visibility = View.VISIBLE
+        }
+    }
+
     private fun handleChange(cardType: String) {
         cardViewPhone.visibility = View.GONE
         val currentMoney = Cons.getCurrentMoneyInBigDecimal()
@@ -187,7 +200,10 @@ class GiftActivity : BaseFontActivity() {
 
                 Cons.addHistory(
                     History(
-                        date = LDateUtil.now() ?: "-",
+                        date = LDateUtil.getDateCurrentTimeZone(
+                            System.currentTimeMillis(),
+                            "yyyy-MM-dd HH:mm:ss"
+                        ),
                         money = "500.000",
                         phone = phone
                     )
@@ -197,6 +213,7 @@ class GiftActivity : BaseFontActivity() {
                 etPhone.setText("")
                 hideDialogProgress()
                 showShortInformation("Đã nạp thẻ thành công")
+                checkToShowHistoryButton()
             })
         }
     }

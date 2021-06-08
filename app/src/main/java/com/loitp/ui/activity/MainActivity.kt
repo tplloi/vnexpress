@@ -143,12 +143,12 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
                 currentItemId = R.id.navSetting
                 LScreenUtil.replaceFragment(this, R.id.flContainer, SettingFragment(), false)
             }
-            R.id.navGithub -> {
-                LSocialUtil.openUrlInBrowser(
-                    context = this,
-                    url = "https://github.com/tplloi/vnexpress"
-                )
-            }
+//            R.id.navGithub -> {
+//                LSocialUtil.openUrlInBrowser(
+//                    context = this,
+//                    url = "https://github.com/tplloi/vnexpress"
+//                )
+//            }
             R.id.navRateApp -> {
                 LSocialUtil.rateApp(activity = this, packageName = packageName)
             }
