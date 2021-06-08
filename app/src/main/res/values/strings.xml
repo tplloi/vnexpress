@@ -77,5 +77,6 @@
     <string name="cannot_change_money">Hiện tại không thể thưc hiện giao dịch do server đang bảo trì, vui lòng thử lại sau</string>
     <string name="mobifone">MobiFone</string>
     <string name="vinaphone">Vinaphone</string>
+    <string name="photo_collection">Bộ sưu tập</string>
 
 </resources>

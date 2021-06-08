@@ -16,6 +16,7 @@ import com.core.base.BaseFontActivity
 import com.core.common.Constants
 import com.core.helper.adhelper.AdHelperActivity
 import com.core.helper.donate.FrmDonate
+import com.core.helper.gallery.GalleryCoreSplashActivity
 import com.core.utilities.*
 import com.google.android.material.navigation.NavigationView
 import com.loitp.R
@@ -50,11 +51,11 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
         setSupportActionBar(toolbar)
 
         val toggle = ActionBarDrawerToggle(
-                this,
-                drawerLayout,
-                toolbar,
-                R.string.navigation_drawer_open,
-                R.string.navigation_drawer_close
+            this,
+            drawerLayout,
+            toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
@@ -66,17 +67,17 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
 //        LImageUtil.load(context = this, any = R.drawable.vn_express, imageView = navViewStart.getHeaderView(0).ivCover)
 
         LUIUtil.setSafeOnClickListenerElastic(
-                view = navViewStart.getHeaderView(0).layoutMoney,
-                runnable = Runnable {
-                    val now = SystemClock.elapsedRealtime()
-                    if (now - previousTime >= navViewStart.getHeaderView(0).layoutTransformation.duration) {
-                        GiftActivity.startActivity(
-                                context = this,
-                                transformationLayout = navViewStart.getHeaderView(0).layoutTransformation
-                        )
-                        previousTime = now
-                    }
+            view = navViewStart.getHeaderView(0).layoutMoney,
+            runnable = Runnable {
+                val now = SystemClock.elapsedRealtime()
+                if (now - previousTime >= navViewStart.getHeaderView(0).layoutTransformation.duration) {
+                    GiftActivity.startActivity(
+                        context = this,
+                        transformationLayout = navViewStart.getHeaderView(0).layoutTransformation
+                    )
+                    previousTime = now
                 }
+            }
         )
         tvAd.text = LStoreUtil.readTxtFromRawFolder(nameOfRawFile = R.raw.ad)
 
@@ -128,11 +129,25 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
                 logD("onNavigationItemSelected navHome")
                 currentItemId = R.id.navHome
                 LScreenUtil.replaceFragment(
-                        this,
-                        R.id.flContainer,
-                        HomeFragment(),
-                        false
+                    this,
+                    R.id.flContainer,
+                    HomeFragment(),
+                    false
                 )
+            }
+            R.id.navGallery -> {
+                val intent = Intent(this, GalleryCoreSplashActivity::class.java)
+                intent.putExtra(Constants.AD_UNIT_ID_BANNER, getString(R.string.str_b))
+                intent.putExtra(Constants.BKG_SPLASH_SCREEN, Constants.URL_IMG_11)
+                //neu muon remove albumn nao thi cu pass id cua albumn do
+                val removeAlbumFlickrList = ArrayList<String>()
+                removeAlbumFlickrList.add(Constants.FLICKR_ID_STICKER)
+                intent.putStringArrayListExtra(
+                    Constants.KEY_REMOVE_ALBUM_FLICKR_LIST,
+                    removeAlbumFlickrList
+                )
+                startActivity(intent)
+                LActivityUtil.tranIn(this)
             }
             R.id.navSetting -> {
                 logD("onNavigationItemSelected navHome")
@@ -140,7 +155,10 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
                 LScreenUtil.replaceFragment(this, R.id.flContainer, SettingFragment(), false)
             }
             R.id.navGithub -> {
-                LSocialUtil.openUrlInBrowser(context = this, url = "https://github.com/tplloi/vnexpress")
+                LSocialUtil.openUrlInBrowser(
+                    context = this,
+                    url = "https://github.com/tplloi/vnexpress"
+                )
             }
             R.id.navRateApp -> {
                 LSocialUtil.rateApp(activity = this, packageName = packageName)
@@ -169,10 +187,10 @@ class MainActivity : BaseFontActivity(), NavigationView.OnNavigationItemSelected
             R.id.navDonation -> {
                 currentItemId = R.id.navDonation
                 LScreenUtil.replaceFragment(
-                        activity = this,
-                        containerFrameLayoutIdRes = R.id.flContainer,
-                        fragment = FrmDonate(),
-                        isAddToBackStack = false
+                    activity = this,
+                    containerFrameLayoutIdRes = R.id.flContainer,
+                    fragment = FrmDonate(),
+                    isAddToBackStack = false
                 )
             }
         }
