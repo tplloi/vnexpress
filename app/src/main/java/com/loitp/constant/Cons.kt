@@ -25,26 +25,126 @@ object Cons {
         if (value.isNullOrEmpty()) {
             val listFeed = ArrayList<Feed>()
             listFeed.apply {
-                add(Feed(title = LAppResource.getString(R.string.lasted_news), url = "https://vnexpress.net/rss/tin-moi-nhat.rss"))
-                add(Feed(title = LAppResource.getString(R.string.hot_news), url = "https://vnexpress.net/rss/tin-noi-bat.rss"))
-                add(Feed(title = LAppResource.getString(R.string.education), url = "https://vnexpress.net/rss/giao-duc.rss"))
-                add(Feed(title = LAppResource.getString(R.string.law), url = "https://vnexpress.net/rss/phap-luat.rss"))
-                add(Feed(title = LAppResource.getString(R.string.sport), url = "https://vnexpress.net/rss/the-thao.rss"))
-                add(Feed(title = LAppResource.getString(R.string.entertaiment), url = "https://vnexpress.net/rss/giai-tri.rss"))
-                add(Feed(title = LAppResource.getString(R.string.startup), url = "https://vnexpress.net/rss/startup.rss"))
-                add(Feed(title = LAppResource.getString(R.string.business), url = "https://vnexpress.net/rss/kinh-doanh.rss"))
-                add(Feed(title = LAppResource.getString(R.string.news), url = "https://vnexpress.net/rss/thoi-su.rss"))
-                add(Feed(title = LAppResource.getString(R.string.global), url = "https://vnexpress.net/rss/the-gioi.rss"))
-                add(Feed(title = LAppResource.getString(R.string.most_viewed_news), url = "https://vnexpress.net/rss/tin-xem-nhieu.rss"))
-                add(Feed(title = LAppResource.getString(R.string.fun_news), url = "https://vnexpress.net/rss/cuoi.rss"))
-                add(Feed(title = LAppResource.getString(R.string.chat_news), url = "https://vnexpress.net/rss/tam-su.rss"))
-                add(Feed(title = LAppResource.getString(R.string.idea), url = "https://vnexpress.net/rss/y-kien.rss"))
-                add(Feed(title = LAppResource.getString(R.string.car_bike), url = "https://vnexpress.net/rss/oto-xe-may.rss"))
-                add(Feed(title = LAppResource.getString(R.string.technical), url = "https://vnexpress.net/rss/so-hoa.rss"))
-                add(Feed(title = LAppResource.getString(R.string.science), url = "https://vnexpress.net/rss/khoa-hoc.rss"))
-                add(Feed(title = LAppResource.getString(R.string.travel), url = "https://vnexpress.net/rss/du-lich.rss"))
-                add(Feed(title = LAppResource.getString(R.string.family), url = "https://vnexpress.net/rss/gia-dinh.rss"))
-                add(Feed(title = LAppResource.getString(R.string.healthy), url = "https://vnexpress.net/rss/suc-khoe.rss"))
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.lasted_news),
+                        url = "https://vnexpress.net/rss/tin-moi-nhat.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.hot_news),
+                        url = "https://vnexpress.net/rss/tin-noi-bat.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.education),
+                        url = "https://vnexpress.net/rss/giao-duc.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.law),
+                        url = "https://vnexpress.net/rss/phap-luat.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.sport),
+                        url = "https://vnexpress.net/rss/the-thao.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.entertaiment),
+                        url = "https://vnexpress.net/rss/giai-tri.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.startup),
+                        url = "https://vnexpress.net/rss/startup.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.business),
+                        url = "https://vnexpress.net/rss/kinh-doanh.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.news),
+                        url = "https://vnexpress.net/rss/thoi-su.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.global),
+                        url = "https://vnexpress.net/rss/the-gioi.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.most_viewed_news),
+                        url = "https://vnexpress.net/rss/tin-xem-nhieu.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.fun_news),
+                        url = "https://vnexpress.net/rss/cuoi.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.chat_news),
+                        url = "https://vnexpress.net/rss/tam-su.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.idea),
+                        url = "https://vnexpress.net/rss/y-kien.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.car_bike),
+                        url = "https://vnexpress.net/rss/oto-xe-may.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.technical),
+                        url = "https://vnexpress.net/rss/so-hoa.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.science),
+                        url = "https://vnexpress.net/rss/khoa-hoc.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.travel),
+                        url = "https://vnexpress.net/rss/du-lich.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.family),
+                        url = "https://vnexpress.net/rss/gia-dinh.rss"
+                    )
+                )
+                add(
+                    Feed(
+                        title = LAppResource.getString(R.string.healthy),
+                        url = "https://vnexpress.net/rss/suc-khoe.rss"
+                    )
+                )
             }
             return listFeed
         } else {
@@ -72,7 +172,7 @@ object Cons {
 
     fun addMoney(): Int {
         var currentMoney = getCurrentMoneyInBigDecimal()
-        val bonus = LStoreUtil.getRandomNumber(50)
+        val bonus = LStoreUtil.getRandomNumber(40)
         currentMoney += bonus.toBigDecimal()
         LEncryptionSharedPrefsUtil.instance.put(KEY_MONEY, currentMoney.toString())
         return bonus
