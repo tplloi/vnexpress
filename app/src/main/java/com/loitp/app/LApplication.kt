@@ -9,6 +9,9 @@ import com.data.AdmobData
 import com.loitp.R
 import com.loitp.db.AppDatabase
 
+//TODO
+//webview no ad
+
 @LogTag("LApplication")
 class LApplication : BaseApplication() {
 
